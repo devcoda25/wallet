@@ -172,8 +172,8 @@ export default function ApprovalStatus() {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Approval Status</h1>
-                    <p className="text-gray-500 mt-1">Track your pending approvals and requests</p>
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Approval Status</h1>
+                    <p className="text-gray-500 mt-1 dark:text-gray-400">Track your pending approvals and requests</p>
                 </div>
                 <Button variant="outline" className="flex items-center gap-2">
                     <RefreshCw className="w-4 h-4" />
@@ -185,40 +185,40 @@ export default function ApprovalStatus() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <SectionCard title="Total Requests" subtitle="All time">
                     <div className="flex items-center gap-3 mt-4">
-                        <div className="p-3 bg-gray-100 rounded-lg">
-                            <FileText className="w-6 h-6 text-gray-600" />
+                        <div className="p-3 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                            <FileText className="w-6 h-6 text-gray-600 dark:text-gray-400" />
                         </div>
-                        <p className="text-3xl font-bold text-gray-900">{stats.total}</p>
+                        <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">{stats.total}</p>
                     </div>
                 </SectionCard>
                 <SectionCard title="Pending" subtitle="Awaiting decision">
                     <div className="flex items-center gap-3 mt-4">
-                        <div className="p-3 bg-amber-100 rounded-lg">
-                            <Clock className="w-6 h-6 text-amber-600" />
+                        <div className="p-3 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
+                            <Clock className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                         </div>
-                        <p className="text-3xl font-bold text-amber-700">{stats.pending}</p>
+                        <p className="text-3xl font-bold text-amber-700 dark:text-amber-400">{stats.pending}</p>
                     </div>
                 </SectionCard>
                 <SectionCard title="Approved" subtitle="Successfully approved">
                     <div className="flex items-center gap-3 mt-4">
-                        <div className="p-3 bg-green-100 rounded-lg">
-                            <CheckCircle className="w-6 h-6 text-green-600" />
+                        <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                            <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
                         </div>
-                        <p className="text-3xl font-bold text-green-700">{stats.approved}</p>
+                        <p className="text-3xl font-bold text-green-700 dark:text-green-400">{stats.approved}</p>
                     </div>
                 </SectionCard>
                 <SectionCard title="Rejected" subtitle="Not approved">
                     <div className="flex items-center gap-3 mt-4">
-                        <div className="p-3 bg-red-100 rounded-lg">
-                            <AlertCircle className="w-6 h-6 text-red-600" />
+                        <div className="p-3 bg-red-100 dark:bg-red-900/30 rounded-lg">
+                            <AlertCircle className="w-6 h-6 text-red-600 dark:text-red-400" />
                         </div>
-                        <p className="text-3xl font-bold text-red-700">{stats.rejected}</p>
+                        <p className="text-3xl font-bold text-red-700 dark:text-red-400">{stats.rejected}</p>
                     </div>
                 </SectionCard>
             </div>
 
             {/* Tabs */}
-            <div className="flex gap-2 border-b border-gray-200">
+            <div className="flex gap-2 border-b border-gray-200 dark:border-gray-700">
                 {(["all", "pending", "approved", "rejected"] as const).map((tab) => (
                     <button
                         key={tab}

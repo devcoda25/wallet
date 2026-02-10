@@ -55,22 +55,33 @@ interface Beneficiary {
 // ============================================================================
 
 function Pill({ label, tone = "neutral" }: { label: string; tone?: "good" | "warn" | "bad" | "info" | "neutral" }) {
-    const map: Record<string, string> = {
-        good: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-        warn: "bg-amber-50 text-amber-800 ring-amber-200",
-        bad: "bg-rose-50 text-rose-700 ring-rose-200",
-        info: "bg-blue-50 text-blue-700 ring-blue-200",
-        neutral: "bg-slate-50 text-slate-700 ring-slate-200",
+    const map: Record<string, { light: string; dark: string }> = {
+        good: { light: "#ecfdf5", dark: "#064e3b" },
+        warn: { light: "#fffbeb", dark: "#78350f" },
+        bad: { light: "#fff1f2", dark: "#881337" },
+        info: { light: "#eff6ff", dark: "#1e3a8a" },
+        neutral: { light: "#f8fafc", dark: "#1e293b" },
+    };
+    const textMap: Record<string, { light: string; dark: string }> = {
+        good: { light: "#047857", dark: "#34d399" },
+        warn: { light: "#b45309", dark: "#fbbf24" },
+        bad: { light: "#e11d48", dark: "#fda4af" },
+        info: { light: "#1d4ed8", dark: "#60a5fa" },
+        neutral: { light: "#475569", dark: "#cbd5e1" },
     };
     return (
         <Chip
             label={label}
             size="small"
             sx={{
-                backgroundColor: map[tone]?.split(" ")[0],
-                color: map[tone]?.split(" ")[1],
+                backgroundColor: map[tone]?.light,
+                color: textMap[tone]?.light,
                 fontWeight: 600,
                 fontSize: "0.75rem",
+                "@media (prefers-color-scheme: dark)": {
+                    backgroundColor: map[tone]?.dark,
+                    color: textMap[tone]?.dark,
+                },
             }}
         />
     );

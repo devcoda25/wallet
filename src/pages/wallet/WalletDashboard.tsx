@@ -68,22 +68,33 @@ function toneForStatus(s: TxStatus): "good" | "info" | "warn" | "bad" {
 }
 
 function Pill({ label, tone = "neutral" }: { label: string; tone?: "good" | "warn" | "bad" | "info" | "neutral" }) {
-    const map: Record<string, string> = {
-        good: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-        warn: "bg-amber-50 text-amber-800 ring-amber-200",
-        bad: "bg-rose-50 text-rose-700 ring-rose-200",
-        info: "bg-blue-50 text-blue-700 ring-blue-200",
-        neutral: "bg-slate-50 text-slate-700 ring-slate-200",
+    const map: Record<string, { light: string; dark: string }> = {
+        good: { light: "#ecfdf5", dark: "#064e3b" },
+        warn: { light: "#fffbeb", dark: "#78350f" },
+        bad: { light: "#fff1f2", dark: "#881337" },
+        info: { light: "#eff6ff", dark: "#1e3a8a" },
+        neutral: { light: "#f8fafc", dark: "#1e293b" },
+    };
+    const textMap: Record<string, { light: string; dark: string }> = {
+        good: { light: "#047857", dark: "#34d399" },
+        warn: { light: "#b45309", dark: "#fbbf24" },
+        bad: { light: "#e11d48", dark: "#fda4af" },
+        info: { light: "#1d4ed8", dark: "#60a5fa" },
+        neutral: { light: "#475569", dark: "#cbd5e1" },
     };
     return (
         <Chip
             label={label}
             size="small"
             sx={{
-                backgroundColor: map[tone]?.split(" ")[0],
-                color: map[tone]?.split(" ")[1],
+                backgroundColor: map[tone]?.light,
+                color: textMap[tone]?.light,
                 fontWeight: 600,
                 fontSize: "0.75rem",
+                "@media (prefers-color-scheme: dark)": {
+                    backgroundColor: map[tone]?.dark,
+                    color: textMap[tone]?.dark,
+                },
             }}
         />
     );
@@ -120,9 +131,9 @@ function StatTile({
             <CardContent>
                 <div className="flex items-start justify-between gap-3">
                     <div>
-                        <div className="text-xs font-semibold text-slate-500">{label}</div>
-                        <div className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">{value}</div>
-                        <div className="mt-1 text-xs text-slate-600">{hint}</div>
+                        <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">{label}</div>
+                        <div className="mt-1 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">{value}</div>
+                        <div className="mt-1 text-xs text-slate-600 dark:text-slate-400">{hint}</div>
                     </div>
                     <div className={`grid h-10 w-10 place-items-center rounded-2xl ${bg}`}>
                         <Icon className="h-5 w-5" />
@@ -135,22 +146,22 @@ function StatTile({
 
 function TxRow({ tx }: { tx: Tx }) {
     const Icon = tx.direction === "in" ? ArrowDownLeft : ArrowUpRight;
-    const amountColor = tx.direction === "in" ? "text-emerald-600" : "text-slate-900";
+    const amountColor = tx.direction === "in" ? "text-emerald-600 dark:text-emerald-400" : "text-slate-900 dark:text-slate-100";
 
     return (
-        <div className="flex items-center gap-4 border-b border-slate-100 py-3 last:border-0">
-            <div className={`grid h-10 w-10 place-items-center rounded-2xl ${tx.direction === "in" ? "bg-emerald-50" : "bg-slate-100"}`}>
-                <Icon className={`h-5 w-5 ${tx.direction === "in" ? "text-emerald-600" : "text-slate-600"}`} />
+        <div className="flex items-center gap-4 border-b border-slate-100 py-3 last:border-0 dark:border-slate-700">
+            <div className={`grid h-10 w-10 place-items-center rounded-2xl ${tx.direction === "in" ? "bg-emerald-50 dark:bg-emerald-900/30" : "bg-slate-100 dark:bg-slate-700"}`}>
+                <Icon className={`h-5 w-5 ${tx.direction === "in" ? "text-emerald-600" : "text-slate-600 dark:text-slate-400"}`} />
             </div>
             <div className="flex-1 min-w-0">
-                <div className="truncate text-sm font-semibold text-slate-900">{tx.title}</div>
-                <div className="truncate text-xs text-slate-500">{tx.subtitle}</div>
+                <div className="truncate text-sm font-semibold text-slate-900 dark:text-slate-100">{tx.title}</div>
+                <div className="truncate text-xs text-slate-500 dark:text-slate-400">{tx.subtitle}</div>
             </div>
             <div className="text-right">
                 <div className={`text-sm font-semibold ${amountColor}`}>
                     {tx.direction === "out" ? "-" : "+"}{formatMoney(tx.amount)}
                 </div>
-                <div className="text-xs text-slate-500">{tx.when}</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">{tx.when}</div>
             </div>
             <Pill label={tx.status} tone={toneForStatus(tx.status)} />
         </div>
@@ -161,16 +172,16 @@ function UpcomingCard({ item }: { item: UpcomingItem }) {
     const Icon = item.tone === "warn" ? AlertTriangle : item.tone === "good" ? Check : Clock;
 
     return (
-        <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-3">
-            <div className={`grid h-8 w-8 place-items-center rounded-xl ${item.tone === "warn" ? "bg-amber-50" : item.tone === "good" ? "bg-emerald-50" : "bg-blue-50"
+        <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-800">
+            <div className={`grid h-8 w-8 place-items-center rounded-xl ${item.tone === "warn" ? "bg-amber-50 dark:bg-amber-900/30" : item.tone === "good" ? "bg-emerald-50 dark:bg-emerald-900/30" : "bg-blue-50 dark:bg-blue-900/30"
                 }`}>
                 <Icon className={`h-4 w-4 ${item.tone === "warn" ? "text-amber-600" : item.tone === "good" ? "text-emerald-600" : "text-blue-600"
                     }`} />
             </div>
             <div className="flex-1">
-                <div className="text-sm font-semibold text-slate-900">{item.title}</div>
-                <div className="text-xs text-slate-500">{item.subtitle}</div>
-                <div className="mt-1 text-xs text-slate-400">{item.when}</div>
+                <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{item.title}</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">{item.subtitle}</div>
+                <div className="mt-1 text-xs text-slate-400 dark:text-slate-500">{item.when}</div>
             </div>
             <Button variant="ghost" size="sm">
                 {item.cta}

@@ -172,8 +172,8 @@ export default function FulfillmentTracking() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Fulfillment Tracking</h1>
-          <p className="text-gray-500 mt-1">Track your purchase order deliveries</p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Fulfillment Tracking</h1>
+          <p className="text-gray-500 mt-1 dark:text-gray-400">Track your purchase order deliveries</p>
         </div>
         <Button variant="outline" className="flex items-center gap-2">
           <RefreshCw className="w-4 h-4" />
@@ -183,47 +183,47 @@ export default function FulfillmentTracking() {
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg dark:bg-blue-900/20 dark:border-blue-800">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-blue-100 rounded-lg">
-              <FileText className="w-6 h-6 text-blue-600" />
+            <div className="p-3 bg-blue-100 rounded-lg dark:bg-blue-800">
+              <FileText className="w-6 h-6 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
-              <p className="text-xs text-blue-600">Total Orders</p>
-              <p className="text-2xl font-bold text-blue-700">{stats.total}</p>
+              <p className="text-xs text-blue-600 dark:text-blue-400">Total Orders</p>
+              <p className="text-2xl font-bold text-blue-700 dark:text-blue-400">{stats.total}</p>
             </div>
           </div>
         </div>
-        <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+        <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg dark:bg-amber-900/20 dark:border-amber-800">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-amber-100 rounded-lg">
-              <Clock className="w-6 h-6 text-amber-600" />
+            <div className="p-3 bg-amber-100 rounded-lg dark:bg-amber-800">
+              <Clock className="w-6 h-6 text-amber-600 dark:text-amber-400" />
             </div>
             <div>
-              <p className="text-xs text-amber-600">Pending</p>
-              <p className="text-2xl font-bold text-amber-700">{stats.pending}</p>
+              <p className="text-xs text-amber-600 dark:text-amber-400">Pending</p>
+              <p className="text-2xl font-bold text-amber-700 dark:text-amber-400">{stats.pending}</p>
             </div>
           </div>
         </div>
-        <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+        <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg dark:bg-purple-900/20 dark:border-purple-800">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-purple-100 rounded-lg">
-              <Truck className="w-6 h-6 text-purple-600" />
+            <div className="p-3 bg-purple-100 rounded-lg dark:bg-purple-800">
+              <Truck className="w-6 h-6 text-purple-600 dark:text-purple-400" />
             </div>
             <div>
-              <p className="text-xs text-purple-600">In Transit</p>
-              <p className="text-2xl font-bold text-purple-700">{stats.inTransit}</p>
+              <p className="text-xs text-purple-600 dark:text-purple-400">In Transit</p>
+              <p className="text-2xl font-bold text-purple-700 dark:text-purple-400">{stats.inTransit}</p>
             </div>
           </div>
         </div>
-        <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+        <div className="p-4 bg-green-50 border border-green-200 rounded-lg dark:bg-green-900/20 dark:border-green-800">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-green-100 rounded-lg">
-              <CheckCircle className="w-6 h-6 text-green-600" />
+            <div className="p-3 bg-green-100 rounded-lg dark:bg-green-800">
+              <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
             </div>
             <div>
-              <p className="text-xs text-green-600">Delivered</p>
-              <p className="text-2xl font-bold text-green-700">{stats.delivered}</p>
+              <p className="text-xs text-green-600 dark:text-green-400">Delivered</p>
+              <p className="text-2xl font-bold text-green-700 dark:text-green-400">{stats.delivered}</p>
             </div>
           </div>
         </div>
@@ -236,8 +236,8 @@ export default function FulfillmentTracking() {
             key={status}
             onClick={() => setFilterStatus(status)}
             className={`px-4 py-2 rounded-lg font-medium transition-colors ${filterStatus === status
-                ? "bg-blue-100 text-blue-700"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                ? "bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
+                : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
               }`}
           >
             {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -260,26 +260,26 @@ export default function FulfillmentTracking() {
                   <div
                     key={shipment.id}
                     onClick={() => setSelectedShipment(shipment.id)}
-                    className={`p-4 rounded-lg cursor-pointer transition-colors ${isSelected ? "bg-blue-50 border border-blue-200" : "bg-gray-50 hover:bg-gray-100"
+                    className={`p-4 rounded-lg cursor-pointer transition-colors ${isSelected ? "bg-blue-50 border border-blue-200 dark:bg-blue-900/30 dark:border-blue-800" : "bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
                       }`}
                   >
                     <div className="flex items-start gap-3">
-                      <div className={`p-2 rounded-lg ${status.tone === "good" ? "bg-green-100" :
-                          status.tone === "warn" ? "bg-amber-100" :
-                            status.tone === "accent" ? "bg-purple-100" : "bg-blue-100"
+                      <div className={`p-2 rounded-lg ${status.tone === "good" ? "bg-green-100 dark:bg-green-900/30" :
+                          status.tone === "warn" ? "bg-amber-100 dark:bg-amber-900/30" :
+                            status.tone === "accent" ? "bg-purple-100 dark:bg-purple-900/30" : "bg-blue-100 dark:bg-blue-900/30"
                         }`}>
-                        <StatusIcon className={`w-5 h-5 ${status.tone === "good" ? "text-green-600" :
-                            status.tone === "warn" ? "text-amber-600" :
-                              status.tone === "accent" ? "text-purple-600" : "text-blue-600"
+                        <StatusIcon className={`w-5 h-5 ${status.tone === "good" ? "text-green-600 dark:text-green-400" :
+                            status.tone === "warn" ? "text-amber-600 dark:text-amber-400" :
+                              status.tone === "accent" ? "text-purple-600 dark:text-purple-400" : "text-blue-600 dark:text-blue-400"
                           }`} />
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between">
-                          <span className="font-medium text-gray-900">{shipment.poNumber}</span>
+                          <span className="font-medium text-gray-900 dark:text-gray-100">{shipment.poNumber}</span>
                           <Pill label={status.label} tone={status.tone} />
                         </div>
-                        <p className="text-sm text-gray-500 mt-1">{shipment.vendor}</p>
-                        <div className="flex items-center gap-3 mt-2 text-xs text-gray-400">
+                        <p className="text-sm text-gray-500 mt-1 dark:text-gray-400">{shipment.vendor}</p>
+                        <div className="flex items-center gap-3 mt-2 text-xs text-gray-400 dark:text-gray-500">
                           <span className="flex items-center gap-1">
                             <Calendar className="w-3 h-3" />
                             {formatDate(shipment.expectedDelivery)}
@@ -295,7 +295,7 @@ export default function FulfillmentTracking() {
                               <span>Progress</span>
                               <span>{shipment.itemsDelivered}/{shipment.items} items</span>
                             </div>
-                            <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
                               <div
                                 className="bg-amber-500 h-2 rounded-full"
                                 style={{ width: `${(shipment.itemsDelivered / shipment.items) * 100}%` }}
@@ -304,7 +304,7 @@ export default function FulfillmentTracking() {
                           </div>
                         )}
                       </div>
-                      <ChevronRight className="w-5 h-5 text-gray-400" />
+                      <ChevronRight className="w-5 h-5 text-gray-400 dark:text-gray-500" />
                     </div>
                   </div>
                 );
@@ -327,28 +327,28 @@ export default function FulfillmentTracking() {
                   subtitle={`${shipment.vendor} | ${formatCurrency(shipment.amount)}`}
                 >
                   {/* Status Banner */}
-                  <div className={`mt-4 p-4 rounded-lg ${shipment.status === "delivered" ? "bg-green-50 border border-green-200" :
-                      shipment.status === "partial" ? "bg-amber-50 border border-amber-200" :
-                        "bg-blue-50 border border-blue-200"
+                  <div className={`mt-4 p-4 rounded-lg ${shipment.status === "delivered" ? "bg-green-50 border border-green-200 dark:bg-green-900/20 dark:border-green-800" :
+                      shipment.status === "partial" ? "bg-amber-50 border border-amber-200 dark:bg-amber-900/20 dark:border-amber-800" :
+                        "bg-blue-50 border border-blue-200 dark:bg-blue-900/20 dark:border-blue-800"
                     }`}>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         {shipment.status === "delivered" ? (
-                          <CheckCircle className="w-8 h-8 text-green-600" />
+                          <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
                         ) : shipment.status === "partial" ? (
-                          <AlertTriangle className="w-8 h-8 text-amber-600" />
+                          <AlertTriangle className="w-8 h-8 text-amber-600 dark:text-amber-400" />
                         ) : (
-                          <Truck className="w-8 h-8 text-blue-600" />
+                          <Truck className="w-8 h-8 text-blue-600 dark:text-blue-400" />
                         )}
                         <div>
-                          <p className={`font-bold text-lg ${shipment.status === "delivered" ? "text-green-700" :
-                              shipment.status === "partial" ? "text-amber-700" : "text-blue-700"
+                          <p className={`font-bold text-lg ${shipment.status === "delivered" ? "text-green-700 dark:text-green-400" :
+                              shipment.status === "partial" ? "text-amber-700 dark:text-amber-400" : "text-blue-700 dark:text-blue-400"
                             }`}>
                             {shipment.status === "delivered" ? "Delivered" :
                               shipment.status === "partial" ? "Partially Delivered" :
                                 status.label}
                           </p>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
                             {shipment.status === "delivered" && shipment.actualDelivery ?
                               `Delivered on ${formatDate(shipment.actualDelivery)}` :
                               `Expected by ${formatDate(shipment.expectedDelivery)}`}
@@ -357,8 +357,8 @@ export default function FulfillmentTracking() {
                       </div>
                       {shipment.trackingNumber && (
                         <div className="text-right">
-                          <p className="text-xs text-gray-500">Tracking Number</p>
-                          <p className="font-mono font-medium text-gray-900">{shipment.trackingNumber}</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">Tracking Number</p>
+                          <p className="font-mono font-medium text-gray-900 dark:text-gray-100">{shipment.trackingNumber}</p>
                         </div>
                       )}
                     </div>
@@ -366,24 +366,24 @@ export default function FulfillmentTracking() {
 
                   {/* Progress Timeline */}
                   <div className="mt-6">
-                    <h4 className="font-medium text-gray-900 mb-4">Delivery Progress</h4>
+                    <h4 className="font-medium text-gray-900 mb-4 dark:text-gray-100">Delivery Progress</h4>
                     <div className="relative">
                       {shipment.milestones.map((milestone, index) => (
                         <div key={index} className="flex items-start gap-4 pb-6 last:pb-0">
                           <div className="relative">
-                            <div className={`w-4 h-4 rounded-full ${milestone.completed ? "bg-green-500" : "bg-gray-300"
+                            <div className={`w-4 h-4 rounded-full ${milestone.completed ? "bg-green-500 dark:bg-green-400" : "bg-gray-300 dark:bg-gray-600"
                               }`} />
                             {index < shipment.milestones.length - 1 && (
-                              <div className={`absolute top-4 left-1/2 w-0.5 h-full -translate-x-1/2 ${milestone.completed ? "bg-green-300" : "bg-gray-200"
+                              <div className={`absolute top-4 left-1/2 w-0.5 h-full -translate-x-1/2 ${milestone.completed ? "bg-green-300 dark:bg-green-700" : "bg-gray-200 dark:bg-gray-700"
                                 }`} />
                             )}
                           </div>
                           <div className="flex-1">
-                            <p className={`font-medium ${milestone.completed ? "text-gray-900" : "text-gray-400"
+                            <p className={`font-medium ${milestone.completed ? "text-gray-900 dark:text-gray-100" : "text-gray-400 dark:text-gray-500"
                               }`}>
                               {milestone.status}
                             </p>
-                            <p className="text-sm text-gray-500">
+                            <p className="text-sm text-gray-500 dark:text-gray-400">
                               {milestone.date ? formatDate(milestone.date) : "Pending"}
                             </p>
                           </div>
@@ -394,20 +394,20 @@ export default function FulfillmentTracking() {
 
                   {/* Vendor Info */}
                   <div className="mt-6 grid grid-cols-2 gap-4">
-                    <div className="p-3 bg-gray-50 rounded-lg">
+                    <div className="p-3 bg-gray-50 rounded-lg dark:bg-gray-800">
                       <div className="flex items-center gap-2 mb-2">
-                        <Building2 className="w-4 h-4 text-gray-400" />
-                        <span className="text-sm font-medium text-gray-700">Vendor</span>
+                        <Building2 className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Vendor</span>
                       </div>
-                      <p className="font-medium text-gray-900">{shipment.vendor}</p>
+                      <p className="font-medium text-gray-900 dark:text-gray-100">{shipment.vendor}</p>
                     </div>
                     {shipment.carrier && (
-                      <div className="p-3 bg-gray-50 rounded-lg">
+                      <div className="p-3 bg-gray-50 rounded-lg dark:bg-gray-800">
                         <div className="flex items-center gap-2 mb-2">
-                          <Truck className="w-4 h-4 text-gray-400" />
-                          <span className="text-sm font-medium text-gray-700">Carrier</span>
+                          <Truck className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Carrier</span>
                         </div>
-                        <p className="font-medium text-gray-900">{shipment.carrier}</p>
+                        <p className="font-medium text-gray-900 dark:text-gray-100">{shipment.carrier}</p>
                       </div>
                     )}
                   </div>
@@ -433,8 +433,8 @@ export default function FulfillmentTracking() {
               );
             })()
           ) : (
-            <div className="p-8 text-center text-gray-500">
-              <Truck className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+            <div className="p-8 text-center text-gray-500 dark:text-gray-400">
+              <Truck className="w-12 h-12 mx-auto mb-4 text-gray-300 dark:text-gray-600" />
               <p>Select a shipment to view details</p>
             </div>
           )}

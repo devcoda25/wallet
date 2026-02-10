@@ -31,12 +31,12 @@ export function ProgressBar({
     return (
         <div className="w-full">
             {(labelLeft || labelRight) && (
-                <div className="flex items-center justify-between text-xs text-slate-600 mb-2">
+                <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-400 mb-2">
                     {labelLeft && <span className="font-semibold">{labelLeft}</span>}
                     {labelRight && <span className="font-semibold">{labelRight}</span>}
                 </div>
             )}
-            <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-700">
                 <div
                     className="h-full rounded-full transition-all duration-500"
                     style={{ width: `${Math.min(100, clampPct)}%`, background: barColor }}
@@ -45,7 +45,7 @@ export function ProgressBar({
             {showDetails && (
                 <div className="mt-2 flex flex-wrap items-center gap-2">
                     <Pill label={`${pct}%`} tone={danger ? "bad" : warn ? "warn" : "good"} />
-                    <div className="text-xs text-slate-500">
+                    <div className="text-xs text-slate-500 dark:text-slate-400">
                         Used {formatValue(value)} of {formatValue(total)}
                     </div>
                 </div>

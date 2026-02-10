@@ -19,17 +19,17 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true">
             {/* Backdrop */}
             <div
-                className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity"
+                className="fixed inset-0 bg-slate-900/40 dark:bg-black/60 backdrop-blur-sm transition-opacity"
                 onClick={onClose}
             />
 
             {/* Drawer Content */}
-            <div className="fixed inset-y-0 left-0 w-full max-w-xs bg-white shadow-2xl transition-transform animate-in slide-in-from-left duration-300">
-                <div className="flex h-16 items-center justify-between border-b border-slate-100 px-6">
-                    <span className="text-lg font-bold text-slate-900">Menu</span>
+            <div className="fixed inset-y-0 left-0 w-full max-w-xs bg-white dark:bg-slate-900 shadow-2xl transition-transform animate-in slide-in-from-left duration-300">
+                <div className="flex h-16 items-center justify-between border-b border-slate-100 dark:border-slate-800 px-6">
+                    <span className="text-lg font-bold text-slate-900 dark:text-white">Menu</span>
                     <button
                         onClick={onClose}
-                        className="rounded-lg p-2 text-slate-400 hover:bg-slate-50 hover:text-slate-600"
+                        className="rounded-lg p-2 text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-600 dark:hover:text-white"
                     >
                         <X className="h-5 w-5" />
                     </button>
@@ -39,17 +39,17 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                     <nav className="space-y-8">
                         {NAV_SECTIONS.map((section) => (
                             <div key={section.title}>
-                                <h3 className="mb-3 px-3 text-xs font-bold uppercase tracking-wider text-slate-400">
+                                <h3 className="mb-3 px-3 text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                                     {section.title}
                                 </h3>
                                 <div className="space-y-1">
                                     {section.items.map((item, i) => {
                                         if (item.type === "divider") {
-                                            return <hr key={i} className="my-2 border-slate-200" />;
+                                            return <hr key={i} className="my-2 border-slate-200 dark:border-slate-800" />;
                                         }
                                         if (item.type === "header") {
                                             return (
-                                                <h4 key={i} className="mb-2 mt-4 px-3 text-xs font-bold uppercase tracking-wider text-slate-400">
+                                                <h4 key={i} className="mb-2 mt-4 px-3 text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                                                     {item.label}
                                                 </h4>
                                             );
@@ -64,7 +64,9 @@ export function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
                                                 }}
                                                 className={cn(
                                                     "flex w-full items-center justify-between gap-3 rounded-xl px-3 py-3 text-sm font-semibold transition-colors",
-                                                    isActive ? "bg-emerald-50 text-emerald-900" : "text-slate-600 hover:bg-slate-50"
+                                                    isActive
+                                                        ? "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-900 dark:text-emerald-100"
+                                                        : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
                                                 )}
                                             >
                                                 <div className="flex items-center gap-3">

@@ -124,8 +124,8 @@ export default function ApprovalSubmit() {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Approval Review</h1>
-                    <p className="text-gray-500 mt-1">Review and approve pending requests</p>
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Approval Review</h1>
+                    <p className="text-gray-500 mt-1 dark:text-gray-400">Review and approve pending requests</p>
                 </div>
             </div>
 
@@ -133,38 +133,38 @@ export default function ApprovalSubmit() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <SectionCard title="Pending" subtitle="Awaiting your action">
                     <div className="flex items-center gap-3 mt-4">
-                        <div className="p-3 bg-amber-100 rounded-lg">
-                            <Clock className="w-6 h-6 text-amber-600" />
+                        <div className="p-3 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
+                            <Clock className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                         </div>
-                        <p className="text-3xl font-bold text-amber-700">{pendingApprovals.length}</p>
+                        <p className="text-3xl font-bold text-amber-700 dark:text-amber-400">{pendingApprovals.length}</p>
                     </div>
                 </SectionCard>
                 <SectionCard title="Urgent" subtitle="High priority items">
                     <div className="flex items-center gap-3 mt-4">
-                        <div className="p-3 bg-red-100 rounded-lg">
-                            <AlertTriangle className="w-6 h-6 text-red-600" />
+                        <div className="p-3 bg-red-100 dark:bg-red-900/30 rounded-lg">
+                            <AlertTriangle className="w-6 h-6 text-red-600 dark:text-red-400" />
                         </div>
-                        <p className="text-3xl font-bold text-red-700">
+                        <p className="text-3xl font-bold text-red-700 dark:text-red-400">
                             {pendingApprovals.filter((a) => a.priority === "high" || a.priority === "urgent").length}
                         </p>
                     </div>
                 </SectionCard>
                 <SectionCard title="Total Value" subtitle="Pending approvals">
                     <div className="flex items-center gap-3 mt-4">
-                        <div className="p-3 bg-blue-100 rounded-lg">
-                            <DollarSign className="w-6 h-6 text-blue-600" />
+                        <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                            <DollarSign className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                         </div>
-                        <p className="text-3xl font-bold text-blue-700">
+                        <p className="text-3xl font-bold text-blue-700 dark:text-blue-400">
                             {formatCurrency(pendingApprovals.reduce((sum, a) => sum + a.amount, 0))}
                         </p>
                     </div>
                 </SectionCard>
                 <SectionCard title="Completed" subtitle="This week">
                     <div className="flex items-center gap-3 mt-4">
-                        <div className="p-3 bg-green-100 rounded-lg">
-                            <CheckCircle className="w-6 h-6 text-green-600" />
+                        <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                            <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
                         </div>
-                        <p className="text-3xl font-bold text-green-700">12</p>
+                        <p className="text-3xl font-bold text-green-700 dark:text-green-400">12</p>
                     </div>
                 </SectionCard>
             </div>
@@ -179,11 +179,10 @@ export default function ApprovalSubmit() {
                                 <div
                                     key={approval.id}
                                     onClick={() => setSelectedApproval(approval.id)}
-                                    className={`p-4 rounded-lg cursor-pointer transition-colors ${
-                                        selectedApproval === approval.id
+                                    className={`p-4 rounded-lg cursor-pointer transition-colors ${selectedApproval === approval.id
                                             ? "bg-blue-50 border border-blue-200"
                                             : "bg-gray-50 hover:bg-gray-100"
-                                    }`}
+                                        }`}
                                 >
                                     <div className="flex items-start justify-between">
                                         <div className="flex-1">
@@ -314,8 +313,8 @@ export default function ApprovalSubmit() {
                                                     {action === "approve"
                                                         ? "Approve Request"
                                                         : action === "reject"
-                                                        ? "Reject Request"
-                                                        : "Request Additional Information"}
+                                                            ? "Reject Request"
+                                                            : "Request Additional Information"}
                                                 </h4>
                                                 <div>
                                                     <label className="block text-sm font-medium text-gray-700 mb-1">

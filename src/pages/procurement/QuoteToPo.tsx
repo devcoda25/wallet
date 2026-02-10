@@ -126,24 +126,24 @@ export default function QuoteToPo() {
   };
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-6 p-6 dark:bg-gray-900">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-4">
-          <Button variant="ghost">
+          <Button variant="ghost" className="dark:text-gray-300 dark:hover:bg-gray-800">
             <ArrowLeft className="w-5 h-5" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Create Purchase Order</h1>
-            <p className="text-gray-500 mt-1">Convert quote to purchase order</p>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Create Purchase Order</h1>
+            <p className="text-gray-500 dark:text-gray-400 mt-1">Convert quote to purchase order</p>
           </div>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" className="flex items-center gap-2">
+          <Button variant="outline" className="flex items-center gap-2 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800">
             <Printer className="w-4 h-4" />
             Print Preview
           </Button>
-          <Button variant="outline" className="flex items-center gap-2">
+          <Button variant="outline" className="flex items-center gap-2 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800">
             <Download className="w-4 h-4" />
             Download PDF
           </Button>
@@ -156,47 +156,47 @@ export default function QuoteToPo() {
 
       {/* PO Summary */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="p-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-blue-100 rounded-lg">
-              <FileText className="w-6 h-6 text-blue-600" />
+            <div className="p-3 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
+              <FileText className="w-6 h-6 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
-              <p className="text-xs text-blue-600">PO Number</p>
-              <p className="text-xl font-bold text-blue-700">{poNumber}</p>
+              <p className="text-xs text-blue-600 dark:text-blue-400">PO Number</p>
+              <p className="text-xl font-bold text-blue-700 dark:text-blue-400">{poNumber}</p>
             </div>
           </div>
         </div>
-        <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+        <div className="p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-green-100 rounded-lg">
-              <DollarSign className="w-6 h-6 text-green-600" />
+            <div className="p-3 bg-green-100 dark:bg-green-900/50 rounded-lg">
+              <DollarSign className="w-6 h-6 text-green-600 dark:text-green-400" />
             </div>
             <div>
-              <p className="text-xs text-green-600">Total Amount</p>
-              <p className="text-xl font-bold text-green-700">{formatCurrency(total)}</p>
+              <p className="text-xs text-green-600 dark:text-green-400">Total Amount</p>
+              <p className="text-xl font-bold text-green-700 dark:text-green-400">{formatCurrency(total)}</p>
             </div>
           </div>
         </div>
-        <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+        <div className="p-4 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-amber-100 rounded-lg">
-              <Calendar className="w-6 h-6 text-amber-600" />
+            <div className="p-3 bg-amber-100 dark:bg-amber-900/50 rounded-lg">
+              <Calendar className="w-6 h-6 text-amber-600 dark:text-amber-400" />
             </div>
             <div>
-              <p className="text-xs text-amber-600">PO Date</p>
-              <p className="text-lg font-bold text-amber-700">{poDate}</p>
+              <p className="text-xs text-amber-600 dark:text-amber-400">PO Date</p>
+              <p className="text-lg font-bold text-amber-700 dark:text-amber-400">{poDate}</p>
             </div>
           </div>
         </div>
-        <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+        <div className="p-4 bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-lg">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-purple-100 rounded-lg">
-              <Building2 className="w-6 h-6 text-purple-600" />
+            <div className="p-3 bg-purple-100 dark:bg-purple-900/50 rounded-lg">
+              <Building2 className="w-6 h-6 text-purple-600 dark:text-purple-400" />
             </div>
             <div>
-              <p className="text-xs text-purple-600">Vendor</p>
-              <p className="text-lg font-bold text-purple-700">{vendor.name}</p>
+              <p className="text-xs text-purple-600 dark:text-purple-400">Vendor</p>
+              <p className="text-lg font-bold text-purple-700 dark:text-purple-400">{vendor.name}</p>
             </div>
           </div>
         </div>
@@ -208,24 +208,24 @@ export default function QuoteToPo() {
           <SectionCard title="Vendor Information" subtitle="Selected vendor details">
             <div className="mt-4 space-y-3">
               <div>
-                <p className="text-xs text-gray-500">Company Name</p>
-                <p className="font-medium text-gray-900">{vendor.name}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Company Name</p>
+                <p className="font-medium text-gray-900 dark:text-gray-100">{vendor.name}</p>
               </div>
               <div>
-                <p className="text-xs text-gray-500">Contact Person</p>
-                <p className="font-medium text-gray-900">{vendor.contact}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Contact Person</p>
+                <p className="font-medium text-gray-900 dark:text-gray-100">{vendor.contact}</p>
               </div>
               <div>
-                <p className="text-xs text-gray-500">Email</p>
-                <p className="font-medium text-gray-900">{vendor.email}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Email</p>
+                <p className="font-medium text-gray-900 dark:text-gray-100">{vendor.email}</p>
               </div>
               <div>
-                <p className="text-xs text-gray-500">Phone</p>
-                <p className="font-medium text-gray-900">{vendor.phone}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Phone</p>
+                <p className="font-medium text-gray-900 dark:text-gray-100">{vendor.phone}</p>
               </div>
               <div>
-                <p className="text-xs text-gray-500">Address</p>
-                <p className="font-medium text-gray-900">{vendor.address}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Address</p>
+                <p className="font-medium text-gray-900 dark:text-gray-100">{vendor.address}</p>
               </div>
             </div>
           </SectionCard>
@@ -233,25 +233,25 @@ export default function QuoteToPo() {
           <SectionCard title="Delivery Information" subtitle="Shipping and delivery details">
             <div className="mt-4 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Delivery Address
                 </label>
                 <textarea
                   value={deliveryAddress}
                   onChange={(e) => setDeliveryAddress(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-gray-100"
                   rows={3}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Required Delivery Date
                 </label>
                 <input
                   type="date"
                   value={deliveryDate}
                   onChange={(e) => setDeliveryDate(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-gray-100"
                 />
               </div>
             </div>
@@ -263,35 +263,35 @@ export default function QuoteToPo() {
           <SectionCard title="PO Details" subtitle="Purchase order reference and terms">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   PO Number
                 </label>
                 <input
                   type="text"
                   value={poNumber}
                   onChange={(e) => setPoNumber(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-gray-100"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   PO Date
                 </label>
                 <input
                   type="date"
                   value={poDate}
                   onChange={(e) => setPoDate(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-gray-100"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Payment Terms
                 </label>
                 <select
                   value={paymentTerms}
                   onChange={(e) => setPaymentTerms(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-gray-100"
                 >
                   <option value="Immediate">Immediate</option>
                   <option value="Net 15">Net 15</option>
@@ -301,14 +301,14 @@ export default function QuoteToPo() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   RFQ Reference
                 </label>
                 <input
                   type="text"
                   value="RFQ-2024-001"
                   readOnly
-                  className="w-full px-3 py-2 border border-gray-200 bg-gray-50 rounded-lg text-gray-500"
+                  className="w-full px-3 py-2 border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 rounded-lg text-gray-500 dark:text-gray-400"
                 />
               </div>
             </div>
@@ -328,24 +328,24 @@ export default function QuoteToPo() {
             <div className="overflow-x-auto mt-4">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-gray-50 border-b border-gray-200">
-                    <th className="text-left py-2 px-2 font-medium text-gray-600 text-sm">Item</th>
-                    <th className="text-left py-2 px-2 font-medium text-gray-600 text-sm">Description</th>
-                    <th className="text-center py-2 px-2 font-medium text-gray-600 text-sm w-20">Qty</th>
-                    <th className="text-right py-2 px-2 font-medium text-gray-600 text-sm w-28">Unit Price</th>
-                    <th className="text-right py-2 px-2 font-medium text-gray-600 text-sm w-28">Total</th>
+                  <tr className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+                    <th className="text-left py-2 px-2 font-medium text-gray-600 dark:text-gray-400 text-sm">Item</th>
+                    <th className="text-left py-2 px-2 font-medium text-gray-600 dark:text-gray-400 text-sm">Description</th>
+                    <th className="text-center py-2 px-2 font-medium text-gray-600 dark:text-gray-400 text-sm w-20">Qty</th>
+                    <th className="text-right py-2 px-2 font-medium text-gray-600 dark:text-gray-400 text-sm w-28">Unit Price</th>
+                    <th className="text-right py-2 px-2 font-medium text-gray-600 dark:text-gray-400 text-sm w-28">Total</th>
                     <th className="w-10"></th>
                   </tr>
                 </thead>
                 <tbody>
                   {lineItems.map((item, index) => (
-                    <tr key={item.id} className="border-b border-gray-100">
+                    <tr key={item.id} className="border-b border-gray-100 dark:border-gray-700">
                       <td className="py-2 px-2">
                         <input
                           type="text"
                           value={item.itemName}
                           onChange={(e) => updateLineItem(item.id, "itemName", e.target.value)}
-                          className="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm"
+                          className="w-full px-2 py-1 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-gray-900 dark:text-gray-100"
                         />
                       </td>
                       <td className="py-2 px-2">
@@ -353,7 +353,7 @@ export default function QuoteToPo() {
                           type="text"
                           value={item.description}
                           onChange={(e) => updateLineItem(item.id, "description", e.target.value)}
-                          className="w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm"
+                          className="w-full px-2 py-1 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-gray-900 dark:text-gray-100"
                         />
                       </td>
                       <td className="py-2 px-2">
@@ -361,7 +361,7 @@ export default function QuoteToPo() {
                           type="number"
                           value={item.quantity}
                           onChange={(e) => updateLineItem(item.id, "quantity", parseInt(e.target.value) || 1)}
-                          className="w-full px-2 py-1 border border-gray-300 rounded text-center focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm"
+                          className="w-full px-2 py-1 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 rounded text-center focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-gray-900 dark:text-gray-100"
                           min="1"
                         />
                       </td>
@@ -370,17 +370,17 @@ export default function QuoteToPo() {
                           type="number"
                           value={item.unitPrice}
                           onChange={(e) => updateLineItem(item.id, "unitPrice", parseInt(e.target.value) || 0)}
-                          className="w-full px-2 py-1 border border-gray-300 rounded text-right focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm"
+                          className="w-full px-2 py-1 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 rounded text-right focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm text-gray-900 dark:text-gray-100"
                         />
                       </td>
-                      <td className="py-2 px-2 text-right font-medium text-gray-900">
+                      <td className="py-2 px-2 text-right font-medium text-gray-900 dark:text-gray-100">
                         {formatCurrency(item.totalPrice)}
                       </td>
                       <td className="py-2 px-2 text-center">
                         {lineItems.length > 1 && (
                           <button
                             onClick={() => removeLineItem(item.id)}
-                            className="p-1 text-red-500 hover:bg-red-50 rounded"
+                            className="p-1 text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -396,16 +396,16 @@ export default function QuoteToPo() {
             <div className="mt-4 flex justify-end">
               <div className="w-64 space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Subtotal</span>
-                  <span className="font-medium text-gray-900">{formatCurrency(subtotal)}</span>
+                  <span className="text-gray-500 dark:text-gray-400">Subtotal</span>
+                  <span className="font-medium text-gray-900 dark:text-gray-100">{formatCurrency(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">VAT (18%)</span>
-                  <span className="font-medium text-gray-900">{formatCurrency(vat)}</span>
+                  <span className="text-gray-500 dark:text-gray-400">VAT (18%)</span>
+                  <span className="font-medium text-gray-900 dark:text-gray-100">{formatCurrency(vat)}</span>
                 </div>
-                <div className="flex justify-between text-lg font-bold border-t border-gray-200 pt-2">
-                  <span className="text-gray-900">Total</span>
-                  <span className="text-blue-600">{formatCurrency(total)}</span>
+                <div className="flex justify-between text-lg font-bold border-t border-gray-200 dark:border-gray-700 pt-2">
+                  <span className="text-gray-900 dark:text-gray-100">Total</span>
+                  <span className="text-blue-600 dark:text-blue-400">{formatCurrency(total)}</span>
                 </div>
               </div>
             </div>
@@ -417,7 +417,7 @@ export default function QuoteToPo() {
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-gray-100"
                 rows={4}
                 placeholder="Enter any additional notes or special terms..."
               />

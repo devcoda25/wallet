@@ -171,14 +171,14 @@ export default function RFQStatus() {
   };
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-6 p-6 dark:bg-gray-900">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">RFQ Status</h1>
-          <p className="text-gray-500 mt-1">Track your RFQs and manage vendor communications</p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">RFQ Status</h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-1">Track your RFQs and manage vendor communications</p>
         </div>
-        <Button variant="outline" className="flex items-center gap-2">
+        <Button variant="outline" className="flex items-center gap-2 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800">
           <RefreshCw className="w-4 h-4" />
           Refresh
         </Button>
@@ -188,34 +188,34 @@ export default function RFQStatus() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <SectionCard title="Total RFQs" subtitle="All time">
           <div className="flex items-center gap-3 mt-4">
-            <div className="p-3 bg-blue-100 rounded-lg">
-              <FileText className="w-6 h-6 text-blue-600" />
+            <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+              <FileText className="w-6 h-6 text-blue-600 dark:text-blue-400" />
             </div>
-            <p className="text-3xl font-bold text-gray-900">{stats.total}</p>
+            <p className="text-3xl font-bold text-gray-900 dark:text-gray-100">{stats.total}</p>
           </div>
         </SectionCard>
         <SectionCard title="Published" subtitle="Awaiting responses">
           <div className="flex items-center gap-3 mt-4">
-            <div className="p-3 bg-amber-100 rounded-lg">
-              <Clock className="w-6 h-6 text-amber-600" />
+            <div className="p-3 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
+              <Clock className="w-6 h-6 text-amber-600 dark:text-amber-400" />
             </div>
-            <p className="text-3xl font-bold text-amber-700">{stats.published}</p>
+            <p className="text-3xl font-bold text-amber-700 dark:text-amber-400">{stats.published}</p>
           </div>
         </SectionCard>
         <SectionCard title="Evaluating" subtitle="Reviewing responses">
           <div className="flex items-center gap-3 mt-4">
-            <div className="p-3 bg-purple-100 rounded-lg">
-              <AlertCircle className="w-6 h-6 text-purple-600" />
+            <div className="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
+              <AlertCircle className="w-6 h-6 text-purple-600 dark:text-purple-400" />
             </div>
-            <p className="text-3xl font-bold text-purple-700">{stats.evaluating}</p>
+            <p className="text-3xl font-bold text-purple-700 dark:text-purple-400">{stats.evaluating}</p>
           </div>
         </SectionCard>
         <SectionCard title="Awarded" subtitle="Successfully awarded">
           <div className="flex items-center gap-3 mt-4">
-            <div className="p-3 bg-green-100 rounded-lg">
-              <CheckCircle className="w-6 h-6 text-green-600" />
+            <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg">
+              <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
             </div>
-            <p className="text-3xl font-bold text-green-700">{stats.awarded}</p>
+            <p className="text-3xl font-bold text-green-700 dark:text-green-400">{stats.awarded}</p>
           </div>
         </SectionCard>
       </div>
@@ -232,17 +232,19 @@ export default function RFQStatus() {
                   <div
                     key={rfq.id}
                     onClick={() => setSelectedRFQ(rfq.id)}
-                    className={`p-4 rounded-lg cursor-pointer transition-colors ${selectedRFQ === rfq.id ? "bg-blue-50 border border-blue-200" : "bg-gray-50 hover:bg-gray-100"
+                    className={`p-4 rounded-lg cursor-pointer transition-colors ${selectedRFQ === rfq.id
+                      ? "bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700"
+                      : "bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700"
                       }`}
                   >
                     <div className="flex items-start justify-between">
                       <div>
                         <div className="flex items-center gap-2">
-                          <h3 className="font-medium text-gray-900">{rfq.rfqNumber}</h3>
+                          <h3 className="font-medium text-gray-900 dark:text-gray-100">{rfq.rfqNumber}</h3>
                           <Pill label={status.label} tone={status.tone} />
                         </div>
-                        <p className="text-sm text-gray-500 mt-1">{rfq.title}</p>
-                        <div className="flex items-center gap-3 mt-2 text-xs text-gray-400">
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{rfq.title}</p>
+                        <div className="flex items-center gap-3 mt-2 text-xs text-gray-400 dark:text-gray-500">
                           <span className="flex items-center gap-1">
                             <Building2 className="w-3 h-3" />
                             {rfq.department}
@@ -253,7 +255,7 @@ export default function RFQStatus() {
                           </span>
                         </div>
                       </div>
-                      <ChevronRight className="w-5 h-5 text-gray-400" />
+                      <ChevronRight className="w-5 h-5 text-gray-400 dark:text-gray-500" />
                     </div>
                   </div>
                 );
@@ -276,14 +278,14 @@ export default function RFQStatus() {
                   subtitle={`${rfq.rfqNumber} | Created ${formatDate(rfq.createdAt)}`}
                 >
                   {/* Tabs */}
-                  <div className="flex gap-2 border-b border-gray-200 mt-4">
+                  <div className="flex gap-2 border-b border-gray-200 dark:border-gray-700 mt-4">
                     {(["overview", "questions", "responses"] as const).map((tab) => (
                       <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
                         className={`px-4 py-2 font-medium border-b-2 transition-colors ${activeTab === tab
-                          ? "border-blue-500 text-blue-600"
-                          : "border-transparent text-gray-500 hover:text-gray-700"
+                          ? "border-blue-500 text-blue-600 dark:text-blue-400"
+                          : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                           }`}
                       >
                         {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -295,32 +297,32 @@ export default function RFQStatus() {
                   {activeTab === "overview" && (
                     <div className="mt-4 space-y-4">
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div className="p-3 bg-gray-50 rounded-lg">
-                          <p className="text-xs text-gray-500">Status</p>
+                        <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                          <p className="text-xs text-gray-500 dark:text-gray-400">Status</p>
                           <Pill label={status.label} tone={status.tone} />
                         </div>
-                        <div className="p-3 bg-gray-50 rounded-lg">
-                          <p className="text-xs text-gray-500">Deadline</p>
-                          <p className="font-medium text-gray-900">{formatDate(rfq.submissionDeadline)}</p>
+                        <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                          <p className="text-xs text-gray-500 dark:text-gray-400">Deadline</p>
+                          <p className="font-medium text-gray-900 dark:text-gray-100">{formatDate(rfq.submissionDeadline)}</p>
                         </div>
-                        <div className="p-3 bg-gray-50 rounded-lg">
-                          <p className="text-xs text-gray-500">Responses</p>
-                          <p className="font-medium text-gray-900">{rfq.responses}</p>
+                        <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                          <p className="text-xs text-gray-500 dark:text-gray-400">Responses</p>
+                          <p className="font-medium text-gray-900 dark:text-gray-100">{rfq.responses}</p>
                         </div>
-                        <div className="p-3 bg-gray-50 rounded-lg">
-                          <p className="text-xs text-gray-500">Budget</p>
-                          <p className="font-medium text-gray-900">{formatCurrency(rfq.budget)}</p>
+                        <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                          <p className="text-xs text-gray-500 dark:text-gray-400">Budget</p>
+                          <p className="font-medium text-gray-900 dark:text-gray-100">{formatCurrency(rfq.budget)}</p>
                         </div>
                       </div>
 
                       <div>
-                        <h4 className="font-medium text-gray-900 mb-2">Vendors ({rfq.vendors.length})</h4>
+                        <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-2">Vendors ({rfq.vendors.length})</h4>
                         <div className="space-y-2">
                           {rfq.vendors.map((vendor, index) => (
-                            <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+                            <div key={index} className="flex items-center justify-between p-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
                               <div className="flex items-center gap-2">
-                                <Building2 className="w-4 h-4 text-gray-400" />
-                                <span className="text-sm text-gray-900">{vendor.name}</span>
+                                <Building2 className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+                                <span className="text-sm text-gray-900 dark:text-gray-100">{vendor.name}</span>
                               </div>
                               <Pill
                                 label={vendor.status}
@@ -337,14 +339,14 @@ export default function RFQStatus() {
                   {activeTab === "questions" && (
                     <div className="mt-4 space-y-4">
                       {/* Ask Question */}
-                      <div className="p-4 bg-gray-50 rounded-lg">
-                        <h4 className="font-medium text-gray-900 mb-2">Ask Vendor a Question</h4>
+                      <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                        <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-2">Ask Vendor a Question</h4>
                         <div className="flex gap-2">
                           <input
                             type="text"
                             value={newQuestion}
                             onChange={(e) => setNewQuestion(e.target.value)}
-                            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-gray-100"
                             placeholder="Type your question to vendors..."
                           />
                           <Button variant="primary" className="flex items-center gap-2">
@@ -357,29 +359,29 @@ export default function RFQStatus() {
                       {/* Q&A List */}
                       <div className="space-y-3">
                         {sampleQuestions.map((q) => (
-                          <div key={q.id} className="p-4 bg-gray-50 rounded-lg">
+                          <div key={q.id} className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                             <div className="flex items-start gap-3">
-                              <div className="p-2 bg-blue-100 rounded-lg">
-                                <MessageSquare className="w-5 h-5 text-blue-600" />
+                              <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                                <MessageSquare className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                               </div>
                               <div className="flex-1">
                                 <div className="flex items-center gap-2">
-                                  <span className="font-medium text-gray-900">{q.vendor}</span>
-                                  <span className="text-xs text-gray-400">
+                                  <span className="font-medium text-gray-900 dark:text-gray-100">{q.vendor}</span>
+                                  <span className="text-xs text-gray-400 dark:text-gray-500">
                                     {formatDate(q.submittedAt)}
                                   </span>
                                 </div>
-                                <p className="text-sm text-gray-600 mt-1">{q.question}</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{q.question}</p>
                                 {q.answer ? (
-                                  <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                                  <div className="mt-3 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
                                     <div className="flex items-center gap-2 mb-1">
-                                      <CheckCircle className="w-4 h-4 text-green-600" />
-                                      <span className="text-sm font-medium text-green-700">Answered</span>
-                                      <span className="text-xs text-green-600">
+                                      <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />
+                                      <span className="text-sm font-medium text-green-700 dark:text-green-400">Answered</span>
+                                      <span className="text-xs text-green-600 dark:text-green-500">
                                         {q.answeredAt && formatDate(q.answeredAt)}
                                       </span>
                                     </div>
-                                    <p className="text-sm text-green-700">{q.answer}</p>
+                                    <p className="text-sm text-green-700 dark:text-green-300">{q.answer}</p>
                                   </div>
                                 ) : (
                                   <div className="mt-3">
@@ -388,7 +390,7 @@ export default function RFQStatus() {
                                         <textarea
                                           value={answer}
                                           onChange={(e) => setAnswer(e.target.value)}
-                                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                          className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-gray-100"
                                           rows={2}
                                           placeholder="Type your answer..."
                                         />
@@ -431,8 +433,8 @@ export default function RFQStatus() {
                   {/* Responses Tab */}
                   {activeTab === "responses" && (
                     <div className="mt-4">
-                      <div className="p-8 text-center text-gray-500">
-                        <FileText className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                      <div className="p-8 text-center text-gray-500 dark:text-gray-400">
+                        <FileText className="w-12 h-12 mx-auto mb-4 text-gray-300 dark:text-gray-600" />
                         <p>View and compare vendor responses</p>
                         <Button variant="primary" className="mt-4">
                           Compare Responses
@@ -444,8 +446,8 @@ export default function RFQStatus() {
               );
             })()
           ) : (
-            <div className="p-8 text-center text-gray-500">
-              <FileText className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+            <div className="p-8 text-center text-gray-500 dark:text-gray-400">
+              <FileText className="w-12 h-12 mx-auto mb-4 text-gray-300 dark:text-gray-600" />
               <p>Select an RFQ to view details</p>
             </div>
           )}

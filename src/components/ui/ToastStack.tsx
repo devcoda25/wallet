@@ -20,7 +20,7 @@ export function ToastStack({ toasts, onDismiss }: ToastStackProps) {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -10, scale: 0.98 }}
                         transition={{ duration: 0.18 }}
-                        className="pointer-events-auto rounded-3xl border border-slate-200 bg-white/90 p-3 shadow-[0_18px_45px_rgba(2,8,23,0.18)] backdrop-blur"
+                        className="pointer-events-auto rounded-3xl border border-slate-200 dark:border-slate-700 bg-white/90 dark:bg-slate-800/90 p-3 shadow-[0_18px_45px_rgba(2,8,23,0.18)] dark:shadow-[0_18px_45px_rgba(0,0,0,0.5)] backdrop-blur"
                         role="status"
                         aria-live="polite"
                     >
@@ -28,19 +28,19 @@ export function ToastStack({ toasts, onDismiss }: ToastStackProps) {
                             <div
                                 className={cn(
                                     "mt-0.5 grid h-9 w-9 place-items-center rounded-2xl",
-                                    t.kind === "success" && "bg-emerald-50 text-emerald-700",
-                                    t.kind === "warn" && "bg-amber-50 text-amber-800",
-                                    t.kind === "error" && "bg-rose-50 text-rose-700",
-                                    t.kind === "info" && "bg-blue-50 text-blue-700"
+                                    t.kind === "success" && "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300",
+                                    t.kind === "warn" && "bg-amber-50 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300",
+                                    t.kind === "error" && "bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-300",
+                                    t.kind === "info" && "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
                                 )}
                             >
                                 {t.kind === "error" || t.kind === "warn" ? <AlertTriangle className="h-5 w-5" /> : <Check className="h-5 w-5" />}
                             </div>
                             <div className="min-w-0 flex-1">
-                                <div className="text-sm font-semibold text-slate-900">{t.title}</div>
-                                {t.message && <div className="mt-0.5 text-sm text-slate-600">{t.message}</div>}
+                                <div className="text-sm font-semibold text-slate-900 dark:text-white">{t.title}</div>
+                                {t.message && <div className="mt-0.5 text-sm text-slate-600 dark:text-slate-400">{t.message}</div>}
                             </div>
-                            <button className="rounded-2xl p-2 text-slate-500 hover:bg-slate-100" onClick={() => onDismiss(t.id)} aria-label="Dismiss">
+                            <button className="rounded-2xl p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700" onClick={() => onDismiss(t.id)} aria-label="Dismiss">
                                 <X className="h-4 w-4" />
                             </button>
                         </div>

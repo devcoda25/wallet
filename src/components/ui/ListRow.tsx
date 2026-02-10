@@ -16,17 +16,17 @@ export function ListRow({ title, subtitle, right, onClick, className }: ListRowP
             type="button"
             onClick={onClick}
             className={cn(
-                "flex w-full items-start justify-between gap-3 rounded-3xl border border-slate-200 bg-white p-4 text-left hover:bg-slate-50 transition",
+                "flex w-full items-start justify-between gap-3 rounded-3xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4 text-left hover:bg-slate-50 dark:hover:bg-slate-700 transition",
                 className
             )}
         >
             <div className="min-w-0">
-                <div className="truncate text-sm font-semibold text-slate-900">{title}</div>
-                {subtitle ? <div className="mt-1 text-sm text-slate-600">{subtitle}</div> : null}
+                <div className="truncate text-sm font-semibold text-slate-900 dark:text-white">{title}</div>
+                {subtitle ? <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">{subtitle}</div> : null}
             </div>
             <div className="flex items-center gap-2">
                 {right}
-                <ChevronRight className="h-5 w-5 text-slate-400" />
+                <ChevronRight className="h-5 w-5 text-slate-400 dark:text-slate-500" />
             </div>
         </button>
     );

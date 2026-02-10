@@ -69,22 +69,33 @@ function toneForStatus(s: PayoutState): "good" | "info" | "warn" | "bad" {
 }
 
 function Pill({ label, tone = "neutral" }: { label: string; tone?: "good" | "warn" | "bad" | "info" | "neutral" }) {
-    const map: Record<string, string> = {
-        good: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-        warn: "bg-amber-50 text-amber-800 ring-amber-200",
-        bad: "bg-rose-50 text-rose-700 ring-rose-200",
-        info: "bg-blue-50 text-blue-700 ring-blue-200",
-        neutral: "bg-slate-50 text-slate-700 ring-slate-200",
+    const map: Record<string, { light: string; dark: string }> = {
+        good: { light: "#ecfdf5", dark: "#064e3b" },
+        warn: { light: "#fffbeb", dark: "#78350f" },
+        bad: { light: "#fff1f2", dark: "#881337" },
+        info: { light: "#eff6ff", dark: "#1e3a8a" },
+        neutral: { light: "#f8fafc", dark: "#1e293b" },
+    };
+    const textMap: Record<string, { light: string; dark: string }> = {
+        good: { light: "#047857", dark: "#34d399" },
+        warn: { light: "#b45309", dark: "#fbbf24" },
+        bad: { light: "#e11d48", dark: "#fda4af" },
+        info: { light: "#1d4ed8", dark: "#60a5fa" },
+        neutral: { light: "#475569", dark: "#cbd5e1" },
     };
     return (
         <Chip
             label={label}
             size="small"
             sx={{
-                backgroundColor: map[tone]?.split(" ")[0],
-                color: map[tone]?.split(" ")[1],
+                backgroundColor: map[tone]?.light,
+                color: textMap[tone]?.light,
                 fontWeight: 600,
                 fontSize: "0.75rem",
+                "@media (prefers-color-scheme: dark)": {
+                    backgroundColor: map[tone]?.dark,
+                    color: textMap[tone]?.dark,
+                },
             }}
         />
     );
@@ -114,17 +125,22 @@ function BeneficiaryRow({
                 border: selected ? "2px solid #10b981" : "1px solid #e2e8f0",
                 mb: 1,
                 bgcolor: selected ? "#ecfdf5" : "white",
+                "@media (prefers-color-scheme: dark)": {
+                    borderColor: selected ? "#059669" : "#334155",
+                    bgcolor: selected ? "#064e3b" : "#1e293b",
+                },
             }}
         >
             <ListItemIcon>
-                <div className={`grid h-10 w-10 place-items-center rounded-xl ${beneficiary.type === "bank" ? "bg-blue-50" : "bg-emerald-50"}`}>
-                    <Icon className={`h-5 w-5 ${beneficiary.type === "bank" ? "text-blue-600" : "text-emerald-600"}`} />
+                <div className={`grid h-10 w-10 place-items-center rounded-xl ${beneficiary.type === "bank" ? "bg-blue-50 dark:bg-blue-900/30" : "bg-emerald-50 dark:bg-emerald-900/30"}`}>
+                    <Icon className={`h-5 w-5 ${beneficiary.type === "bank" ? "text-blue-600 dark:text-blue-400" : "text-emerald-600 dark:text-emerald-400"}`} />
                 </div>
             </ListItemIcon>
             <ListItemText
                 primary={beneficiary.label}
                 secondary={`${beneficiary.detailsMasked} • ${beneficiary.currency}`}
-                primaryTypographyProps={{ fontWeight: 600 }}
+                primaryTypographyProps={{ fontWeight: 600, sx: { color: 'text.primary' } }}
+                secondaryTypographyProps={{ sx: { color: 'text.secondary' } }}
             />
             <ListItemSecondaryAction>
                 <div className="flex items-center gap-2">
@@ -140,20 +156,20 @@ function PayoutCard({ payout }: { payout: Payout }) {
     const Icon = payout.method === "bank" ? Building2 : payout.method === "mobile" ? Smartphone : Banknote;
 
     return (
-        <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4">
-            <div className={`grid h-10 w-10 place-items-center rounded-2xl ${payout.state === "Failed" ? "bg-rose-50" : "bg-slate-50"}`}>
-                <Icon className="h-5 w-5 text-slate-600" />
+        <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800">
+            <div className={`grid h-10 w-10 place-items-center rounded-2xl ${payout.state === "Failed" ? "bg-rose-50 dark:bg-rose-900/30" : "bg-slate-50 dark:bg-slate-700"}`}>
+                <Icon className="h-5 w-5 text-slate-600 dark:text-slate-400" />
             </div>
             <div className="flex-1">
-                <div className="font-semibold text-slate-900">{payout.beneficiaryLabel}</div>
-                <div className="text-sm text-slate-500">
+                <div className="font-semibold text-slate-900 dark:text-slate-100">{payout.beneficiaryLabel}</div>
+                <div className="text-sm text-slate-500 dark:text-slate-400">
                     {formatMoney(payout.amount)} • {payout.createdAt}
                 </div>
-                <div className="text-xs text-slate-400">Fee: {formatMoney(payout.fee)} • ETA: {payout.eta}</div>
+                <div className="text-xs text-slate-400 dark:text-slate-500">Fee: {formatMoney(payout.fee)} • ETA: {payout.eta}</div>
             </div>
             <div className="text-right">
                 <Pill label={payout.state} tone={toneForStatus(payout.state)} />
-                <div className="mt-1 text-xs text-slate-500">{payout.ref}</div>
+                <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{payout.ref}</div>
             </div>
         </div>
     );

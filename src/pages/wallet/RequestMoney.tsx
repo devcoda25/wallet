@@ -67,22 +67,33 @@ function toneForStatus(s: RequestStatus): "good" | "info" | "warn" | "bad" {
 }
 
 function Pill({ label, tone = "neutral" }: { label: string; tone?: "good" | "warn" | "bad" | "info" | "neutral" }) {
-    const map: Record<string, string> = {
-        good: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-        warn: "bg-amber-50 text-amber-800 ring-amber-200",
-        bad: "bg-rose-50 text-rose-700 ring-rose-200",
-        info: "bg-blue-50 text-blue-700 ring-blue-200",
-        neutral: "bg-slate-50 text-slate-700 ring-slate-200",
+    const map: Record<string, { light: string; dark: string }> = {
+        good: { light: "#ecfdf5", dark: "#064e3b" },
+        warn: { light: "#fffbeb", dark: "#78350f" },
+        bad: { light: "#fff1f2", dark: "#881337" },
+        info: { light: "#eff6ff", dark: "#1e3a8a" },
+        neutral: { light: "#f8fafc", dark: "#1e293b" },
+    };
+    const textMap: Record<string, { light: string; dark: string }> = {
+        good: { light: "#047857", dark: "#34d399" },
+        warn: { light: "#b45309", dark: "#fbbf24" },
+        bad: { light: "#e11d48", dark: "#fda4af" },
+        info: { light: "#1d4ed8", dark: "#60a5fa" },
+        neutral: { light: "#475569", dark: "#cbd5e1" },
     };
     return (
         <Chip
             label={label}
             size="small"
             sx={{
-                backgroundColor: map[tone]?.split(" ")[0],
-                color: map[tone]?.split(" ")[1],
+                backgroundColor: map[tone]?.light,
+                color: textMap[tone]?.light,
                 fontWeight: 600,
                 fontSize: "0.75rem",
+                "@media (prefers-color-scheme: dark)": {
+                    backgroundColor: map[tone]?.dark,
+                    color: textMap[tone]?.dark,
+                },
             }}
         />
     );
@@ -129,20 +140,20 @@ function TemplateCard({
         <button
             type="button"
             onClick={onClick}
-            className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white p-3 hover:bg-slate-50"
+            className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white p-3 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
         >
             <div className="flex items-center gap-3">
-                <div className="grid h-10 w-10 place-items-center rounded-lg bg-blue-50">
-                    <Share2 className="h-5 w-5 text-blue-600" />
+                <div className="grid h-10 w-10 place-items-center rounded-lg bg-blue-50 dark:bg-blue-900/30">
+                    <Share2 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div className="text-left">
-                    <div className="text-sm font-semibold text-slate-900">{template.name}</div>
-                    <div className="text-xs text-slate-500">Used {template.useCount} times</div>
+                    <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{template.name}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">Used {template.useCount} times</div>
                 </div>
             </div>
             <div className="flex items-center gap-2">
-                <div className="text-sm font-semibold text-emerald-600">{formatMoney(template.amount)}</div>
-                <ChevronRight className="h-4 w-4 text-slate-400" />
+                <div className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">{formatMoney(template.amount)}</div>
+                <ChevronRight className="h-4 w-4 text-slate-400 dark:text-slate-500" />
             </div>
         </button>
     );
@@ -150,17 +161,17 @@ function TemplateCard({
 
 function RecentRequestRow({ item }: { item: RecentRequest }) {
     return (
-        <div className="flex items-center gap-3 border-b border-slate-100 py-3 last:border-0">
-            <div className={`grid h-10 w-10 place-items-center rounded-2xl ${item.status === "Paid" ? "bg-emerald-50" : "bg-amber-50"}`}>
+        <div className="flex items-center gap-3 border-b border-slate-100 py-3 last:border-0 dark:border-slate-700">
+            <div className={`grid h-10 w-10 place-items-center rounded-2xl ${item.status === "Paid" ? "bg-emerald-50 dark:bg-emerald-900/30" : "bg-amber-50 dark:bg-amber-900/30"}`}>
                 <ArrowDownLeft className={`h-5 w-5 ${item.status === "Paid" ? "text-emerald-600" : "text-amber-600"}`} />
             </div>
             <div className="flex-1 min-w-0">
-                <div className="text-sm font-semibold text-slate-900">{item.requestFrom}</div>
-                <div className="text-xs text-slate-500">{item.date}</div>
+                <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{item.requestFrom}</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">{item.date}</div>
             </div>
             <div className="text-right">
-                <div className="text-sm font-semibold text-emerald-600">+{formatMoney(item.amount)}</div>
-                <div className="text-xs text-slate-500">{item.ref}</div>
+                <div className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">+{formatMoney(item.amount)}</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">{item.ref}</div>
             </div>
             <Pill label={item.status} tone={toneForStatus(item.status)} />
         </div>

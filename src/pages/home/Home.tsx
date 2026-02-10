@@ -94,11 +94,11 @@ function toneForAlert(t: AlertItem["tone"]): "good" | "warn" | "bad" | "info" {
 
 function Pill({ label, tone = "neutral" }: { label: string; tone?: "good" | "warn" | "bad" | "info" | "neutral" }) {
   const map: Record<string, string> = {
-    good: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-    warn: "bg-amber-50 text-amber-800 ring-amber-200",
-    bad: "bg-rose-50 text-rose-700 ring-rose-200",
-    info: "bg-blue-50 text-blue-700 ring-blue-200",
-    neutral: "bg-slate-50 text-slate-700 ring-slate-200",
+    good: "bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400",
+    warn: "bg-amber-50 text-amber-800 ring-amber-200 dark:bg-amber-900/30 dark:text-amber-400",
+    bad: "bg-rose-50 text-rose-700 ring-rose-200 dark:bg-rose-900/30 dark:text-rose-400",
+    info: "bg-blue-50 text-blue-700 ring-blue-200 dark:bg-blue-900/30 dark:text-blue-400",
+    neutral: "bg-slate-50 text-slate-700 ring-slate-200 dark:bg-slate-700 dark:text-slate-300",
   };
   return (
     <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${map[tone]}`}>
@@ -121,36 +121,36 @@ function WalletCard({
   return (
     <motion.div
       layout
-      className={`rounded-3xl border bg-white p-4 shadow-sm ${isActive ? "border-emerald-200 ring-2 ring-emerald-100" : "border-slate-200"
+      className={`rounded-3xl border bg-white p-4 shadow-sm ${isActive ? "border-emerald-200 ring-2 ring-emerald-100 dark:border-emerald-700 dark:bg-slate-800 dark:ring-emerald-900/20" : "border-slate-200 dark:border-slate-700 dark:bg-slate-800"
         }`}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
-            <div className="text-sm font-semibold text-slate-900">{card.title}</div>
+            <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{card.title}</div>
             <Pill label={card.status} tone={toneForStatus(card.status)} />
             {card.role && <Pill label={`Role: ${card.role}`} tone="neutral" />}
             {isActive && <Pill label="Current" tone="info" />}
           </div>
-          <div className="mt-1 text-xs text-slate-500">{card.subtitle}</div>
+          <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{card.subtitle}</div>
         </div>
-        <div className="grid h-10 w-10 place-items-center rounded-2xl bg-slate-50 text-slate-700">
+        <div className="grid h-10 w-10 place-items-center rounded-2xl bg-slate-50 text-slate-700 dark:bg-slate-700 dark:text-slate-300">
           <WalletIcon className="h-5 w-5" />
         </div>
       </div>
 
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <div className="rounded-2xl border border-slate-200 bg-white p-3">
-          <div className="text-xs font-semibold text-slate-500">Available</div>
-          <div className="mt-1 text-lg font-semibold tracking-tight text-slate-900">
+        <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-800">
+          <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">Available</div>
+          <div className="mt-1 text-lg font-semibold tracking-tight text-slate-900 dark:text-slate-100">
             {card.primaryBalanceLabel}
           </div>
-          <div className="mt-1 text-xs text-slate-500">{card.secondaryHint}</div>
+          <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{card.secondaryHint}</div>
         </div>
-        <div className="rounded-2xl border border-slate-200 bg-white p-3">
-          <div className="text-xs font-semibold text-slate-500">Last active</div>
-          <div className="mt-1 text-sm font-semibold text-slate-900">{card.lastActiveLabel}</div>
-          <div className="mt-1 text-xs text-slate-500">
+        <div className="rounded-2xl border border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-800">
+          <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">Last active</div>
+          <div className="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100">{card.lastActiveLabel}</div>
+          <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">
             {card.why ? card.why : "Ready for payments and payouts"}
           </div>
         </div>
@@ -184,16 +184,19 @@ function QuickActionCard({
     <Card
       sx={{
         cursor: "pointer",
+        bgcolor: "background.paper",
         "&:hover": { bgcolor: "action.hover" },
         transition: "background-color 0.2s",
+        border: 1,
+        borderColor: "divider",
       }}
       onClick={onClick}
     >
       <CardContent sx={{ textAlign: "center", py: 2.5 }}>
         <div className={`mx-auto mb-2 grid h-12 w-12 place-items-center rounded-2xl ${color}`}>
-          <Icon className="h-6 w-6 text-slate-700" />
+          <Icon className="h-6 w-6 text-slate-700 dark:text-slate-300" />
         </div>
-        <Typography fontWeight="medium" variant="body2">
+        <Typography fontWeight="medium" variant="body2" sx={{ color: 'text.primary' }}>
           {label}
         </Typography>
       </CardContent>
@@ -203,10 +206,10 @@ function QuickActionCard({
 
 function AlertBanner({ alert, onCta }: { alert: AlertItem; onCta: () => void }) {
   const map: Record<string, string> = {
-    good: "bg-emerald-50 border-emerald-200 text-emerald-700",
-    warn: "bg-amber-50 border-amber-200 text-amber-800",
-    bad: "bg-rose-50 border-rose-200 text-rose-700",
-    info: "bg-blue-50 border-blue-200 text-blue-700",
+    good: "bg-emerald-50 border-emerald-200 text-emerald-700 dark:bg-emerald-900/30 dark:border-emerald-800 dark:text-emerald-400",
+    warn: "bg-amber-50 border-amber-200 text-amber-800 dark:bg-amber-900/30 dark:border-amber-800 dark:text-amber-400",
+    bad: "bg-rose-50 border-rose-200 text-rose-700 dark:bg-rose-900/30 dark:border-rose-800 dark:text-rose-400",
+    info: "bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900/30 dark:border-blue-800 dark:text-blue-400",
   };
 
   return (
@@ -228,18 +231,18 @@ function AlertBanner({ alert, onCta }: { alert: AlertItem; onCta: () => void }) 
 }
 
 function ContinueCard({ action, onClick }: { action: LastAction; onClick: () => void }) {
-  const statusColor = action.status === "Pending" ? "bg-amber-50 text-amber-700" : "bg-blue-50 text-blue-700";
+  const statusColor = action.status === "Pending" ? "bg-amber-50 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400" : "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400";
   const Icon = action.type === "Withdrawal" ? ArrowUpRight : action.type === "Top up" ? ArrowDownLeft : CreditCard;
 
   return (
-    <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4">
+    <div className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800">
       <div className={`grid h-10 w-10 place-items-center rounded-2xl ${statusColor}`}>
         <Icon className="h-5 w-5" />
       </div>
       <div className="flex-1">
-        <div className="font-semibold text-slate-900">{action.title}</div>
-        <div className="text-sm text-slate-500">{action.subtitle}</div>
-        <div className="mt-1 text-xs text-slate-500">Next: {action.nextStep}</div>
+        <div className="font-semibold text-slate-900 dark:text-slate-100">{action.title}</div>
+        <div className="text-sm text-slate-500 dark:text-slate-400">{action.subtitle}</div>
+        <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">Next: {action.nextStep}</div>
       </div>
       <MUIButton size="small" variant="outlined" onClick={onClick}>
         Continue
@@ -327,7 +330,7 @@ export default function Home() {
   return (
     <Box sx={{ p: 3 }}>
       {/* Welcome Header */}
-      <Typography variant="h4" fontWeight="bold" gutterBottom>
+      <Typography variant="h4" fontWeight="bold" gutterBottom sx={{ color: 'text.primary' }}>
         Welcome Back
       </Typography>
 
@@ -385,7 +388,7 @@ export default function Home() {
       )}
 
       {/* Quick Actions */}
-      <Typography variant="h6" fontWeight="bold" gutterBottom className="mt-6">
+      <Typography variant="h6" fontWeight="bold" gutterBottom className="mt-6" sx={{ color: 'text.primary' }}>
         Quick Actions
       </Typography>
 
@@ -482,7 +485,7 @@ export default function Home() {
 
       {/* Recent Activity Placeholder */}
       <Box sx={{ mt: 4 }}>
-        <Typography variant="h6" fontWeight="bold" gutterBottom>
+        <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ color: 'text.primary' }}>
           Recent Activity
         </Typography>
         <Card>
