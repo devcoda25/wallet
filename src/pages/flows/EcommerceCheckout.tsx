@@ -132,12 +132,12 @@ function Pill({
     tone?: "neutral" | "good" | "warn" | "bad" | "info" | "accent";
 }) {
     const map: Record<string, string> = {
-        good: "bg-emerald-50 text-emerald-700 ring-emerald-200",
-        warn: "bg-amber-50 text-amber-800 ring-amber-200",
-        bad: "bg-rose-50 text-rose-700 ring-rose-200",
-        info: "bg-blue-50 text-blue-700 ring-blue-200",
-        accent: "bg-orange-50 text-orange-800 ring-orange-200",
-        neutral: "bg-slate-50 text-slate-700 ring-slate-200",
+        good: "bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400",
+        warn: "bg-amber-50 text-amber-800 ring-amber-200 dark:bg-amber-900/30 dark:text-amber-400",
+        bad: "bg-rose-50 text-rose-700 ring-rose-200 dark:bg-rose-900/30 dark:text-rose-400",
+        info: "bg-blue-50 text-blue-700 ring-blue-200 dark:bg-blue-900/30 dark:text-blue-400",
+        accent: "bg-orange-50 text-orange-800 ring-orange-200 dark:bg-orange-900/30 dark:text-orange-400",
+        neutral: "bg-slate-50 text-slate-700 ring-slate-200 dark:bg-slate-700 dark:text-slate-300",
     };
     return <span className={cn("inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ring-1", map[tone])}>{label}</span>;
 }
@@ -161,11 +161,11 @@ function Button({
 }) {
     const base = "inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus:ring-4";
     const variants: Record<string, string> = {
-        primary: "text-white shadow-[0_12px_24px_rgba(3,205,140,0.22)] hover:opacity-95 focus:ring-emerald-200",
-        accent: "text-white shadow-[0_12px_24px_rgba(247,127,0,0.22)] hover:opacity-95 focus:ring-orange-200",
-        outline: "border border-slate-200 bg-white text-slate-800 shadow-sm hover:bg-slate-50 focus:ring-slate-200",
-        ghost: "bg-transparent text-slate-700 hover:bg-slate-100 focus:ring-slate-200",
-        danger: "border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100 focus:ring-rose-100",
+        primary: "text-white shadow-[0_12px_24px_rgba(3,205,140,0.22)] hover:opacity-95 focus:ring-emerald-200 dark:opacity-90",
+        accent: "text-white shadow-[0_12px_24px_rgba(247,127,0,0.22)] hover:opacity-95 focus:ring-orange-200 dark:opacity-90",
+        outline: "border border-slate-200 bg-white text-slate-800 shadow-sm hover:bg-slate-50 focus:ring-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700",
+        ghost: "bg-transparent text-slate-700 hover:bg-slate-100 focus:ring-slate-200 dark:text-slate-300 dark:hover:bg-slate-700",
+        danger: "border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100 focus:ring-rose-100 dark:border-rose-800 dark:bg-rose-900/30 dark:text-rose-400 dark:hover:bg-rose-900/50",
     };
     const buttonStyle = style || (variant === "primary" ? { background: EVZ.green } : variant === "accent" ? { background: EVZ.orange } : undefined);
 
@@ -194,7 +194,7 @@ function ToastStack({ toasts, onDismiss }: { toasts: Toast[]; onDismiss: (id: st
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -10, scale: 0.98 }}
                         transition={{ duration: 0.18 }}
-                        className="pointer-events-auto rounded-3xl border border-slate-200 bg-white/90 p-3 shadow-[0_18px_45px_rgba(2,8,23,0.18)] backdrop-blur"
+                        className="pointer-events-auto rounded-3xl border border-slate-200 bg-white/90 p-3 shadow-[0_18px_45px_rgba(2,8,23,0.18)] backdrop-blur dark:border-slate-700 dark:bg-slate-800/90"
                         role="status"
                         aria-live="polite"
                     >
@@ -202,19 +202,19 @@ function ToastStack({ toasts, onDismiss }: { toasts: Toast[]; onDismiss: (id: st
                             <div
                                 className={cn(
                                     "mt-0.5 grid h-9 w-9 place-items-center rounded-2xl",
-                                    t.kind === "success" && "bg-emerald-50 text-emerald-700",
-                                    t.kind === "warn" && "bg-amber-50 text-amber-800",
-                                    t.kind === "error" && "bg-rose-50 text-rose-700",
-                                    t.kind === "info" && "bg-blue-50 text-blue-700"
+                                    t.kind === "success" && "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
+                                    t.kind === "warn" && "bg-amber-50 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
+                                    t.kind === "error" && "bg-rose-50 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400",
+                                    t.kind === "info" && "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
                                 )}
                             >
                                 {t.kind === "error" || t.kind === "warn" ? <AlertTriangle className="h-5 w-5" /> : <Check className="h-5 w-5" />}
                             </div>
                             <div className="min-w-0 flex-1">
-                                <div className="text-sm font-semibold text-slate-900">{t.title}</div>
-                                {t.message ? <div className="mt-0.5 text-sm text-slate-600">{t.message}</div> : null}
+                                <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{t.title}</div>
+                                {t.message ? <div className="mt-0.5 text-sm text-slate-600 dark:text-slate-400">{t.message}</div> : null}
                             </div>
-                            <button className="rounded-2xl p-2 text-slate-500 hover:bg-slate-100" onClick={() => onDismiss(t.id)} aria-label="Dismiss">
+                            <button className="rounded-2xl p-2 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-700" onClick={() => onDismiss(t.id)} aria-label="Dismiss">
                                 <X className="h-4 w-4" />
                             </button>
                         </div>
@@ -252,28 +252,28 @@ function Modal({
         <AnimatePresence>
             {open ? (
                 <>
-                    <motion.div className="fixed inset-0 z-40 bg-black/35" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
+                    <motion.div className="fixed inset-0 z-40 bg-black/35 dark:bg-black/60" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
                     <motion.div
                         initial={{ opacity: 0, y: 10, scale: 0.98 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.98 }}
                         transition={{ duration: 0.18 }}
-                        className="fixed inset-x-0 top-[8vh] z-50 mx-auto w-[min(980px,calc(100vw-2rem))] overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_30px_90px_rgba(2,8,23,0.22)]"
+                        className="fixed inset-x-0 top-[8vh] z-50 mx-auto w-[min(980px,calc(100vw-2rem))] overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_30px_90px_rgba(2,8,23,0.22)] dark:border-slate-700 dark:bg-slate-800"
                         style={{ maxWidth: maxW }}
                         role="dialog"
                         aria-modal="true"
                     >
-                        <div className="flex items-start justify-between gap-3 border-b border-slate-200 px-5 py-4">
+                        <div className="flex items-start justify-between gap-3 border-b border-slate-200 px-5 py-4 dark:border-slate-700">
                             <div className="min-w-0">
-                                <div className="truncate text-lg font-semibold text-slate-900">{title}</div>
-                                {subtitle ? <div className="mt-1 text-sm text-slate-600">{subtitle}</div> : null}
+                                <div className="truncate text-lg font-semibold text-slate-900 dark:text-slate-100">{title}</div>
+                                {subtitle ? <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">{subtitle}</div> : null}
                             </div>
-                            <button className="rounded-2xl p-2 text-slate-600 hover:bg-slate-100" onClick={onClose} aria-label="Close">
+                            <button className="rounded-2xl p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-700" onClick={onClose} aria-label="Close">
                                 <X className="h-5 w-5" />
                             </button>
                         </div>
-                        <div className="max-h-[70vh] overflow-auto px-5 py-4">{children}</div>
-                        {footer ? <div className="border-t border-slate-200 px-5 py-4">{footer}</div> : null}
+                        <div className="max-h-[70vh] overflow-auto px-5 py-4 dark:bg-slate-900">{children}</div>
+                        {footer ? <div className="border-t border-slate-200 px-5 py-4 dark:border-slate-700">{footer}</div> : null}
                     </motion.div>
                 </>
             ) : null}
@@ -283,7 +283,7 @@ function Modal({
 
 function Stepper({ steps, active, onJump }: { steps: StepKey[]; active: StepKey; onJump: (k: StepKey) => void }) {
     return (
-        <div className="rounded-3xl border border-slate-200 bg-white p-3">
+        <div className="rounded-3xl border border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-800">
             <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
                 {steps.map((s, idx) => {
                     const isActive = s === active;
@@ -296,19 +296,19 @@ function Stepper({ steps, active, onJump }: { steps: StepKey[]; active: StepKey;
                             onClick={() => onJump(s)}
                             className={cn(
                                 "rounded-2xl border px-3 py-3 text-left transition",
-                                isActive ? "border-emerald-300 bg-emerald-50" : isCompleted ? "border-emerald-200 bg-emerald-50/50" : "border-slate-200 bg-white hover:bg-slate-50"
+                                isActive ? "border-emerald-300 bg-emerald-50 dark:border-emerald-700 dark:bg-emerald-900/30" : isCompleted ? "border-emerald-200 bg-emerald-50/50 dark:border-emerald-800 dark:bg-emerald-900/20" : "border-slate-200 bg-white hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
                             )}
                         >
                             <div className="flex items-center gap-2">
                                 <div
                                     className={cn(
                                         "flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold",
-                                        isActive ? "bg-emerald-500 text-white" : isCompleted ? "bg-emerald-500 text-white" : "bg-slate-100 text-slate-600"
+                                        isActive ? "bg-emerald-500 text-white" : isCompleted ? "bg-emerald-500 text-white" : "bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400"
                                     )}
                                 >
                                     {isCompleted ? <Check className="h-3 w-3" /> : idx + 1}
                                 </div>
-                                <div className="text-xs font-semibold text-slate-600">{s}</div>
+                                <div className="text-xs font-semibold text-slate-600 dark:text-slate-400">{s}</div>
                             </div>
                         </button>
                     );

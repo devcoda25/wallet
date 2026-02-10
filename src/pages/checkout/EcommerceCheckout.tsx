@@ -388,7 +388,7 @@ function ToastStack({ toasts, onDismiss }: { toasts: Toast[]; onDismiss: (id: st
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.98 }}
             transition={{ duration: 0.18 }}
-            className="pointer-events-auto rounded-3xl border border-slate-200 bg-white/90 p-3 shadow-[0_18px_45px_rgba(2,8,23,0.18)] backdrop-blur"
+            className="pointer-events-auto rounded-3xl border border-slate-200 bg-white/90 p-3 shadow-[0_18px_45px_rgba(2,8,23,0.18)] backdrop-blur dark:border-slate-700 dark:bg-slate-800/90"
             role="status"
             aria-live="polite"
           >
@@ -396,19 +396,19 @@ function ToastStack({ toasts, onDismiss }: { toasts: Toast[]; onDismiss: (id: st
               <div
                 className={cn(
                   "mt-0.5 grid h-9 w-9 place-items-center rounded-2xl",
-                  t.kind === "success" && "bg-emerald-50 text-emerald-700",
-                  t.kind === "warn" && "bg-amber-50 text-amber-800",
-                  t.kind === "error" && "bg-rose-50 text-rose-700",
-                  t.kind === "info" && "bg-blue-50 text-blue-700"
+                  t.kind === "success" && "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
+                  t.kind === "warn" && "bg-amber-50 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
+                  t.kind === "error" && "bg-rose-50 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400",
+                  t.kind === "info" && "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
                 )}
               >
                 {t.kind === "error" || t.kind === "warn" ? <AlertTriangle className="h-5 w-5" /> : <Check className="h-5 w-5" />}
               </div>
               <div className="min-w-0 flex-1">
-                <div className="text-sm font-semibold text-slate-900">{t.title}</div>
-                {t.message ? <div className="mt-0.5 text-sm text-slate-600">{t.message}</div> : null}
+                <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{t.title}</div>
+                {t.message ? <div className="mt-0.5 text-sm text-slate-600 dark:text-slate-400">{t.message}</div> : null}
               </div>
-              <button className="rounded-2xl p-2 text-slate-500 hover:bg-slate-100" onClick={() => onDismiss(t.id)} aria-label="Dismiss">
+              <button className="rounded-2xl p-2 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-700" onClick={() => onDismiss(t.id)} aria-label="Dismiss">
                 <X className="h-4 w-4" />
               </button>
             </div>
@@ -446,28 +446,28 @@ function Modal({
     <AnimatePresence>
       {open ? (
         <>
-          <motion.div className="fixed inset-0 z-40 bg-black/35" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
+          <motion.div className="fixed inset-0 z-40 bg-black/35 dark:bg-black/60" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
             transition={{ duration: 0.18 }}
-            className="fixed inset-x-0 top-[8vh] z-50 mx-auto w-[min(980px,calc(100vw-2rem))] overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_30px_90px_rgba(2,8,23,0.22)]"
+            className="fixed inset-x-0 top-[8vh] z-50 mx-auto w-[min(980px,calc(100vw-2rem))] overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_30px_90px_rgba(2,8,23,0.22)] dark:border-slate-700 dark:bg-slate-800"
             style={{ maxWidth: maxW }}
             role="dialog"
             aria-modal="true"
           >
-            <div className="flex items-start justify-between gap-3 border-b border-slate-200 px-5 py-4">
+            <div className="flex items-start justify-between gap-3 border-b border-slate-200 px-5 py-4 dark:border-slate-700">
               <div className="min-w-0">
-                <div className="truncate text-lg font-semibold text-slate-900">{title}</div>
-                {subtitle ? <div className="mt-1 text-sm text-slate-600">{subtitle}</div> : null}
+                <div className="truncate text-lg font-semibold text-slate-900 dark:text-slate-100">{title}</div>
+                {subtitle ? <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">{subtitle}</div> : null}
               </div>
-              <button className="rounded-2xl p-2 text-slate-600 hover:bg-slate-100" onClick={onClose} aria-label="Close">
+              <button className="rounded-2xl p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-700" onClick={onClose} aria-label="Close">
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="max-h-[70vh] overflow-auto px-5 py-4">{children}</div>
-            {footer ? <div className="border-t border-slate-200 px-5 py-4">{footer}</div> : null}
+            <div className="max-h-[70vh] overflow-auto px-5 py-4 dark:bg-slate-900">{children}</div>
+            {footer ? <div className="border-t border-slate-200 px-5 py-4 dark:border-slate-700">{footer}</div> : null}
           </motion.div>
         </>
       ) : null}
@@ -477,11 +477,11 @@ function Modal({
 
 function Section({ title, subtitle, right, children }: { title: string; subtitle?: string; right?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <div className="text-sm font-semibold text-slate-900">{title}</div>
-          {subtitle ? <div className="mt-1 text-xs text-slate-500">{subtitle}</div> : null}
+          <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{title}</div>
+          {subtitle ? <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{subtitle}</div> : null}
         </div>
         {right}
       </div>

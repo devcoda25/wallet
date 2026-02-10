@@ -245,7 +245,7 @@ function SegButton({ active, label, onClick }: { active: boolean; label: string;
       type="button"
       className={cn(
         "rounded-full px-4 py-2 text-sm font-semibold ring-1 transition",
-        active ? "text-white ring-emerald-600" : "bg-white text-slate-700 ring-slate-200 hover:bg-slate-50"
+        active ? "text-white ring-emerald-600" : "bg-white text-slate-700 ring-slate-200 hover:bg-slate-50 dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700 dark:hover:bg-slate-700"
       )}
       style={active ? { background: EVZ.green } : undefined}
       onClick={onClick}
@@ -266,7 +266,7 @@ function ToastStack({ toasts, onDismiss }: { toasts: Toast[]; onDismiss: (id: st
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.98 }}
             transition={{ duration: 0.18 }}
-            className="pointer-events-auto rounded-3xl border border-slate-200 bg-white/90 p-3 shadow-[0_18px_45px_rgba(2,8,23,0.18)] backdrop-blur"
+            className="pointer-events-auto rounded-3xl border border-slate-200 bg-white/90 p-3 shadow-[0_18px_45px_rgba(2,8,23,0.18)] backdrop-blur dark:border-slate-700 dark:bg-slate-800/90"
             role="status"
             aria-live="polite"
           >
@@ -274,19 +274,19 @@ function ToastStack({ toasts, onDismiss }: { toasts: Toast[]; onDismiss: (id: st
               <div
                 className={cn(
                   "mt-0.5 grid h-9 w-9 place-items-center rounded-2xl",
-                  t.kind === "success" && "bg-emerald-50 text-emerald-700",
-                  t.kind === "warn" && "bg-amber-50 text-amber-800",
-                  t.kind === "error" && "bg-rose-50 text-rose-700",
-                  t.kind === "info" && "bg-blue-50 text-blue-700"
+                  t.kind === "success" && "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400",
+                  t.kind === "warn" && "bg-amber-50 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
+                  t.kind === "error" && "bg-rose-50 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400",
+                  t.kind === "info" && "bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
                 )}
               >
                 {t.kind === "error" || t.kind === "warn" ? <AlertTriangle className="h-5 w-5" /> : <Check className="h-5 w-5" />}
               </div>
               <div className="min-w-0 flex-1">
-                <div className="text-sm font-semibold text-slate-900">{t.title}</div>
-                {t.message ? <div className="mt-0.5 text-sm text-slate-600">{t.message}</div> : null}
+                <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{t.title}</div>
+                {t.message ? <div className="mt-0.5 text-sm text-slate-600 dark:text-slate-400">{t.message}</div> : null}
               </div>
-              <button className="rounded-2xl p-2 text-slate-500 hover:bg-slate-100" onClick={() => onDismiss(t.id)} aria-label="Dismiss">
+              <button className="rounded-2xl p-2 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-700" onClick={() => onDismiss(t.id)} aria-label="Dismiss">
                 <X className="h-4 w-4" />
               </button>
             </div>
@@ -324,28 +324,28 @@ function Modal({
     <AnimatePresence>
       {open ? (
         <>
-          <motion.div className="fixed inset-0 z-40 bg-black/35" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
+          <motion.div className="fixed inset-0 z-40 bg-black/35 dark:bg-black/60" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
           <motion.div
             initial={{ opacity: 0, y: 10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
             transition={{ duration: 0.18 }}
-            className="fixed inset-x-0 top-[8vh] z-50 mx-auto w-[min(980px,calc(100vw-2rem))] overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_30px_90px_rgba(2,8,23,0.22)]"
+            className="fixed inset-x-0 top-[8vh] z-50 mx-auto w-[min(980px,calc(100vw-2rem))] overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_30px_90px_rgba(2,8,23,0.22)] dark:border-slate-700 dark:bg-slate-800"
             style={{ maxWidth: maxW }}
             role="dialog"
             aria-modal="true"
           >
-            <div className="flex items-start justify-between gap-3 border-b border-slate-200 px-5 py-4">
+            <div className="flex items-start justify-between gap-3 border-b border-slate-200 px-5 py-4 dark:border-slate-700">
               <div className="min-w-0">
-                <div className="truncate text-lg font-semibold text-slate-900">{title}</div>
-                {subtitle ? <div className="mt-1 text-sm text-slate-600">{subtitle}</div> : null}
+                <div className="truncate text-lg font-semibold text-slate-900 dark:text-slate-100">{title}</div>
+                {subtitle ? <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">{subtitle}</div> : null}
               </div>
-              <button className="rounded-2xl p-2 text-slate-600 hover:bg-slate-100" onClick={onClose} aria-label="Close">
+              <button className="rounded-2xl p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-700" onClick={onClose} aria-label="Close">
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="max-h-[70vh] overflow-auto px-5 py-4">{children}</div>
-            {footer ? <div className="border-t border-slate-200 px-5 py-4">{footer}</div> : null}
+            <div className="max-h-[70vh] overflow-auto px-5 py-4 dark:bg-slate-900">{children}</div>
+            {footer ? <div className="border-t border-slate-200 px-5 py-4 dark:border-slate-700">{footer}</div> : null}
           </motion.div>
         </>
       ) : null}
@@ -355,11 +355,11 @@ function Modal({
 
 function Section({ title, subtitle, right, children }: { title: string; subtitle?: string; right?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <div className="text-sm font-semibold text-slate-900">{title}</div>
-          {subtitle ? <div className="mt-1 text-xs text-slate-500">{subtitle}</div> : null}
+          <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{title}</div>
+          {subtitle ? <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{subtitle}</div> : null}
         </div>
         {right}
       </div>
@@ -379,7 +379,7 @@ function Stepper({ step, setStep, disabled }: { step: Step; setStep: (s: Step) =
   const idx = steps.findIndex((s) => s.k === step);
 
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-3">
+    <div className="rounded-3xl border border-slate-200 bg-white p-3 dark:border-slate-700 dark:bg-slate-800">
       <div className="grid grid-cols-4 gap-2">
         {steps.map((s, i) => {
           const active = s.k === step;
@@ -393,19 +393,19 @@ function Stepper({ step, setStep, disabled }: { step: Step; setStep: (s: Step) =
               className={cn(
                 "rounded-2xl border px-3 py-3 text-left transition",
                 active
-                  ? "border-emerald-300 bg-emerald-50"
+                  ? "border-emerald-300 bg-emerald-50 dark:border-emerald-700 dark:bg-emerald-900/30"
                   : done
-                  ? "border-slate-200 bg-white hover:bg-slate-50"
-                  : "border-slate-200 bg-white hover:bg-slate-50",
+                    ? "border-slate-200 bg-white hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
+                    : "border-slate-200 bg-white hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700",
                 disabled && "cursor-not-allowed opacity-70"
               )}
             >
               <div className="flex items-center justify-between gap-2">
                 <div>
-                  <div className="text-xs font-semibold text-slate-500">Step {i + 1}</div>
-                  <div className="mt-1 text-sm font-semibold text-slate-900">{s.label}</div>
+                  <div className="text-xs font-semibold text-slate-500 dark:text-slate-400">Step {i + 1}</div>
+                  <div className="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100">{s.label}</div>
                 </div>
-                {active ? <ChevronRight className="h-5 w-5 text-emerald-700" /> : done ? <BadgeCheck className="h-5 w-5 text-emerald-700" /> : null}
+                {active ? <ChevronRight className="h-5 w-5 text-emerald-700 dark:text-emerald-400" /> : done ? <BadgeCheck className="h-5 w-5 text-emerald-700 dark:text-emerald-400" /> : null}
               </div>
             </button>
           );
@@ -442,28 +442,28 @@ function PaymentCard({
       onClick={onSelect}
       disabled={disabled}
       className={cn(
-        "w-full rounded-3xl border bg-white p-4 text-left shadow-sm transition hover:bg-slate-50",
-        selected ? "border-emerald-300 ring-4 ring-emerald-100" : "border-slate-200",
+        "w-full rounded-3xl border bg-white p-4 text-left shadow-sm transition hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700",
+        selected ? "border-emerald-300 ring-4 ring-emerald-100 dark:ring-emerald-900/30" : "border-slate-200 dark:border-slate-700",
         disabled && "cursor-not-allowed opacity-60"
       )}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start gap-3">
-          <div className={cn("grid h-11 w-11 place-items-center rounded-2xl", selected ? "bg-emerald-50 text-emerald-700" : "bg-slate-50 text-slate-700")}>
+          <div className={cn("grid h-11 w-11 place-items-center rounded-2xl", selected ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400" : "bg-slate-50 text-slate-700 dark:bg-slate-700 dark:text-slate-300")}>
             {icon}
           </div>
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <div className="text-sm font-semibold text-slate-900">{title}</div>
+              <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{title}</div>
               {badges?.map((b) => (
                 <Pill key={`${id}-${b.label}`} label={b.label} tone={b.tone} />
               ))}
             </div>
-            <div className="mt-1 text-sm text-slate-600">{subtitle}</div>
+            <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">{subtitle}</div>
           </div>
         </div>
-        <div className={cn("grid h-6 w-6 place-items-center rounded-full border", selected ? "border-emerald-300 bg-emerald-50" : "border-slate-200 bg-white")}>
-          {selected ? <Check className="h-4 w-4 text-emerald-700" /> : <span className="h-2 w-2 rounded-full bg-slate-300" />}
+        <div className={cn("grid h-6 w-6 place-items-center rounded-full border", selected ? "border-emerald-300 bg-emerald-50 dark:border-emerald-700 dark:bg-emerald-900/30" : "border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800")}>
+          {selected ? <Check className="h-4 w-4 text-emerald-700 dark:text-emerald-400" /> : <span className="h-2 w-2 rounded-full bg-slate-300 dark:bg-slate-600" />}
         </div>
       </div>
       {foot ? <div className="mt-3">{foot}</div> : null}
@@ -1456,8 +1456,8 @@ export default function UserRideCheckoutCorporatePayU15() {
                           const badges = isCorp
                             ? corporateBadges
                             : [
-                                ...(paymentMethod === m.id ? [{ label: "Selected", tone: "info" }] : []),
-                              ];
+                              ...(paymentMethod === m.id ? [{ label: "Selected", tone: "info" }] : []),
+                            ];
 
                           const foot = isCorp ? corporateFoot : <div className="rounded-2xl bg-slate-50 p-3 text-xs text-slate-600 ring-1 ring-slate-200">Personal payment does not require corporate approvals.</div>;
 
@@ -1683,8 +1683,8 @@ export default function UserRideCheckoutCorporatePayU15() {
                           policy.outcome === "Allowed"
                             ? "border-emerald-200 bg-emerald-50"
                             : policy.outcome === "Approval required"
-                            ? "border-amber-200 bg-amber-50"
-                            : "border-rose-200 bg-rose-50"
+                              ? "border-amber-200 bg-amber-50"
+                              : "border-rose-200 bg-rose-50"
                         )}
                       >
                         <div className="flex items-start justify-between gap-3">
@@ -1696,8 +1696,8 @@ export default function UserRideCheckoutCorporatePayU15() {
                               {policy.outcome === "Allowed"
                                 ? "You can proceed."
                                 : policy.outcome === "Approval required"
-                                ? "Proceed to submit for approval."
-                                : "CorporatePay cannot proceed without changes or an exception."}
+                                  ? "Proceed to submit for approval."
+                                  : "CorporatePay cannot proceed without changes or an exception."}
                             </div>
                           </div>
                           <div className={cn(
@@ -2279,7 +2279,7 @@ export default function UserRideCheckoutCorporatePayU15() {
 
 function SummaryRow({ label, value, emphasize }: { label: string; value: string; emphasize?: boolean }) {
   return (
-    <div className={cn("flex items-start justify-between gap-3 rounded-2xl border px-3 py-2", emphasize ? "border-emerald-200 bg-emerald-50" : "border-slate-200 bg-white")}> 
+    <div className={cn("flex items-start justify-between gap-3 rounded-2xl border px-3 py-2", emphasize ? "border-emerald-200 bg-emerald-50" : "border-slate-200 bg-white")}>
       <div className="text-xs font-semibold text-slate-500">{label}</div>
       <div className={cn("text-sm font-semibold text-slate-900 text-right", emphasize && "text-emerald-900")}>{value}</div>
     </div>

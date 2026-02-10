@@ -150,14 +150,14 @@ export default function EVChargingCheckout() {
     const renderLocationSelection = () => (
         <div className="space-y-6">
             {/* Current Location */}
-            <div className="p-4 bg-white rounded-lg border border-gray-200">
+            <div className="p-4 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700">
                 <div className="flex items-center gap-3">
-                    <div className="p-2 bg-blue-100 rounded-lg">
-                        <MapPin className="w-5 h-5 text-blue-600" />
+                    <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                        <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div className="flex-1">
-                        <p className="text-sm text-gray-500">Current Location</p>
-                        <p className="font-medium text-gray-900">Detecting location...</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Current Location</p>
+                        <p className="font-medium text-gray-900 dark:text-gray-100">Detecting location...</p>
                     </div>
                     <Button variant="ghost" size="sm" className="flex items-center gap-2">
                         <RefreshCw className="w-4 h-4" />
@@ -193,11 +193,11 @@ export default function EVChargingCheckout() {
             </div>
 
             {/* Map Placeholder */}
-            <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
+            <div className="h-64 bg-gray-100 dark:bg-slate-800 rounded-lg flex items-center justify-center">
                 <div className="text-center">
-                    <MapPin className="w-12 h-12 text-gray-300 mx-auto mb-2" />
-                    <p className="text-gray-500">Map View</p>
-                    <p className="text-sm text-gray-400">Showing charging stations nearby</p>
+                    <MapPin className="w-12 h-12 text-gray-300 dark:text-slate-600 mx-auto mb-2" />
+                    <p className="text-gray-500 dark:text-gray-400">Map View</p>
+                    <p className="text-sm text-gray-400 dark:text-gray-500">Showing charging stations nearby</p>
                 </div>
             </div>
 
@@ -214,24 +214,24 @@ export default function EVChargingCheckout() {
                                 }
                             }}
                             className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${s.available > 0
-                                    ? "border-gray-200 hover:border-blue-300"
-                                    : "border-gray-100 opacity-50"
+                                    ? "border-gray-200 hover:border-blue-300 dark:border-slate-700 dark:hover:border-blue-500"
+                                    : "border-gray-100 dark:border-slate-700 opacity-50"
                                 }`}
                         >
                             <div className="flex items-start justify-between">
                                 <div className="flex-1">
                                     <div className="flex items-center gap-2">
-                                        <h3 className="font-semibold text-gray-900">{s.name}</h3>
+                                        <h3 className="font-semibold text-gray-900 dark:text-gray-100">{s.name}</h3>
                                         {s.available > 0 ? (
                                             <Pill label={`${s.available}/${s.total} available`} tone="good" />
                                         ) : (
                                             <Pill label="Full" tone="bad" />
                                         )}
                                     </div>
-                                    <p className="text-sm text-gray-500 mt-1">{s.address}</p>
-                                    <p className="text-sm text-gray-400 mt-1">{s.distance} km away</p>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{s.address}</p>
+                                    <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">{s.distance} km away</p>
                                     <div className="flex items-center gap-3 mt-2">
-                                        <span className="flex items-center gap-1 text-sm text-gray-600">
+                                        <span className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
                                             ⭐ {s.rating}
                                         </span>
                                         <div className="flex items-center gap-1">
@@ -241,7 +241,7 @@ export default function EVChargingCheckout() {
                                         </div>
                                     </div>
                                 </div>
-                                {s.available > 0 && <ChevronRight className="w-5 h-5 text-gray-400" />}
+                                {s.available > 0 && <ChevronRight className="w-5 h-5 text-gray-400 dark:text-slate-500" />}
                             </div>
                         </div>
                     ))}
@@ -256,16 +256,16 @@ export default function EVChargingCheckout() {
         return (
             <div className="space-y-6">
                 {/* Station Header */}
-                <div className="p-4 bg-white rounded-lg border border-gray-200">
+                <div className="p-4 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700">
                     <div className="flex items-start gap-3">
-                        <div className="p-3 bg-green-100 rounded-lg">
-                            <BatteryCharging className="w-8 h-8 text-green-600" />
+                        <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                            <BatteryCharging className="w-8 h-8 text-green-600 dark:text-green-400" />
                         </div>
                         <div className="flex-1">
-                            <h2 className="text-xl font-bold text-gray-900">{station.name}</h2>
-                            <p className="text-gray-500">{station.address}</p>
+                            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">{station.name}</h2>
+                            <p className="text-gray-500 dark:text-gray-400">{station.address}</p>
                             <div className="flex items-center gap-4 mt-2">
-                                <span className="flex items-center gap-1 text-sm text-gray-600">
+                                <span className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
                                     <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
                                     {station.rating}
                                 </span>
@@ -287,24 +287,24 @@ export default function EVChargingCheckout() {
                                     setSelectedPlug({ type: plug.type, power: plug.power, price: plug.pricePerKwh })
                                 }
                                 className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${selectedPlug?.type === plug.type
-                                        ? "border-blue-500 bg-blue-50"
+                                        ? "border-blue-500 bg-blue-50 dark:bg-blue-900/30"
                                         : plug.available > 0
-                                            ? "border-gray-200 hover:border-gray-300"
-                                            : "border-gray-100 opacity-50"
+                                            ? "border-gray-200 hover:border-gray-300 dark:border-slate-700 dark:hover:border-slate-600"
+                                            : "border-gray-100 dark:border-slate-700 opacity-50"
                                     }`}
                             >
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-3">
-                                        <div className="p-2 bg-gray-100 rounded-lg">
-                                            <Plug className="w-6 h-6 text-gray-600" />
+                                        <div className="p-2 bg-gray-100 dark:bg-slate-700 rounded-lg">
+                                            <Plug className="w-6 h-6 text-gray-600 dark:text-gray-400" />
                                         </div>
                                         <div>
-                                            <h4 className="font-medium text-gray-900">{plug.type}</h4>
-                                            <p className="text-sm text-gray-500">{plug.power}</p>
+                                            <h4 className="font-medium text-gray-900 dark:text-gray-100">{plug.type}</h4>
+                                            <p className="text-sm text-gray-500 dark:text-gray-400">{plug.power}</p>
                                         </div>
                                     </div>
                                     <div className="text-right">
-                                        <p className="font-semibold text-gray-900">
+                                        <p className="font-semibold text-gray-900 dark:text-gray-100">
                                             {formatCurrency(plug.pricePerKwh)}/kWh
                                         </p>
                                         <Pill
@@ -326,14 +326,14 @@ export default function EVChargingCheckout() {
                                 key={speed.id}
                                 onClick={() => setSelectedSpeed(speed.id)}
                                 className={`p-4 rounded-lg border-2 cursor-pointer text-center transition-all ${selectedSpeed === speed.id
-                                        ? "border-blue-500 bg-blue-50"
-                                        : "border-gray-200 hover:border-gray-300"
+                                        ? "border-blue-500 bg-blue-50 dark:bg-blue-900/30"
+                                        : "border-gray-200 hover:border-gray-300 dark:border-slate-700 dark:hover:border-slate-600"
                                     }`}
                             >
                                 <Bolt className="w-6 h-6 text-amber-500 mx-auto mb-2" />
-                                <h4 className="font-medium text-gray-900">{speed.name}</h4>
-                                <p className="text-xs text-gray-500 mt-1">{speed.power}</p>
-                                <p className="text-xs text-gray-400 mt-1">{speed.description}</p>
+                                <h4 className="font-medium text-gray-900 dark:text-gray-100">{speed.name}</h4>
+                                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{speed.power}</p>
+                                <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{speed.description}</p>
                             </div>
                         ))}
                     </div>
@@ -343,8 +343,8 @@ export default function EVChargingCheckout() {
                 <SectionCard title="Charging Range" subtitle="Set your battery level">
                     <div className="space-y-4 mt-4">
                         <div className="flex items-center justify-between">
-                            <span className="text-sm text-gray-600">Current</span>
-                            <span className="font-medium text-gray-900">{currentBattery}%</span>
+                            <span className="text-sm text-gray-600 dark:text-gray-400">Current</span>
+                            <span className="font-medium text-gray-900 dark:text-gray-100">{currentBattery}%</span>
                         </div>
                         <input
                             type="range"
@@ -355,8 +355,8 @@ export default function EVChargingCheckout() {
                             className="w-full"
                         />
                         <div className="flex items-center justify-between">
-                            <span className="text-sm text-gray-600">Target</span>
-                            <span className="font-medium text-gray-900">{targetBattery}%</span>
+                            <span className="text-sm text-gray-600 dark:text-gray-400">Target</span>
+                            <span className="font-medium text-gray-900 dark:text-gray-100">{targetBattery}%</span>
                         </div>
                         <input
                             type="range"
@@ -366,18 +366,18 @@ export default function EVChargingCheckout() {
                             onChange={(e) => setTargetBattery(Number(e.target.value))}
                             className="w-full"
                         />
-                        <div className="p-3 bg-gray-50 rounded-lg">
+                        <div className="p-3 bg-gray-50 dark:bg-slate-800 rounded-lg">
                             <div className="flex items-center justify-between text-sm">
-                                <span className="text-gray-600">Energy needed</span>
-                                <span className="font-medium text-gray-900">{kwhNeeded.toFixed(1)} kWh</span>
+                                <span className="text-gray-600 dark:text-gray-400">Energy needed</span>
+                                <span className="font-medium text-gray-900 dark:text-gray-100">{kwhNeeded.toFixed(1)} kWh</span>
                             </div>
                             <div className="flex items-center justify-between text-sm mt-1">
-                                <span className="text-gray-600">Estimated time</span>
-                                <span className="font-medium text-gray-900">{formatTime(chargingTime)}</span>
+                                <span className="text-gray-600 dark:text-gray-400">Estimated time</span>
+                                <span className="font-medium text-gray-900 dark:text-gray-100">{formatTime(chargingTime)}</span>
                             </div>
                             <div className="flex items-center justify-between text-sm mt-1">
-                                <span className="text-gray-600">Estimated cost</span>
-                                <span className="font-medium text-gray-900">{formatCurrency(estimatedCost)}</span>
+                                <span className="text-gray-600 dark:text-gray-400">Estimated cost</span>
+                                <span className="font-medium text-gray-900 dark:text-gray-100">{formatCurrency(estimatedCost)}</span>
                             </div>
                         </div>
                     </div>
@@ -502,12 +502,12 @@ export default function EVChargingCheckout() {
             </SectionCard>
 
             {/* Estimated Cost */}
-            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="p-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg">
                 <div className="flex items-center justify-between">
-                    <span className="text-sm text-blue-700">Estimated Cost</span>
-                    <span className="text-xl font-bold text-blue-900">{formatCurrency(estimatedCost)}</span>
+                    <span className="text-sm text-blue-700 dark:text-blue-300">Estimated Cost</span>
+                    <span className="text-xl font-bold text-blue-900 dark:text-blue-200">{formatCurrency(estimatedCost)}</span>
                 </div>
-                <p className="text-xs text-blue-600 mt-1">
+                <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
                     {kwhNeeded.toFixed(1)} kWh @ {selectedPlug?.price} UGX/kWh
                 </p>
             </div>
@@ -535,62 +535,62 @@ export default function EVChargingCheckout() {
             <SectionCard title="Policy Verification" subtitle="Checking compliance for EV charging">
                 <div className="space-y-4 mt-4">
                     <div className="space-y-3">
-                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-800 rounded-lg">
                             <div className="flex items-center gap-3">
-                                <DollarSign className="w-5 h-5 text-gray-600" />
-                                <span className="text-gray-700">Amount within limit</span>
+                                <DollarSign className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                <span className="text-gray-700 dark:text-gray-300">Amount within limit</span>
                             </div>
                             {estimatedCost <= CORPORATE_POLICY.maxAmount ? (
-                                <CheckCircle className="w-5 h-5 text-green-600" />
+                                <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
                             ) : (
-                                <AlertTriangle className="w-5 h-5 text-amber-600" />
+                                <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                             )}
                         </div>
-                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-800 rounded-lg">
                             <div className="flex items-center gap-3">
-                                <Tag className="w-5 h-5 text-gray-600" />
-                                <span className="text-gray-700">Tags assigned</span>
+                                <Tag className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                <span className="text-gray-700 dark:text-gray-300">Tags assigned</span>
                             </div>
                             {selectedTags.length > 0 ? (
-                                <CheckCircle className="w-5 h-5 text-green-600" />
+                                <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
                             ) : (
-                                <AlertTriangle className="w-5 h-5 text-amber-600" />
+                                <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                             )}
                         </div>
-                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                        <div className="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-800 rounded-lg">
                             <div className="flex items-center gap-3">
-                                <FileText className="w-5 h-5 text-gray-600" />
-                                <span className="text-gray-700">Purpose stated</span>
+                                <FileText className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                <span className="text-gray-700 dark:text-gray-300">Purpose stated</span>
                             </div>
                             {purpose ? (
-                                <CheckCircle className="w-5 h-5 text-green-600" />
+                                <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
                             ) : (
-                                <AlertTriangle className="w-5 h-5 text-amber-600" />
+                                <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                             )}
                         </div>
                     </div>
 
                     <div
-                        className={`p-4 rounded-lg border-2 ${isPolicyCompliant ? "bg-green-50 border-green-200" : "bg-amber-50 border-amber-200"
+                        className={`p-4 rounded-lg border-2 ${isPolicyCompliant ? "bg-green-50 border-green-200 dark:bg-green-900/30 dark:border-green-800" : "bg-amber-50 border-amber-200 dark:bg-amber-900/30 dark:border-amber-800"
                             }`}
                     >
                         <div className="flex items-center gap-3">
                             {isPolicyCompliant ? (
                                 <>
-                                    <CheckCircle className="w-8 h-8 text-green-600" />
+                                    <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
                                     <div>
-                                        <h4 className="font-semibold text-green-800">Policy Compliant</h4>
-                                        <p className="text-sm text-green-700">
+                                        <h4 className="font-semibold text-green-800 dark:text-green-200">Policy Compliant</h4>
+                                        <p className="text-sm text-green-700 dark:text-green-300">
                                             This charging session meets all corporate policy requirements
                                         </p>
                                     </div>
                                 </>
                             ) : (
                                 <>
-                                    <AlertTriangle className="w-8 h-8 text-amber-600" />
+                                    <AlertTriangle className="w-8 h-8 text-amber-600 dark:text-amber-400" />
                                     <div>
-                                        <h4 className="font-semibold text-amber-800">Policy Review Required</h4>
-                                        <p className="text-sm text-amber-700">
+                                        <h4 className="font-semibold text-amber-800 dark:text-amber-200">Policy Review Required</h4>
+                                        <p className="text-sm text-amber-700 dark:text-amber-300">
                                             Some requirements need manager approval
                                         </p>
                                     </div>
@@ -603,9 +603,9 @@ export default function EVChargingCheckout() {
 
             {!isPolicyCompliant && (
                 <SectionCard title="Approval Required" subtitle="Next steps for out-of-policy">
-                    <div className="mt-4 p-4 bg-amber-50 rounded-lg">
-                        <h4 className="font-medium text-amber-800 mb-2">Request Exception</h4>
-                        <p className="text-sm text-amber-700 mb-3">
+                    <div className="mt-4 p-4 bg-amber-50 dark:bg-amber-900/30 rounded-lg">
+                        <h4 className="font-medium text-amber-800 dark:text-amber-200 mb-2">Request Exception</h4>
+                        <p className="text-sm text-amber-700 dark:text-amber-300 mb-3">
                             This session exceeds the standard policy threshold and requires approval.
                         </p>
                         <Button variant="outline" className="flex items-center gap-2" onClick={() => setShowPolicyModal(true)}>
@@ -640,38 +640,38 @@ export default function EVChargingCheckout() {
                     <div
                         onClick={() => setPaymentMethod("corporate")}
                         className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${paymentMethod === "corporate"
-                                ? "border-blue-500 bg-blue-50"
-                                : "border-gray-200 hover:border-gray-300"
+                                ? "border-blue-500 bg-blue-50 dark:bg-blue-900/30"
+                                : "border-gray-200 hover:border-gray-300 dark:border-slate-700 dark:hover:border-slate-600"
                             }`}
                     >
                         <div className="flex items-center gap-3">
-                            <div className="p-2 bg-blue-100 rounded-lg">
-                                <Building2 className="w-5 h-5 text-blue-600" />
+                            <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                                <Building2 className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                             </div>
                             <div className="flex-1">
-                                <h4 className="font-medium text-gray-900">Corporate Account</h4>
-                                <p className="text-sm text-gray-500">Charge to corporate account</p>
+                                <h4 className="font-medium text-gray-900 dark:text-gray-100">Corporate Account</h4>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">Charge to corporate account</p>
                             </div>
-                            {paymentMethod === "corporate" && <CheckCircle className="w-5 h-5 text-blue-600" />}
+                            {paymentMethod === "corporate" && <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />}
                         </div>
                     </div>
 
                     <div
                         onClick={() => setPaymentMethod("personal")}
                         className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${paymentMethod === "personal"
-                                ? "border-blue-500 bg-blue-50"
-                                : "border-gray-200 hover:border-gray-300"
+                                ? "border-blue-500 bg-blue-50 dark:bg-blue-900/30"
+                                : "border-gray-200 hover:border-gray-300 dark:border-slate-700 dark:hover:border-slate-600"
                             }`}
                     >
                         <div className="flex items-center gap-3">
-                            <div className="p-2 bg-gray-100 rounded-lg">
-                                <Wallet className="w-5 h-5 text-gray-600" />
+                            <div className="p-2 bg-gray-100 dark:bg-slate-700 rounded-lg">
+                                <Wallet className="w-5 h-5 text-gray-600 dark:text-gray-400" />
                             </div>
                             <div className="flex-1">
-                                <h4 className="font-medium text-gray-900">Personal Payment</h4>
-                                <p className="text-sm text-gray-500">Pay with personal funds (reimbursement)</p>
+                                <h4 className="font-medium text-gray-900 dark:text-gray-100">Personal Payment</h4>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">Pay with personal funds (reimbursement)</p>
                             </div>
-                            {paymentMethod === "personal" && <CheckCircle className="w-5 h-5 text-blue-600" />}
+                            {paymentMethod === "personal" && <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />}
                         </div>
                     </div>
                 </div>
@@ -681,17 +681,17 @@ export default function EVChargingCheckout() {
             <SectionCard title="Cost Breakdown" subtitle="Estimated charges">
                 <div className="space-y-2 mt-4 text-sm">
                     <div className="flex justify-between">
-                        <span className="text-gray-600">Energy ({kwhNeeded.toFixed(1)} kWh)</span>
-                        <span className="text-gray-900">{formatCurrency(kwhNeeded * (selectedPlug?.price || 0))}</span>
+                        <span className="text-gray-600 dark:text-gray-400">Energy ({kwhNeeded.toFixed(1)} kWh)</span>
+                        <span className="text-gray-900 dark:text-gray-100">{formatCurrency(kwhNeeded * (selectedPlug?.price || 0))}</span>
                     </div>
                     <div className="flex justify-between">
-                        <span className="text-gray-600">Service Fee</span>
-                        <span className="text-gray-900">{formatCurrency(2000)}</span>
+                        <span className="text-gray-600 dark:text-gray-400">Service Fee</span>
+                        <span className="text-gray-900 dark:text-gray-100">{formatCurrency(2000)}</span>
                     </div>
-                    <div className="border-t pt-2 mt-2">
+                    <div className="border-t pt-2 mt-2 dark:border-slate-700">
                         <div className="flex justify-between font-semibold">
-                            <span>Estimated Total</span>
-                            <span className="text-blue-600">{formatCurrency(estimatedCost)}</span>
+                            <span className="text-gray-900 dark:text-gray-100">Estimated Total</span>
+                            <span className="text-blue-600 dark:text-blue-400">{formatCurrency(estimatedCost)}</span>
                         </div>
                     </div>
                 </div>
@@ -717,56 +717,56 @@ export default function EVChargingCheckout() {
         <div className="space-y-6">
             {/* Success */}
             <div className="text-center py-8">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <BatteryCharging className="w-10 h-10 text-green-600" />
+                <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <BatteryCharging className="w-10 h-10 text-green-600 dark:text-green-400" />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900">Charging Started!</h2>
-                <p className="text-gray-500 mt-2">Your charging session has begun</p>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Charging Started!</h2>
+                <p className="text-gray-500 dark:text-gray-400 mt-2">Your charging session has begun</p>
             </div>
 
             {/* Session Details */}
             <SectionCard title="Session Details" subtitle="Session #EV-2024-001234">
                 <div className="space-y-4 mt-4">
                     <div className="flex items-start gap-3">
-                        <MapPin className="w-5 h-5 text-green-600 mt-0.5" />
+                        <MapPin className="w-5 h-5 text-green-600 dark:text-green-400 mt-0.5" />
                         <div>
-                            <p className="text-sm text-gray-500">Station</p>
-                            <p className="font-medium text-gray-900">{station?.name}</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">Station</p>
+                            <p className="font-medium text-gray-900 dark:text-gray-100">{station?.name}</p>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <Plug className="w-5 h-5 text-blue-600 mt-0.5" />
+                        <Plug className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
                         <div>
-                            <p className="text-sm text-gray-500">Charger</p>
-                            <p className="font-medium text-gray-900">
+                            <p className="text-sm text-gray-500 dark:text-gray-400">Charger</p>
+                            <p className="font-medium text-gray-900 dark:text-gray-100">
                                 {selectedPlug?.type} - {selectedPlug?.power}
                             </p>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <Timer className="w-5 h-5 text-gray-600 mt-0.5" />
+                        <Timer className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5" />
                         <div>
-                            <p className="text-sm text-gray-500">Est. Time Remaining</p>
-                            <p className="font-medium text-gray-900">{formatTime(chargingTime)}</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">Est. Time Remaining</p>
+                            <p className="font-medium text-gray-900 dark:text-gray-100">{formatTime(chargingTime)}</p>
                         </div>
                     </div>
                     <div className="flex items-start gap-3">
-                        <DollarSign className="w-5 h-5 text-gray-600 mt-0.5" />
+                        <DollarSign className="w-5 h-5 text-gray-600 dark:text-gray-400 mt-0.5" />
                         <div>
-                            <p className="text-sm text-gray-500">Estimated Cost</p>
-                            <p className="font-semibold text-gray-900">{formatCurrency(estimatedCost)}</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">Estimated Cost</p>
+                            <p className="font-semibold text-gray-900 dark:text-gray-100">{formatCurrency(estimatedCost)}</p>
                         </div>
                     </div>
                 </div>
             </SectionCard>
 
             {/* Policy Confirmation */}
-            <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+            <div className="p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg">
                 <div className="flex items-center gap-3">
-                    <Shield className="w-6 h-6 text-green-600" />
+                    <Shield className="w-6 h-6 text-green-600 dark:text-green-400" />
                     <div>
-                        <p className="font-medium text-green-800">Policy Compliant</p>
-                        <p className="text-sm text-green-700">Charged to corporate account</p>
+                        <p className="font-medium text-green-800 dark:text-green-200">Policy Compliant</p>
+                        <p className="text-sm text-green-700 dark:text-green-300">Charged to corporate account</p>
                     </div>
                 </div>
             </div>
@@ -793,8 +793,8 @@ export default function EVChargingCheckout() {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">EV Charging</h1>
-                    <p className="text-gray-500 mt-1">Find and use corporate EV charging stations</p>
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">EV Charging</h1>
+                    <p className="text-gray-500 dark:text-gray-400 mt-1">Find and use corporate EV charging stations</p>
                 </div>
                 <Pill
                     label={
@@ -815,7 +815,7 @@ export default function EVChargingCheckout() {
             </div>
 
             {/* Progress */}
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2">
                 <div
                     className="bg-green-600 h-2 rounded-full transition-all"
                     style={{

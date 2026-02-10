@@ -120,14 +120,14 @@ export default function QuoteComparison() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Quote Comparison</h1>
-          <p className="text-gray-500 mt-1">Compare vendor quotes for RFQ-2024-001</p>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Quote Comparison</h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-1">Compare vendor quotes for RFQ-2024-001</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" onClick={() => setViewMode("grid")} className={viewMode === "grid" ? "bg-gray-100" : ""}>
+          <Button variant="outline" onClick={() => setViewMode("grid")} className={viewMode === "grid" ? "bg-gray-100 dark:bg-gray-700" : ""}>
             <BarChart3 className="w-4 h-4" />
           </Button>
-          <Button variant="outline" onClick={() => setViewMode("table")} className={viewMode === "table" ? "bg-gray-100" : ""}>
+          <Button variant="outline" onClick={() => setViewMode("table")} className={viewMode === "table" ? "bg-gray-100 dark:bg-gray-700" : ""}>
             <FileText className="w-4 h-4" />
           </Button>
         </div>
@@ -135,49 +135,49 @@ export default function QuoteComparison() {
 
       {/* Summary Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="p-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <DollarSign className="w-5 h-5 text-blue-600" />
+            <div className="p-2 bg-blue-100 dark:bg-blue-800/50 rounded-lg">
+              <DollarSign className="w-5 h-5 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
-              <p className="text-xs text-blue-600">Price Range</p>
-              <p className="font-bold text-blue-700">
+              <p className="text-xs text-blue-600 dark:text-blue-400">Price Range</p>
+              <p className="font-bold text-blue-700 dark:text-blue-300">
                 {formatCurrency(lowestPrice)} - {formatCurrency(highestPrice)}
               </p>
             </div>
           </div>
         </div>
-        <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+        <div className="p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-green-100 rounded-lg">
-              <TrendingDown className="w-5 h-5 text-green-600" />
+            <div className="p-2 bg-green-100 dark:bg-green-800/50 rounded-lg">
+              <TrendingDown className="w-5 h-5 text-green-600 dark:text-green-400" />
             </div>
             <div>
-              <p className="text-xs text-green-600">Best Price</p>
-              <p className="font-bold text-green-700">{bestPriceVendor}</p>
+              <p className="text-xs text-green-600 dark:text-green-400">Best Price</p>
+              <p className="font-bold text-green-700 dark:text-green-300">{bestPriceVendor}</p>
             </div>
           </div>
         </div>
-        <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+        <div className="p-4 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-amber-100 rounded-lg">
-              <Clock className="w-5 h-5 text-amber-600" />
+            <div className="p-2 bg-amber-100 dark:bg-amber-800/50 rounded-lg">
+              <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400" />
             </div>
             <div>
-              <p className="text-xs text-amber-600">Avg Delivery</p>
-              <p className="font-bold text-amber-700">{avgDelivery.toFixed(0)} days</p>
+              <p className="text-xs text-amber-600 dark:text-amber-400">Avg Delivery</p>
+              <p className="font-bold text-amber-700 dark:text-amber-300">{avgDelivery.toFixed(0)} days</p>
             </div>
           </div>
         </div>
-        <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+        <div className="p-4 bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-lg">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-purple-100 rounded-lg">
-              <Award className="w-5 h-5 text-purple-600" />
+            <div className="p-2 bg-purple-100 dark:bg-purple-800/50 rounded-lg">
+              <Award className="w-5 h-5 text-purple-600 dark:text-purple-400" />
             </div>
             <div>
-              <p className="text-xs text-purple-600">Top Rated</p>
-              <p className="font-bold text-purple-700">
+              <p className="text-xs text-purple-600 dark:text-purple-400">Top Rated</p>
+              <p className="font-bold text-purple-700 dark:text-purple-300">
                 {quotes.sort((a, b) => b.rating - a.rating)[0].vendorName.split(" ")[0]}
               </p>
             </div>
@@ -190,18 +190,18 @@ export default function QuoteComparison() {
         <div className="overflow-x-auto mt-4">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-gray-200">
-                <th className="text-left py-2 px-3 font-medium text-gray-600">Item</th>
-                <th className="text-center py-2 px-3 font-medium text-gray-600">Qty</th>
-                <th className="text-left py-2 px-3 font-medium text-gray-600">Specifications</th>
+              <tr className="border-b border-gray-200 dark:border-gray-700">
+                <th className="text-left py-2 px-3 font-medium text-gray-600 dark:text-gray-400">Item</th>
+                <th className="text-center py-2 px-3 font-medium text-gray-600 dark:text-gray-400">Qty</th>
+                <th className="text-left py-2 px-3 font-medium text-gray-600 dark:text-gray-400">Specifications</th>
               </tr>
             </thead>
             <tbody>
               {lineItems.map((item, index) => (
-                <tr key={index} className="border-b border-gray-100">
-                  <td className="py-2 px-3">{item.name}</td>
-                  <td className="py-2 px-3 text-center">{item.qty}</td>
-                  <td className="py-2 px-3 text-gray-500">{item.specs}</td>
+                <tr key={index} className="border-b border-gray-100 dark:border-gray-700">
+                  <td className="py-2 px-3 text-gray-900 dark:text-gray-100">{item.name}</td>
+                  <td className="py-2 px-3 text-center text-gray-900 dark:text-gray-100">{item.qty}</td>
+                  <td className="py-2 px-3 text-gray-500 dark:text-gray-400">{item.specs}</td>
                 </tr>
               ))}
             </tbody>
@@ -219,13 +219,13 @@ export default function QuoteComparison() {
             return (
               <div
                 key={quote.id}
-                className={`relative p-5 rounded-xl border-2 transition-all cursor-pointer ${isSelected ? "border-blue-500 bg-blue-50" : "border-gray-200 hover:border-gray-300 bg-white"
+                className={`relative p-5 rounded-xl border-2 transition-all cursor-pointer ${isSelected ? "border-blue-500 bg-blue-50 dark:bg-blue-900/30" : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 bg-white dark:bg-slate-800"
                   }`}
                 onClick={() => toggleQuoteSelection(quote.id)}
               >
                 {isSelected && (
                   <div className="absolute top-3 right-3">
-                    <CheckCircle className="w-6 h-6 text-blue-600" />
+                    <CheckCircle className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                   </div>
                 )}
                 {isBestPrice && !isSelected && (
@@ -235,12 +235,12 @@ export default function QuoteComparison() {
                 )}
 
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                    <BuildingIcon className="w-6 h-6 text-gray-600" />
+                  <div className="w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                    <BuildingIcon className="w-6 h-6 text-gray-600 dark:text-gray-400" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900">{quote.vendorName}</h3>
-                    <div className="flex items-center gap-1 text-sm text-gray-500">
+                    <h3 className="font-bold text-gray-900 dark:text-gray-100">{quote.vendorName}</h3>
+                    <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
                       <span>★</span>
                       <span>{quote.rating}/5</span>
                     </div>
@@ -248,27 +248,27 @@ export default function QuoteComparison() {
                 </div>
 
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                    <span className="text-sm text-gray-500">Total</span>
-                    <span className={`font-bold ${isBestPrice ? "text-green-600" : "text-gray-900"}`}>
+                  <div className="flex items-center justify-between py-2 border-b border-gray-100 dark:border-gray-700">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">Total</span>
+                    <span className={`font-bold ${isBestPrice ? "text-green-600 dark:text-green-400" : "text-gray-900 dark:text-gray-100"}`}>
                       {formatCurrency(quote.totalAmount)}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                    <span className="text-sm text-gray-500">Delivery</span>
-                    <span className="font-medium text-gray-900">{quote.deliveryDays} days</span>
+                  <div className="flex items-center justify-between py-2 border-b border-gray-100 dark:border-gray-700">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">Delivery</span>
+                    <span className="font-medium text-gray-900 dark:text-gray-100">{quote.deliveryDays} days</span>
                   </div>
-                  <div className="flex items-center justify-between py-2 border-b border-gray-100">
-                    <span className="text-sm text-gray-500">Warranty</span>
-                    <span className="font-medium text-gray-900">{quote.warrantyMonths} months</span>
+                  <div className="flex items-center justify-between py-2 border-b border-gray-100 dark:border-gray-700">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">Warranty</span>
+                    <span className="font-medium text-gray-900 dark:text-gray-100">{quote.warrantyMonths} months</span>
                   </div>
                   <div className="flex items-center justify-between py-2">
-                    <span className="text-sm text-gray-500">Payment</span>
-                    <span className="font-medium text-gray-900">{quote.paymentTerms}</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">Payment</span>
+                    <span className="font-medium text-gray-900 dark:text-gray-100">{quote.paymentTerms}</span>
                   </div>
                 </div>
 
-                <div className="mt-4 pt-4 border-t border-gray-100">
+                <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700">
                   <div className="flex flex-wrap gap-1">
                     {quote.pros.slice(0, 2).map((pro, i) => (
                       <Pill key={i} label={pro} tone="good" />
@@ -297,13 +297,13 @@ export default function QuoteComparison() {
           <div className="overflow-x-auto mt-4">
             <table className="w-full">
               <thead>
-                <tr className="bg-gray-50">
-                  <th className="text-left py-3 px-4 font-medium text-gray-600">Vendor</th>
-                  <th className="text-right py-3 px-4 font-medium text-gray-600">Total Amount</th>
-                  <th className="text-center py-3 px-4 font-medium text-gray-600">Delivery</th>
-                  <th className="text-center py-3 px-4 font-medium text-gray-600">Warranty</th>
-                  <th className="text-center py-3 px-4 font-medium text-gray-600">Rating</th>
-                  <th className="text-center py-3 px-4 font-medium text-gray-600">Select</th>
+                <tr className="bg-gray-50 dark:bg-gray-800">
+                  <th className="text-left py-3 px-4 font-medium text-gray-600 dark:text-gray-400">Vendor</th>
+                  <th className="text-right py-3 px-4 font-medium text-gray-600 dark:text-gray-400">Total Amount</th>
+                  <th className="text-center py-3 px-4 font-medium text-gray-600 dark:text-gray-400">Delivery</th>
+                  <th className="text-center py-3 px-4 font-medium text-gray-600 dark:text-gray-400">Warranty</th>
+                  <th className="text-center py-3 px-4 font-medium text-gray-600 dark:text-gray-400">Rating</th>
+                  <th className="text-center py-3 px-4 font-medium text-gray-600 dark:text-gray-400">Select</th>
                 </tr>
               </thead>
               <tbody>
@@ -314,21 +314,21 @@ export default function QuoteComparison() {
                   return (
                     <tr
                       key={quote.id}
-                      className={`border-b border-gray-100 ${isSelected ? "bg-blue-50" : ""}`}
+                      className={`border-b border-gray-100 dark:border-gray-700 ${isSelected ? "bg-blue-50 dark:bg-blue-900/30" : ""}`}
                     >
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-2">
-                          {isBestPrice && <TrendingDown className="w-4 h-4 text-green-600" />}
-                          <span className="font-medium text-gray-900">{quote.vendorName}</span>
+                          {isBestPrice && <TrendingDown className="w-4 h-4 text-green-600 dark:text-green-400" />}
+                          <span className="font-medium text-gray-900 dark:text-gray-100">{quote.vendorName}</span>
                         </div>
                       </td>
-                      <td className={`text-right py-3 px-4 font-bold ${isBestPrice ? "text-green-600" : "text-gray-900"}`}>
+                      <td className={`text-right py-3 px-4 font-bold ${isBestPrice ? "text-green-600 dark:text-green-400" : "text-gray-900 dark:text-gray-100"}`}>
                         {formatCurrency(quote.totalAmount)}
                       </td>
-                      <td className="text-center py-3 px-4">{quote.deliveryDays} days</td>
-                      <td className="text-center py-3 px-4">{quote.warrantyMonths} mo</td>
+                      <td className="text-center py-3 px-4 text-gray-900 dark:text-gray-100">{quote.deliveryDays} days</td>
+                      <td className="text-center py-3 px-4 text-gray-900 dark:text-gray-100">{quote.warrantyMonths} mo</td>
                       <td className="text-center py-3 px-4">
-                        <div className="flex items-center justify-center gap-1">
+                        <div className="flex items-center justify-center gap-1 text-gray-900 dark:text-gray-100">
                           <span>★</span>
                           <span>{quote.rating}</span>
                         </div>
@@ -336,9 +336,10 @@ export default function QuoteComparison() {
                       <td className="text-center py-3 px-4">
                         <button
                           onClick={() => toggleQuoteSelection(quote.id)}
-                          className={`p-2 rounded-lg transition-colors ${isSelected
-                              ? "bg-blue-100 text-blue-600"
-                              : "bg-gray-100 text-gray-400 hover:bg-gray-200"
+                          className={`p-2 rounded-lg transition-colors ${
+                              isSelected
+                                ? "bg-blue-100 dark:bg-blue-800/50 text-blue-600 dark:text-blue-400"
+                                : "bg-gray-100 dark:bg-gray-700 text-gray-400 dark:text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-600"
                             }`}
                         >
                           <CheckCircle className="w-5 h-5" />
@@ -355,8 +356,8 @@ export default function QuoteComparison() {
 
       {/* Selection Actions */}
       {selectedQuotes.length > 0 && (
-        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-white border border-gray-200 shadow-xl rounded-xl px-6 py-4 flex items-center gap-4">
-          <span className="text-sm text-gray-600">
+        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 shadow-xl rounded-xl px-6 py-4 flex items-center gap-4">
+          <span className="text-sm text-gray-600 dark:text-gray-400">
             {selectedQuotes.length} quote{selectedQuotes.length > 1 ? "s" : ""} selected
           </span>
           <Button variant="outline" onClick={() => setSelectedQuotes([])}>

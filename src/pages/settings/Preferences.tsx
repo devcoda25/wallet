@@ -45,11 +45,11 @@ type Toast = { id: string; title: string; message?: string; kind: "success" | "w
 
 function Toggle({ label, desc, value, onChange }: { label: string; desc: string; value: boolean; onChange: (v: boolean) => void }) {
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-4">
+    <div className="rounded-3xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-4">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <div className="text-sm font-semibold text-slate-900">{label}</div>
-          <div className="mt-1 text-sm text-slate-600">{desc}</div>
+          <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{label}</div>
+          <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">{desc}</div>
         </div>
         <Button variant={value ? "primary" : "outline"} className="px-3 py-2" onClick={() => onChange(!value)}>
           {value ? "ON" : "OFF"}
@@ -110,37 +110,37 @@ export default function Preferences() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "radial-gradient(90% 60% at 50% 0%, rgba(3,205,140,0.18), rgba(255,255,255,0))" }}>
+    <div className="min-h-screen dark:bg-slate-900" style={{ background: "radial-gradient(90% 60% at 50% 0%, rgba(3,205,140,0.18), rgba(255,255,255,0))" }}>
       <ToastStack toasts={toasts} onDismiss={(id) => setToasts((p) => p.filter((x) => x.id !== id))} />
 
       <div className="mx-auto max-w-[1180px] px-4 py-5 md:px-6">
-        <div className="rounded-[28px] border border-slate-200 bg-white shadow-[0_30px_90px_rgba(2,8,23,0.10)]">
-          <div className="border-b border-slate-200 px-4 py-4 md:px-6">
+        <div className="rounded-[28px] border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-[0_30px_90px_rgba(2,8,23,0.10)]">
+          <div className="border-b border-slate-200 dark:border-slate-700 px-4 py-4 md:px-6">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div className="flex items-start gap-3">
                 <div className="grid h-12 w-12 place-items-center rounded-2xl text-white" style={{ background: EVZ.green }}>
                   <Settings className="h-6 w-6" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold text-slate-900">Preferences</div>
-                  <div className="mt-1 text-xs text-slate-500">Personalize wallet defaults and notifications across EVzone</div>
+                  <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">Preferences</div>
+                  <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">Personalize wallet defaults and notifications across EVzone</div>
                 </div>
               </div>
               <div className="flex gap-2">
-                <Button variant="outline" onClick={() => toast({ kind: "info", title: "Wallet" })}>Wallet</Button>
+                <Button variant="outline" onClick={() => toast({ kind: "info", title: "Wallet" })} className="dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-700">Wallet</Button>
                 <Button variant="primary" onClick={save}><Sparkles className="h-4 w-4" /> Save</Button>
               </div>
             </div>
           </div>
 
-          <div className="bg-slate-50 px-4 py-5 md:px-6">
+          <div className="bg-slate-50 dark:bg-slate-900 px-4 py-5 md:px-6">
             <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
               <div className="space-y-4 lg:col-span-8">
                 <Section title="Payment Defaults" subtitle="Default method used at checkout per module">
                   <div className="space-y-2">
                     {modules.map(m => (
-                      <div key={m} className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 border border-slate-200 rounded-3xl bg-white gap-3">
-                        <span className="text-sm font-semibold">{m}</span>
+                      <div key={m} className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 border border-slate-200 dark:border-slate-700 rounded-3xl bg-white dark:bg-slate-800 gap-3">
+                        <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">{m}</span>
                         <Select value={defaultPaymentByModule[m]} onChange={e => { setDefaultPaymentByModule(p => ({ ...p, [m]: e.target.value as any })); setDirty(true); }} options={paymentMethods.map(pm => ({ label: pm, value: pm }))} className="w-full sm:w-auto sm:min-w-[240px]" />
                       </div>
                     ))}
@@ -167,7 +167,7 @@ export default function Preferences() {
 
                 <Section title="Work Profile" subtitle="Automatic scheduling for notifications">
                   <div className="flex justify-between items-center mb-4">
-                    <span className="text-sm font-semibold">Enable profile schedule</span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">Enable profile schedule</span>
                     <Button variant={workProfile.enabled ? "primary" : "outline"} onClick={() => { setWorkProfile(p => ({ ...p, enabled: !p.enabled })); setDirty(true); }}>{workProfile.enabled ? "ON" : "OFF"}</Button>
                   </div>
                   {workProfile.enabled && (
@@ -180,15 +180,15 @@ export default function Preferences() {
               </div>
 
               <div className="lg:col-span-4 space-y-4">
-                <div className="p-5 border border-slate-200 rounded-3xl bg-white shadow-sm overflow-hidden" style={{ background: "radial-gradient(90% 80% at 10% 0%, rgba(247,127,0,0.15), transparent)" }}>
+                <div className="p-5 border border-slate-200 dark:border-slate-700 rounded-3xl bg-white dark:bg-slate-800 shadow-sm overflow-hidden" style={{ background: "radial-gradient(90% 80% at 10% 0%, rgba(247,127,0,0.15), transparent)" }}>
                   <div className="flex gap-3 items-center">
-                    <div className="grid h-10 w-10 place-items-center rounded-2xl bg-orange-50 text-orange-600">
+                    <div className="grid h-10 w-10 place-items-center rounded-2xl bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400">
                       <Sparkles className="h-5 w-5" />
                     </div>
-                    <span className="text-sm font-semibold">Premium personalization</span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">Premium personalization</span>
                   </div>
                   <div className="mt-4 space-y-2">
-                    <div className="p-3 bg-slate-50/50 rounded-2xl text-xs border border-slate-100 italic text-slate-600">Your defaults apply everywhere in the EVzone ecosystem.</div>
+                    <div className="p-3 bg-slate-50/50 dark:bg-slate-900/50 rounded-2xl text-xs border border-slate-100 dark:border-slate-700 italic text-slate-600 dark:text-slate-400">Your defaults apply everywhere in the EVzone ecosystem.</div>
                     <div className="flex flex-wrap gap-2 pt-2">
                       <Pill label="Per-module" tone="neutral" />
                       <Pill label="Schedules" tone="neutral" />
@@ -197,16 +197,16 @@ export default function Preferences() {
                   </div>
                 </div>
 
-                <div className="p-5 border border-slate-200 rounded-3xl bg-white shadow-sm">
-                  <div className="text-sm font-semibold text-slate-900 mb-3">Quick Preview</div>
+                <div className="p-5 border border-slate-200 dark:border-slate-700 rounded-3xl bg-white dark:bg-slate-800 shadow-sm">
+                  <div className="text-sm font-semibold text-slate-900 dark:text-slate-100 mb-3">Quick Preview</div>
                   <div className="space-y-3">
-                    <div className="p-3 bg-slate-50 rounded-2xl">
-                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">E-Commerce Default</div>
-                      <div className="text-sm font-semibold text-slate-700 mt-0.5">{defaultPaymentByModule["E-Commerce"]}</div>
+                    <div className="p-3 bg-slate-50 dark:bg-slate-900 rounded-2xl">
+                      <div className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">E-Commerce Default</div>
+                      <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mt-0.5">{defaultPaymentByModule["E-Commerce"]}</div>
                     </div>
-                    <div className="p-3 bg-slate-50 rounded-2xl">
-                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Default Payout</div>
-                      <div className="text-sm font-semibold text-slate-700 mt-0.5">{defaultPayoutMethod}</div>
+                    <div className="p-3 bg-slate-50 dark:bg-slate-900 rounded-2xl">
+                      <div className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Default Payout</div>
+                      <div className="text-sm font-semibold text-slate-700 dark:text-slate-300 mt-0.5">{defaultPayoutMethod}</div>
                     </div>
                   </div>
                   <Button variant="primary" className="w-full mt-4" onClick={save}><BadgeCheck className="h-4 w-4" /> Save All Settings</Button>
