@@ -26,7 +26,7 @@ export function Header({ onMobileMenuOpen, userName = "Alex Doe" }: HeaderProps)
                             <Building2 className="h-5 w-5" />
                         </div>
                         <div className="hidden sm:block">
-                            <div className="text-sm font-bold tracking-tight text-slate-900">CorporatePay</div>
+                            <div className="text-sm font-bold tracking-tight text-slate-900">wallet</div>
                             <div className="text-[10px] font-medium text-slate-500 uppercase tracking-wider">User Workspace</div>
                         </div>
                     </div>
