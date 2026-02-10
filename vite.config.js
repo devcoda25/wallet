@@ -9,6 +9,17 @@ export default defineConfig({
             '@': path.resolve(__dirname, './src'),
         },
     },
+    build: {
+        sourcemap: true, // Enable sourcemaps for debugging
+        rollupOptions: {
+            output: {
+                manualChunks: {
+                    vendor: ['react', 'react-dom', 'react-router-dom'],
+                    mui: ['@mui/material', '@mui/material/styles'],
+                },
+            },
+        },
+    },
     server: {
         port: 5173,
         strictPort: false
