@@ -29,11 +29,7 @@ import {
     User,
     X,
 } from "lucide-react";
-
-const EVZ = {
-    green: "#03CD8C",
-    orange: "#F77F00",
-};
+import { EVZ_COLORS } from "@/theme/tokens";
 
 type PaymentMethod = "CorporatePay" | "Personal Wallet" | "Card" | "Mobile Money";
 
@@ -167,7 +163,7 @@ function Button({
         ghost: "bg-transparent text-slate-700 hover:bg-slate-100 focus:ring-slate-200 dark:text-slate-300 dark:hover:bg-slate-700",
         danger: "border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100 focus:ring-rose-100 dark:border-rose-800 dark:bg-rose-900/30 dark:text-rose-400 dark:hover:bg-rose-900/50",
     };
-    const buttonStyle = style || (variant === "primary" ? { background: EVZ.green } : variant === "accent" ? { background: EVZ.orange } : undefined);
+    const buttonStyle = style || (variant === "primary" ? { background: EVZ_COLORS.green } : variant === "accent" ? { background: EVZ_COLORS.orange } : undefined);
 
     return (
         <button
@@ -624,20 +620,20 @@ export default function EcommerceCheckout() {
     };
 
     return (
-        <div className="min-h-screen" style={{ background: "radial-gradient(90% 60% at 50% 0%, rgba(3,205,140,0.12), rgba(255,255,255,0))" }}>
+        <div className="min-h-screen evz-theme">
             <ToastStack toasts={toasts} onDismiss={(id) => setToasts((p) => p.filter((x) => x.id !== id))} />
 
             <div className="mx-auto max-w-6xl px-4 py-6 md:px-6">
                 {/* Header */}
-                <div className="mb-6 rounded-[28px] border border-slate-200 bg-white shadow-sm">
-                    <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4 md:px-6">
+                <div className="mb-6 rounded-[28px] border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
+                    <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4 md:px-6 dark:border-slate-700">
                         <div className="flex items-center gap-3">
-                            <div className="grid h-12 w-12 place-items-center rounded-2xl text-white" style={{ background: EVZ.orange }}>
+                            <div className="grid h-12 w-12 place-items-center rounded-2xl text-white" style={{ background: EVZ_COLORS.orange }}>
                                 <ShoppingBag className="h-6 w-6" />
                             </div>
                             <div>
-                                <div className="text-lg font-semibold text-slate-900">E-Commerce Checkout</div>
-                                <div className="mt-1 text-sm text-slate-500">Complete your purchase with policy enforcement</div>
+                                <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">E-Commerce Checkout</div>
+                                <div className="mt-1 text-sm text-slate-500 dark:text-slate-400">Complete your purchase with policy enforcement</div>
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -665,11 +661,11 @@ export default function EcommerceCheckout() {
                                     exit={{ opacity: 0, y: -10 }}
                                     className="space-y-4"
                                 >
-                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                                         <div className="mb-4 flex items-center justify-between">
                                             <div className="flex items-center gap-2">
                                                 <Package className="h-5 w-5 text-slate-600" />
-                                                <div className="text-lg font-semibold text-slate-900">Shopping Cart</div>
+                                                <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">Shopping Cart</div>
                                             </div>
                                             <Pill label={`${cartItems.length} items`} tone="neutral" />
                                         </div>
@@ -677,51 +673,51 @@ export default function EcommerceCheckout() {
                                         {cartItems.length === 0 ? (
                                             <div className="py-12 text-center">
                                                 <ShoppingBag className="mx-auto h-12 w-12 text-slate-300" />
-                                                <div className="mt-4 text-lg font-semibold text-slate-900">Your cart is empty</div>
-                                                <div className="mt-2 text-sm text-slate-500">Add items to continue with checkout</div>
+                                                <div className="mt-4 text-lg font-semibold text-slate-900 dark:text-slate-100">Your cart is empty</div>
+                                                <div className="mt-2 text-sm text-slate-500 dark:text-slate-400">Add items to continue with checkout</div>
                                             </div>
                                         ) : (
                                             <div className="space-y-4">
                                                 {cartItems.map((item) => (
-                                                    <div key={item.id} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                                                    <div key={item.id} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-700/50">
                                                         <div className="flex items-start justify-between gap-4">
                                                             <div className="flex-1">
                                                                 <div className="flex flex-wrap items-center gap-2">
-                                                                    <div className="text-sm font-semibold text-slate-900">{item.name}</div>
+                                                                    <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{item.name}</div>
                                                                     <Pill label={item.category} tone="neutral" />
                                                                 </div>
-                                                                <div className="mt-1 text-xs text-slate-500">SKU: {item.sku}</div>
-                                                                <div className="mt-2 text-sm text-slate-600">{item.description}</div>
+                                                                <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">SKU: {item.sku}</div>
+                                                                <div className="mt-2 text-sm text-slate-600 dark:text-slate-300">{item.description}</div>
                                                             </div>
                                                             <div className="text-right">
-                                                                <div className="text-lg font-semibold text-slate-900">{formatUGX(item.unitPriceUGX)}</div>
+                                                                <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">{formatUGX(item.unitPriceUGX)}</div>
                                                                 <div className="mt-2 flex items-center gap-2">
                                                                     <button
                                                                         type="button"
                                                                         onClick={() => handleQuantityChange(item.id, -1)}
-                                                                        className="grid h-8 w-8 place-items-center rounded-xl border border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
+                                                                        className="grid h-8 w-8 place-items-center rounded-xl border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
                                                                     >
                                                                         -
                                                                     </button>
-                                                                    <div className="w-8 text-center text-sm font-semibold">{item.quantity}</div>
+                                                                    <div className="w-8 text-center text-sm font-semibold dark:text-slate-100">{item.quantity}</div>
                                                                     <button
                                                                         type="button"
                                                                         onClick={() => handleQuantityChange(item.id, 1)}
-                                                                        className="grid h-8 w-8 place-items-center rounded-xl border border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
+                                                                        className="grid h-8 w-8 place-items-center rounded-xl border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
                                                                     >
                                                                         +
                                                                     </button>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className="mt-4 flex items-center justify-between border-t border-slate-200 pt-3">
-                                                            <div className="text-xs text-slate-500">
+                                                        <div className="mt-4 flex items-center justify-between border-t border-slate-200 pt-3 dark:border-slate-600">
+                                                            <div className="text-xs text-slate-500 dark:text-slate-400">
                                                                 Subtotal: {formatUGX(item.unitPriceUGX * item.quantity)}
                                                             </div>
                                                             <button
                                                                 type="button"
                                                                 onClick={() => handleRemoveItem(item.id)}
-                                                                className="text-sm text-rose-600 hover:text-rose-700"
+                                                                className="text-sm text-rose-600 hover:text-rose-700 dark:text-rose-400 dark:hover:text-rose-300"
                                                             >
                                                                 Remove
                                                             </button>
@@ -754,36 +750,36 @@ export default function EcommerceCheckout() {
                                     exit={{ opacity: 0, y: -10 }}
                                     className="space-y-4"
                                 >
-                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                                         <div className="mb-4 flex items-center justify-between">
                                             <div className="flex items-center gap-2">
                                                 <Truck className="h-5 w-5 text-slate-600" />
-                                                <div className="text-lg font-semibold text-slate-900">Delivery Address</div>
+                                                <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">Delivery Address</div>
                                             </div>
                                             <Button variant="outline" onClick={() => setAddressModalOpen(true)}>
                                                 <MapPin className="h-4 w-4" /> Change
                                             </Button>
                                         </div>
 
-                                        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                                        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-700/50">
                                             <div className="flex items-start gap-3">
-                                                <div className="grid h-10 w-10 place-items-center rounded-2xl bg-white text-slate-700">
+                                                <div className="grid h-10 w-10 place-items-center rounded-2xl bg-white text-slate-700 dark:bg-slate-600 dark:text-slate-300">
                                                     <User className="h-5 w-5" />
                                                 </div>
                                                 <div className="flex-1">
                                                     <div className="flex items-center gap-2">
-                                                        <div className="font-semibold text-slate-900">{selectedAddress.name}</div>
+                                                        <div className="font-semibold text-slate-900 dark:text-slate-100">{selectedAddress.name}</div>
                                                         <Pill label="Default" tone="info" />
                                                     </div>
-                                                    <div className="mt-1 text-sm text-slate-600">{selectedAddress.address}</div>
-                                                    <div className="mt-1 text-sm text-slate-600">
+                                                    <div className="mt-1 text-sm text-slate-600 dark:text-slate-300">{selectedAddress.address}</div>
+                                                    <div className="mt-1 text-sm text-slate-600 dark:text-slate-300">
                                                         {selectedAddress.city}, {selectedAddress.country}
                                                     </div>
-                                                    <div className="mt-2 flex items-center gap-1 text-sm text-slate-500">
+                                                    <div className="mt-2 flex items-center gap-1 text-sm text-slate-500 dark:text-slate-400">
                                                         <Phone className="h-3 w-3" /> {selectedAddress.phone}
                                                     </div>
                                                     {selectedAddress.instructions && (
-                                                        <div className="mt-2 rounded-xl bg-amber-50 p-2 text-xs text-amber-800">
+                                                        <div className="mt-2 rounded-xl bg-amber-50 p-2 text-xs text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
                                                             <Info className="mr-1 inline h-3 w-3" />
                                                             {selectedAddress.instructions}
                                                         </div>
@@ -794,10 +790,10 @@ export default function EcommerceCheckout() {
                                     </div>
 
                                     {/* Delivery Options */}
-                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                                         <div className="mb-4 flex items-center gap-2">
                                             <Calendar className="h-5 w-5 text-slate-600" />
-                                            <div className="text-lg font-semibold text-slate-900">Delivery Options</div>
+                                            <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">Delivery Options</div>
                                         </div>
 
                                         <div className="grid gap-3 md:grid-cols-2">
@@ -808,16 +804,16 @@ export default function EcommerceCheckout() {
                                                 <button
                                                     key={opt.name}
                                                     type="button"
-                                                    className="rounded-2xl border border-slate-200 bg-white p-4 text-left hover:bg-slate-50"
+                                                    className="rounded-2xl border border-slate-200 bg-white p-4 text-left hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
                                                 >
                                                     <div className="flex items-start gap-3">
-                                                        <div className="grid h-10 w-10 place-items-center rounded-2xl bg-slate-100 text-slate-700">
+                                                        <div className="grid h-10 w-10 place-items-center rounded-2xl bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300">
                                                             <opt.icon className="h-5 w-5" />
                                                         </div>
                                                         <div>
-                                                            <div className="font-semibold text-slate-900">{opt.name}</div>
-                                                            <div className="mt-1 text-xs text-slate-500">{opt.time}</div>
-                                                            <div className="mt-1 text-sm font-medium text-slate-900">{opt.price}</div>
+                                                            <div className="font-semibold text-slate-900 dark:text-slate-100">{opt.name}</div>
+                                                            <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{opt.time}</div>
+                                                            <div className="mt-1 text-sm font-medium text-slate-900 dark:text-slate-100">{opt.price}</div>
                                                         </div>
                                                     </div>
                                                 </button>
@@ -837,11 +833,11 @@ export default function EcommerceCheckout() {
                                     className="space-y-4"
                                 >
                                     {/* Payment Method Selection */}
-                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                                         <div className="mb-4 flex items-center justify-between">
                                             <div className="flex items-center gap-2">
                                                 <CreditCard className="h-5 w-5 text-slate-600" />
-                                                <div className="text-lg font-semibold text-slate-900">Payment Method</div>
+                                                <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">Payment Method</div>
                                             </div>
                                         </div>
 
@@ -854,24 +850,24 @@ export default function EcommerceCheckout() {
                                                     className={cn(
                                                         "rounded-2xl border p-4 text-left transition",
                                                         paymentMethod === pm
-                                                            ? "border-emerald-300 bg-emerald-50"
-                                                            : "border-slate-200 bg-white hover:bg-slate-50"
+                                                            ? "border-emerald-300 bg-emerald-50 dark:border-emerald-600 dark:bg-emerald-900/30"
+                                                            : "border-slate-200 bg-white hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
                                                     )}
                                                 >
                                                     <div className="flex items-center gap-3">
                                                         <div
                                                             className={cn(
                                                                 "grid h-10 w-10 place-items-center rounded-2xl",
-                                                                pm === "CorporatePay" ? "bg-emerald-100 text-emerald-700" : "bg-slate-100 text-slate-700"
+                                                                pm === "CorporatePay" ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-400" : "bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300"
                                                             )}
                                                         >
                                                             {pm === "CorporatePay" ? <Building2 className="h-5 w-5" /> : pm === "Personal Wallet" ? <Receipt className="h-5 w-5" /> : <CreditCard className="h-5 w-5" />}
                                                         </div>
                                                         <div>
-                                                            <div className="font-semibold text-slate-900">{pm}</div>
+                                                            <div className="font-semibold text-slate-900 dark:text-slate-100">{pm}</div>
                                                             {pm === "CorporatePay" && (
                                                                 <div className="mt-1 text-xs">
-                                                                    <span className={cn("inline-flex rounded px-1.5 py-0.5", corporateStatus === "Eligible" ? "bg-emerald-100 text-emerald-700" : "bg-rose-100 text-rose-700")}>
+                                                                    <span className={cn("inline-flex rounded px-1.5 py-0.5", corporateStatus === "Eligible" ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-400" : "bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-400")}>
                                                                         {corporateStatus}
                                                                     </span>
                                                                 </div>
@@ -892,10 +888,10 @@ export default function EcommerceCheckout() {
 
                                     {/* CorporatePay Allocation */}
                                     {paymentMethod === "CorporatePay" && (
-                                        <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                                        <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                                             <div className="mb-4 flex items-center gap-2">
                                                 <FileText className="h-5 w-5 text-slate-600" />
-                                                <div className="text-lg font-semibold text-slate-900">Cost Allocation</div>
+                                                <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">Cost Allocation</div>
                                                 <Pill label="Required" tone="warn" />
                                             </div>
 
@@ -905,7 +901,7 @@ export default function EcommerceCheckout() {
                                                     <select
                                                         value={selectedCostCenter}
                                                         onChange={(e) => setSelectedCostCenter(e.target.value)}
-                                                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-200"
+                                                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-200 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100"
                                                     >
                                                         <option value="">Select cost center...</option>
                                                         {mockCostCenters.map((cc) => (
@@ -917,11 +913,11 @@ export default function EcommerceCheckout() {
                                                 </div>
 
                                                 <div>
-                                                    <label className="mb-2 block text-sm font-medium text-slate-700">Purpose</label>
+                                                    <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Purpose</label>
                                                     <select
                                                         value={selectedPurpose}
                                                         onChange={(e) => setSelectedPurpose(e.target.value)}
-                                                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-200"
+                                                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-200 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100"
                                                     >
                                                         <option value="">Select purpose...</option>
                                                         {mockPurposes.map((p) => (
@@ -933,11 +929,11 @@ export default function EcommerceCheckout() {
                                                 </div>
 
                                                 <div>
-                                                    <label className="mb-2 block text-sm font-medium text-slate-700">Project Tag (Optional)</label>
+                                                    <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Project Tag (Optional)</label>
                                                     <select
                                                         value={selectedProject}
                                                         onChange={(e) => setSelectedProject(e.target.value)}
-                                                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-200"
+                                                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-200 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100"
                                                     >
                                                         <option value="">Select project (optional)...</option>
                                                         {mockProjectTags.map((p) => (
@@ -949,10 +945,10 @@ export default function EcommerceCheckout() {
                                                 </div>
 
                                                 <div>
-                                                    <label className="mb-2 block text-sm font-medium text-slate-700">Approval Threshold</label>
-                                                    <div className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2.5">
+                                                    <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Approval Threshold</label>
+                                                    <div className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2.5 dark:border-slate-600 dark:bg-slate-700">
                                                         <Info className="h-4 w-4 text-slate-500" />
-                                                        <span className="text-sm text-slate-700">{formatUGX(approvalThresholdUGX)}</span>
+                                                        <span className="text-sm text-slate-700 dark:text-slate-300">{formatUGX(approvalThresholdUGX)}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -960,7 +956,7 @@ export default function EcommerceCheckout() {
                                     )}
 
                                     {/* Policy Summary */}
-                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-2">
                                                 <ShieldCheck className="h-5 w-5 text-slate-600" />
@@ -1010,28 +1006,28 @@ export default function EcommerceCheckout() {
                                     className="space-y-4"
                                 >
                                     {/* Order Summary */}
-                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                                         <div className="mb-4 flex items-center gap-2">
                                             <Receipt className="h-5 w-5 text-slate-600" />
-                                            <div className="text-lg font-semibold text-slate-900">Order Summary</div>
+                                            <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">Order Summary</div>
                                         </div>
 
                                         <div className="space-y-3">
                                             {cartItems.map((item) => (
-                                                <div key={item.id} className="flex items-center justify-between rounded-xl bg-slate-50 p-3">
+                                                <div key={item.id} className="flex items-center justify-between rounded-xl bg-slate-50 p-3 dark:bg-slate-700/50">
                                                     <div>
-                                                        <div className="font-medium text-slate-900">{item.name}</div>
-                                                        <div className="text-xs text-slate-500">Qty: {item.quantity}</div>
+                                                        <div className="font-medium text-slate-900 dark:text-slate-100">{item.name}</div>
+                                                        <div className="text-xs text-slate-500 dark:text-slate-400">Qty: {item.quantity}</div>
                                                     </div>
-                                                    <div className="font-semibold text-slate-900">{formatUGX(item.unitPriceUGX * item.quantity)}</div>
+                                                    <div className="font-semibold text-slate-900 dark:text-slate-100">{formatUGX(item.unitPriceUGX * item.quantity)}</div>
                                                 </div>
                                             ))}
                                         </div>
 
-                                        <div className="mt-4 border-t border-slate-200 pt-4">
+                                        <div className="mt-4 border-t border-slate-200 pt-4 dark:border-slate-600">
                                             <div className="flex items-center justify-between text-sm">
-                                                <span className="text-slate-600">Subtotal</span>
-                                                <span className="font-medium text-slate-900">{formatUGX(subtotalUGX)}</span>
+                                                <span className="text-slate-600 dark:text-slate-400">Subtotal</span>
+                                                <span className="font-medium text-slate-900 dark:text-slate-100">{formatUGX(subtotalUGX)}</span>
                                             </div>
                                             <div className="mt-2 flex items-center justify-between text-sm">
                                                 <span className="text-slate-600">Shipping</span>
@@ -1043,7 +1039,7 @@ export default function EcommerceCheckout() {
                                             </div>
                                             <div className="mt-3 flex items-center justify-between border-t border-slate-200 pt-3">
                                                 <span className="text-lg font-semibold text-slate-900">Total</span>
-                                                <span className="text-lg font-semibold text-slate-900" style={{ color: EVZ.green }}>
+                                                <span className="text-lg font-semibold text-slate-900" style={{ color: EVZ_COLORS.green }}>
                                                     {formatUGX(totalUGX)}
                                                 </span>
                                             </div>
@@ -1051,31 +1047,31 @@ export default function EcommerceCheckout() {
                                     </div>
 
                                     {/* Payment Details */}
-                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                                         <div className="mb-4 flex items-center gap-2">
                                             <CreditCard className="h-5 w-5 text-slate-600" />
-                                            <div className="text-lg font-semibold text-slate-900">Payment Details</div>
+                                            <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">Payment Details</div>
                                         </div>
 
                                         <div className="grid gap-4 md:grid-cols-2">
-                                            <div className="rounded-xl bg-slate-50 p-4">
-                                                <div className="text-xs text-slate-500">Payment Method</div>
-                                                <div className="mt-1 font-medium text-slate-900">{paymentMethod}</div>
+                                            <div className="rounded-xl bg-slate-50 p-4 dark:bg-slate-700/50">
+                                                <div className="text-xs text-slate-500 dark:text-slate-400">Payment Method</div>
+                                                <div className="mt-1 font-medium text-slate-900 dark:text-slate-100">{paymentMethod}</div>
                                             </div>
                                             {paymentMethod === "CorporatePay" && (
                                                 <>
-                                                    <div className="rounded-xl bg-slate-50 p-4">
-                                                        <div className="text-xs text-slate-500">Cost Center</div>
-                                                        <div className="mt-1 font-medium text-slate-900">{selectedCostCenter}</div>
+                                                    <div className="rounded-xl bg-slate-50 p-4 dark:bg-slate-700/50">
+                                                        <div className="text-xs text-slate-500 dark:text-slate-400">Cost Center</div>
+                                                        <div className="mt-1 font-medium text-slate-900 dark:text-slate-100">{selectedCostCenter}</div>
                                                     </div>
-                                                    <div className="rounded-xl bg-slate-50 p-4">
-                                                        <div className="text-xs text-slate-500">Purpose</div>
-                                                        <div className="mt-1 font-medium text-slate-900">{selectedPurpose}</div>
+                                                    <div className="rounded-xl bg-slate-50 p-4 dark:bg-slate-700/50">
+                                                        <div className="text-xs text-slate-500 dark:text-slate-400">Purpose</div>
+                                                        <div className="mt-1 font-medium text-slate-900 dark:text-slate-100">{selectedPurpose}</div>
                                                     </div>
                                                     {selectedProject && (
-                                                        <div className="rounded-xl bg-slate-50 p-4">
-                                                            <div className="text-xs text-slate-500">Project Tag</div>
-                                                            <div className="mt-1 font-medium text-slate-900">{selectedProject}</div>
+                                                        <div className="rounded-xl bg-slate-50 p-4 dark:bg-slate-700/50">
+                                                            <div className="text-xs text-slate-500 dark:text-slate-400">Project Tag</div>
+                                                            <div className="mt-1 font-medium text-slate-900 dark:text-slate-100">{selectedProject}</div>
                                                         </div>
                                                     )}
                                                 </>
@@ -1084,7 +1080,7 @@ export default function EcommerceCheckout() {
                                     </div>
 
                                     {/* Delivery Details */}
-                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+                                    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
                                         <div className="mb-4 flex items-center gap-2">
                                             <Truck className="h-5 w-5 text-slate-600" />
                                             <div className="text-lg font-semibold text-slate-900">Delivery Details</div>
@@ -1157,7 +1153,7 @@ export default function EcommerceCheckout() {
                                         variant="primary"
                                         onClick={handlePlaceOrder}
                                         disabled={isProcessing || policyOutcome === "Blocked"}
-                                        style={{ background: policyOutcome === "Approval required" ? EVZ.orange : EVZ.green }}
+                                        style={{ background: policyOutcome === "Approval required" ? EVZ_COLORS.orange : EVZ_COLORS.green }}
                                     >
                                         {isProcessing ? (
                                             <>
@@ -1180,41 +1176,41 @@ export default function EcommerceCheckout() {
 
                     {/* Right Column - Order Summary Card (sticky on desktop) */}
                     <div className="lg:col-span-4">
-                        <div className="sticky top-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-                            <div className="flex items-center gap-2 border-b border-slate-200 pb-4">
+                        <div className="sticky top-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+                            <div className="flex items-center gap-2 border-b border-slate-200 pb-4 dark:border-slate-700">
                                 <Gift className="h-5 w-5 text-slate-600" />
-                                <div className="text-lg font-semibold text-slate-900">Order Summary</div>
+                                <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">Order Summary</div>
                             </div>
 
                             <div className="mt-4 space-y-3">
                                 <div className="flex items-center justify-between text-sm">
-                                    <span className="text-slate-600">Items ({cartItems.length})</span>
-                                    <span className="font-medium text-slate-900">{formatUGX(subtotalUGX)}</span>
+                                    <span className="text-slate-600 dark:text-slate-400">Items ({cartItems.length})</span>
+                                    <span className="font-medium text-slate-900 dark:text-slate-100">{formatUGX(subtotalUGX)}</span>
                                 </div>
                                 <div className="flex items-center justify-between text-sm">
-                                    <span className="text-slate-600">Shipping</span>
-                                    <span className="font-medium text-slate-900">{formatUGX(shippingUGX)}</span>
+                                    <span className="text-slate-600 dark:text-slate-400">Shipping</span>
+                                    <span className="font-medium text-slate-900 dark:text-slate-100">{formatUGX(shippingUGX)}</span>
                                 </div>
                                 <div className="flex items-center justify-between text-sm">
-                                    <span className="text-slate-600">Tax</span>
-                                    <span className="font-medium text-slate-900">{formatUGX(taxUGX)}</span>
+                                    <span className="text-slate-600 dark:text-slate-400">Tax</span>
+                                    <span className="font-medium text-slate-900 dark:text-slate-100">{formatUGX(taxUGX)}</span>
                                 </div>
                             </div>
 
-                            <div className="mt-4 border-t border-slate-200 pt-4">
+                            <div className="mt-4 border-t border-slate-200 pt-4 dark:border-slate-600">
                                 <div className="flex items-center justify-between">
-                                    <span className="text-lg font-semibold text-slate-900">Total</span>
-                                    <span className="text-lg font-semibold text-slate-900" style={{ color: EVZ.green }}>
+                                    <span className="text-lg font-semibold text-slate-900 dark:text-slate-100">Total</span>
+                                    <span className="text-lg font-semibold text-slate-900 dark:text-slate-100" style={{ color: EVZ_COLORS.green }}>
                                         {formatUGX(totalUGX)}
                                     </span>
                                 </div>
                             </div>
 
                             {/* Policy Status */}
-                            <div className="mt-4 rounded-xl bg-slate-50 p-4">
+                            <div className="mt-4 rounded-xl bg-slate-50 p-4 dark:bg-slate-700/50">
                                 <div className="flex items-center gap-2">
-                                    <ShieldCheck className="h-4 w-4 text-slate-600" />
-                                    <span className="text-sm font-medium text-slate-700">Policy Check</span>
+                                    <ShieldCheck className="h-4 w-4 text-slate-600 dark:text-slate-400" />
+                                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Policy Check</span>
                                 </div>
                                 <div className="mt-2">
                                     <Pill
@@ -1223,7 +1219,7 @@ export default function EcommerceCheckout() {
                                     />
                                 </div>
                                 {policyOutcome === "Approval required" && (
-                                    <p className="mt-2 text-xs text-amber-700">
+                                    <p className="mt-2 text-xs text-amber-700 dark:text-amber-400">
                                         This order will be submitted for manager approval before processing.
                                     </p>
                                 )}
@@ -1407,3 +1403,5 @@ export default function EcommerceCheckout() {
         </div>
     );
 }
+
+

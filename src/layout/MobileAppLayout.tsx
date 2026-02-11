@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header } from "@/components/layout/Header";
-import { Sidebar } from "@/components/layout/Sidebar";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { MobileDrawer } from "@/components/layout/MobileDrawer";
 import { cn } from "@/lib/utils";
@@ -34,7 +33,14 @@ const pageVariants = {
   },
 };
 
-export function AppLayout() {
+// Detect mobile device
+function isMobile() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  ) || window.innerWidth < 768;
+}
+
+export function MobileAppLayout() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const location = useLocation();
@@ -44,7 +50,7 @@ export function AppLayout() {
     const checkMobile = () => {
       setIsMobileView(window.innerWidth < 1024);
     };
-
+    
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
@@ -69,35 +75,39 @@ export function AppLayout() {
       <Header onMobileMenuOpen={() => setIsMobileOpen(true)} />
 
       {/* Main Content */}
-      <div className={cn(
-        "mx-auto",
-        isMobileView ? "px-0" : "max-w-[1440px] px-4 py-8 md:px-6"
-      )}>
+      <main
+        className={cn(
+          "min-h-[calc(100vh-64px)]",
+          isMobileView ? "pb-20" : "pb-8"
+        )}
+      >
         <div className={cn(
-          isMobileView ? "" : "grid grid-cols-1 gap-8 lg:grid-cols-[280px_1fr]"
+          "mx-auto",
+          isMobileView ? "px-0" : "max-w-[1440px] px-4 py-8 md:px-6"
         )}>
-          {/* Sidebar - Desktop only */}
-          {!isMobileView && <Sidebar />}
-
-          {/* Main Content Area */}
-          <main className={cn("min-w-0", isMobileView ? "pb-20" : "")}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={location.pathname}
-                variants={pageVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                className="min-h-[calc(100vh-200px)]"
-              >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={location.pathname}
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className={cn(
+                isMobileView ? "" : "grid grid-cols-1 gap-8 lg:grid-cols-[280px_1fr]"
+              )}
+            >
+              {/* Main content area */}
+              <div className={cn(
+                isMobileView ? "" : "min-w-0"
+              )}>
                 <Outlet />
-              </motion.div>
-            </AnimatePresence>
-          </main>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
-      </div>
+      </main>
 
-      {/* Bottom Navigation - Mobile only */}
+      {/* Bottom Navigation */}
       {isMobileView && <MobileBottomNav />}
 
       {/* Mobile Drawer */}

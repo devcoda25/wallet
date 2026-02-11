@@ -80,13 +80,13 @@ function Pill({ label, tone = "neutral" }: { label: string; tone?: "good" | "war
     return (
         <Chip
             label={label}
-            size="small"
+            size="small" className="dark:border dark:border-slate-600"
             sx={{
                 backgroundColor: map[tone]?.light,
                 color: textMap[tone]?.light,
                 fontWeight: 600,
                 fontSize: "0.75rem",
-                "@media (prefers-color-scheme: dark)": {
+                "dark": {
                     backgroundColor: map[tone]?.dark,
                     color: textMap[tone]?.dark,
                 },

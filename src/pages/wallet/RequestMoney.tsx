@@ -84,13 +84,13 @@ function Pill({ label, tone = "neutral" }: { label: string; tone?: "good" | "war
     return (
         <Chip
             label={label}
-            size="small"
+            size="small" className="dark:border dark:border-slate-600"
             sx={{
                 backgroundColor: map[tone]?.light,
                 color: textMap[tone]?.light,
                 fontWeight: 600,
                 fontSize: "0.75rem",
-                "@media (prefers-color-scheme: dark)": {
+                "dark": {
                     backgroundColor: map[tone]?.dark,
                     color: textMap[tone]?.dark,
                 },
@@ -117,14 +117,14 @@ function RequestMethodCard({
             type="button"
             onClick={onClick}
             className={`flex w-full flex-col items-center gap-2 rounded-2xl border p-3 transition ${selected
-                ? "border-emerald-300 bg-emerald-50"
-                : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50"
+                ? "border-emerald-300 bg-emerald-50 dark:bg-emerald-900/30"
+                : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
                 }`}
         >
-            <div className={`grid h-10 w-10 place-items-center rounded-xl ${selected ? "bg-emerald-100" : "bg-slate-100"}`}>
-                <method.icon className={`h-5 w-5 ${selected ? "text-emerald-600" : "text-slate-600"}`} />
+            <div className={`grid h-10 w-10 place-items-center rounded-xl ${selected ? "bg-emerald-100 dark:bg-emerald-900/50" : "bg-slate-100 dark:bg-slate-700"}`}>
+                <method.icon className={`h-5 w-5 ${selected ? "text-emerald-600 dark:text-emerald-400" : "text-slate-600 dark:text-slate-400"}`} />
             </div>
-            <span className={`text-xs font-medium ${selected ? "text-emerald-700" : "text-slate-700"}`}>{method.label}</span>
+            <span className={`text-xs font-medium ${selected ? "text-emerald-700 dark:text-emerald-400" : "text-slate-700 dark:text-slate-300"}`}>{method.label}</span>
         </button>
     );
 }

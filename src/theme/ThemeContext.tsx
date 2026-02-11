@@ -17,6 +17,8 @@ const lightTheme = createTheme({
         mode: 'light',
         primary: { main: EVZ_COLORS.green },
         secondary: { main: EVZ_COLORS.orange },
+        success: { main: '#14B8A6' },
+        warning: { main: '#F59E0B' },
         background: {
             default: '#F8FAFC',
             paper: '#FFFFFF'
@@ -81,6 +83,8 @@ const darkTheme = createTheme({
         mode: 'dark',
         primary: { main: EVZ_COLORS.green },
         secondary: { main: EVZ_COLORS.orange },
+        success: { main: '#14B8A6' },
+        warning: { main: '#F59E0B' },
         background: {
             default: '#0F172A',
             paper: '#1E293B'

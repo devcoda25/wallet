@@ -67,12 +67,13 @@ function Pill({ label, tone = "neutral" }: { label: string; tone?: "good" | "war
         <Chip
             label={label}
             size="small"
+            className="dark:border dark:border-slate-600"
             sx={{
                 backgroundColor: map[tone]?.light,
                 color: textMap[tone]?.light,
                 fontWeight: 600,
                 fontSize: "0.75rem",
-                "@media (prefers-color-scheme: dark)": {
+                dark: {
                     backgroundColor: map[tone]?.dark,
                     color: textMap[tone]?.dark,
                 },
@@ -90,11 +91,11 @@ function WalletCard({ wallet }: { wallet: WalletInfo }) {
 
     return (
         <Card
-            className="cursor-pointer transition-all hover:shadow-md"
+            className="cursor-pointer transition-all hover:shadow-md dark:bg-slate-800"
             sx={{
-                border: "1px solid #e2e8f0",
+                border: "1px solid #e2e8f0 dark:border-slate-700",
                 "&:hover": {
-                    borderColor: "#10b981",
+                    borderColor: "#10b981 dark:#10b981",
                     boxShadow: "0 4px 12px rgba(16, 185, 129, 0.1)",
                 },
             }}
@@ -106,7 +107,7 @@ function WalletCard({ wallet }: { wallet: WalletInfo }) {
                             <Icon className="h-6 w-6 text-white" />
                         </div>
                         <div>
-                            <Typography variant="h6" fontWeight="bold">
+                            <Typography variant="h6" fontWeight="bold" sx={{ color: 'text.primary' }}>
                                 {wallet.name}
                             </Typography>
                             <div className="flex items-center gap-2">
@@ -117,7 +118,7 @@ function WalletCard({ wallet }: { wallet: WalletInfo }) {
                             </div>
                         </div>
                     </div>
-                    <ChevronRight className="h-5 w-5 text-slate-400" />
+                    <ChevronRight className="h-5 w-5 text-slate-400 dark:text-slate-500" />
                 </div>
                 <Divider sx={{ my: 2 }} />
                 <div className="flex justify-between">
@@ -125,7 +126,7 @@ function WalletCard({ wallet }: { wallet: WalletInfo }) {
                         <Typography variant="body2" color="text.secondary">
                             Available
                         </Typography>
-                        <Typography variant="h5" fontWeight="bold">
+                        <Typography variant="h5" fontWeight="bold" sx={{ color: 'text.primary' }}>
                             {formatMoney(wallet.available, wallet.currency)}
                         </Typography>
                     </div>
@@ -158,12 +159,12 @@ function QuickAction({
         <button
             type="button"
             onClick={onClick}
-            className="flex flex-col items-center gap-2 rounded-2xl border border-slate-200 bg-white p-4 transition hover:bg-slate-50"
+            className="flex flex-col items-center gap-2 rounded-2xl border border-slate-200 bg-white p-4 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700"
         >
             <div className={`grid h-12 w-12 place-items-center rounded-2xl ${color}`}>
                 <Icon className="h-6 w-6 text-white" />
             </div>
-            <span className="text-sm font-medium text-slate-700">{label}</span>
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{label}</span>
         </button>
     );
 }
@@ -286,11 +287,11 @@ export default function WalletOverview() {
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={6}>
                         <div className="flex items-start gap-3">
-                            <div className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50">
-                                <Smartphone className="h-5 w-5 text-emerald-600" />
+                            <div className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 dark:bg-emerald-900/30">
+                                <Smartphone className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                             </div>
                             <div>
-                                <Typography variant="body2" fontWeight="medium">
+                                <Typography variant="body2" fontWeight="medium" sx={{ color: 'text.primary' }}>
                                     Mobile Money Integration
                                 </Typography>
                                 <Typography variant="caption" color="text.secondary">
@@ -301,11 +302,11 @@ export default function WalletOverview() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <div className="flex items-start gap-3">
-                            <div className="grid h-10 w-10 place-items-center rounded-xl bg-blue-50">
-                                <Globe className="h-5 w-5 text-blue-600" />
+                            <div className="grid h-10 w-10 place-items-center rounded-xl bg-blue-50 dark:bg-blue-900/30">
+                                <Globe className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                             </div>
                             <div>
-                                <Typography variant="body2" fontWeight="medium">
+                                <Typography variant="body2" fontWeight="medium" sx={{ color: 'text.primary' }}>
                                     Multi-Currency Support
                                 </Typography>
                                 <Typography variant="caption" color="text.secondary">
@@ -316,11 +317,11 @@ export default function WalletOverview() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <div className="flex items-start gap-3">
-                            <div className="grid h-10 w-10 place-items-center rounded-xl bg-purple-50">
-                                <Building2 className="h-5 w-5 text-purple-600" />
+                            <div className="grid h-10 w-10 place-items-center rounded-xl bg-purple-50 dark:bg-purple-900/30">
+                                <Building2 className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                             </div>
                             <div>
-                                <Typography variant="body2" fontWeight="medium">
+                                <Typography variant="body2" fontWeight="medium" sx={{ color: 'text.primary' }}>
                                     Business Features
                                 </Typography>
                                 <Typography variant="caption" color="text.secondary">
@@ -331,11 +332,11 @@ export default function WalletOverview() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <div className="flex items-start gap-3">
-                            <div className="grid h-10 w-10 place-items-center rounded-xl bg-amber-50">
-                                <TrendingUp className="h-5 w-5 text-amber-600" />
+                            <div className="grid h-10 w-10 place-items-center rounded-xl bg-amber-50 dark:bg-amber-900/30">
+                                <TrendingUp className="h-5 w-5 text-amber-600 dark:text-amber-400" />
                             </div>
                             <div>
-                                <Typography variant="body2" fontWeight="medium">
+                                <Typography variant="body2" fontWeight="medium" sx={{ color: 'text.primary' }}>
                                     Investment Options
                                 </Typography>
                                 <Typography variant="caption" color="text.secondary">

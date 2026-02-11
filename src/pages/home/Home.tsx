@@ -173,7 +173,7 @@ function QuickActionCard({
   icon: Icon,
   label,
   onClick,
-  color = "bg-slate-50",
+  color = "bg-slate-50 dark:bg-slate-800",
 }: {
   icon: React.ElementType;
   label: string;
@@ -398,7 +398,7 @@ export default function Home() {
             icon={ArrowDownLeft}
             label="Add Money"
             onClick={() => navigate("/wallet/add-money")}
-            color="bg-emerald-50 text-emerald-700"
+            color="bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400"
           />
         </Grid>
         <Grid item xs={6} sm={4} md={2}>
@@ -406,7 +406,7 @@ export default function Home() {
             icon={ArrowUpRight}
             label="Send"
             onClick={() => navigate("/wallet/send")}
-            color="bg-blue-50 text-blue-700"
+            color="bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400"
           />
         </Grid>
         <Grid item xs={6} sm={4} md={2}>
@@ -414,7 +414,7 @@ export default function Home() {
             icon={Globe}
             label="FX"
             onClick={() => navigate("/wallet/fx")}
-            color="bg-purple-50 text-purple-700"
+            color="bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400"
           />
         </Grid>
         <Grid item xs={6} sm={4} md={2}>
@@ -422,7 +422,7 @@ export default function Home() {
             icon={Building2}
             label="Corporate"
             onClick={() => navigate("/corporate/hub")}
-            color="bg-slate-50"
+            color="bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
           />
         </Grid>
         <Grid item xs={6} sm={4} md={2}>
@@ -430,7 +430,7 @@ export default function Home() {
             icon={ShoppingCart}
             label="Shop"
             onClick={() => navigate("/flows/ecommerce")}
-            color="bg-orange-50 text-orange-700"
+            color="bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400"
           />
         </Grid>
         <Grid item xs={6} sm={4} md={2}>
@@ -438,7 +438,7 @@ export default function Home() {
             icon={Zap}
             label="EV Charge"
             onClick={() => navigate("/flows/charging")}
-            color="bg-yellow-50 text-yellow-700"
+            color="bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400"
           />
         </Grid>
       </Grid>

@@ -29,6 +29,7 @@ export interface PageDef {
 
 // Lazy load all pages for code splitting
 const Home = lazy(() => import("./home/Home"));
+const MobileHome = lazy(() => import("./home/MobileHome"));
 const WalletOverview = lazy(() => import("./wallet/WalletOverview"));
 const WalletDashboard = lazy(() => import("./wallet/WalletDashboard"));
 const AddMoney = lazy(() => import("./wallet/AddMoney"));
@@ -102,6 +103,14 @@ export const PAGES: PageDef[] = [
     label: "Home",
     component: Home,
     order: 0,
+  },
+  {
+    id: "mobile-home",
+    path: "/mobile-home",
+    group: "Home",
+    label: "Mobile Home",
+    component: MobileHome,
+    order: 1,
   },
 
   // ===== WALLET =====

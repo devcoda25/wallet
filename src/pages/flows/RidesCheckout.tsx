@@ -115,7 +115,7 @@ export default function RidesCheckout() {
         <div className="space-y-6">
             {/* Location Input */}
             <div className="space-y-4">
-                <div className="flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-200">
+                <div className="flex items-center gap-3 p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
                     <div className="w-3 h-3 bg-green-500 rounded-full" />
                     <Input
                         placeholder="Pickup location"
@@ -124,7 +124,7 @@ export default function RidesCheckout() {
                         className="flex-1 border-none focus:ring-0"
                     />
                 </div>
-                <div className="flex items-center gap-3 p-4 bg-white rounded-lg border border-gray-200">
+                <div className="flex items-center gap-3 p-4 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700">
                     <div className="w-3 h-3 bg-red-500 rounded-full" />
                     <Input
                         placeholder="Where to?"
@@ -143,15 +143,15 @@ export default function RidesCheckout() {
                             key={ride.id}
                             onClick={() => setSelectedRide(ride.id)}
                             className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${selectedRide === ride.id
-                                ? "border-blue-500 bg-blue-50"
-                                : "border-gray-200 hover:border-gray-300"
+                                ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30"
+                                : "border-slate-200 hover:border-slate-300 dark:border-slate-700 dark:hover:border-slate-600"
                                 }`}
                         >
                             <div className="text-3xl mb-2">{ride.icon}</div>
-                            <h3 className="font-semibold text-gray-900">{ride.name}</h3>
-                            <p className="text-sm text-gray-500 mt-1">{ride.description}</p>
+                            <h3 className="font-semibold text-gray-900 dark:text-slate-100">{ride.name}</h3>
+                            <p className="text-sm text-gray-500 dark:text-slate-400 mt-1">{ride.description}</p>
                             <div className="flex items-center justify-between mt-3">
-                                <span className="text-sm text-gray-600">
+                                <span className="text-sm text-gray-600 dark:text-slate-400">
                                     {formatCurrency(ride.baseFare)} base
                                 </span>
                                 <Pill label={ride.estimatedTime} tone="neutral" />
@@ -169,18 +169,18 @@ export default function RidesCheckout() {
                             key={driver.id}
                             onClick={() => setSelectedDriver(driver.id)}
                             className={`flex-shrink-0 p-3 rounded-lg border-2 cursor-pointer transition-all ${selectedDriver === driver.id
-                                ? "border-blue-500 bg-blue-50"
-                                : "border-gray-200 hover:border-gray-300"
+                                ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-900/30"
+                                : "border-slate-200 hover:border-slate-300 dark:border-slate-700 dark:hover:border-slate-600"
                                 }`}
                         >
                             <div className="flex items-center gap-3">
                                 <div className="text-2xl">{driver.avatar}</div>
                                 <div>
                                     <div className="flex items-center gap-1">
-                                        <span className="font-medium text-gray-900">{driver.name}</span>
+                                        <span className="font-medium text-gray-900 dark:text-slate-100">{driver.name}</span>
                                         {driver.preferred && <Star className="w-3 h-3 text-yellow-500 fill-yellow-500" />}
                                     </div>
-                                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                                    <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-slate-400">
                                         <span>⭐ {driver.rating}</span>
                                         <span>{driver.trips} trips</span>
                                     </div>
@@ -251,7 +251,7 @@ export default function RidesCheckout() {
                         <select
                             value={selectedCategory}
                             onChange={(e) => setSelectedCategory(e.target.value)}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-slate-800 dark:text-white"
                         >
                             <option value="">Select category</option>
                             {CORPORATE_POLICY.allowedCategories.map((cat) => (
@@ -269,7 +269,7 @@ export default function RidesCheckout() {
                         <textarea
                             value={purpose}
                             onChange={(e) => setPurpose(e.target.value)}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-slate-800 dark:text-white"
                             rows={3}
                             placeholder="Explain the business purpose of this ride..."
                         />
@@ -284,8 +284,8 @@ export default function RidesCheckout() {
                                 <div
                                     key={tag}
                                     className={`px-3 py-1 rounded-full text-sm cursor-pointer ${selectedTags.includes(tag)
-                                        ? "bg-blue-100 text-blue-700 ring-1 ring-blue-200"
-                                        : "bg-gray-100 text-gray-600 ring-1 ring-gray-200 hover:bg-gray-200"
+                                        ? "bg-emerald-100 text-emerald-700 ring-1 ring-emerald-200 dark:bg-emerald-900/50 dark:text-emerald-300"
+                                        : "bg-slate-100 text-slate-600 ring-1 ring-slate-200 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-300 dark:ring-slate-600"
                                         }`}
                                     onClick={() => {
                                         if (selectedTags.includes(tag)) {
@@ -304,10 +304,10 @@ export default function RidesCheckout() {
             </SectionCard>
 
             {/* Estimated Cost */}
-            <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-lg dark:bg-emerald-900/30 dark:border-emerald-800">
                 <div className="flex items-center justify-between">
-                    <span className="text-sm text-blue-700">Estimated Fare</span>
-                    <span className="text-xl font-bold text-blue-900">{formatCurrency(estimatedFare)}</span>
+                    <span className="text-sm text-emerald-700 dark:text-emerald-400">Estimated Fare</span>
+                    <span className="text-xl font-bold text-emerald-900 dark:text-emerald-300">{formatCurrency(estimatedFare)}</span>
                 </div>
                 <p className="text-xs text-blue-600 mt-1">Final fare may vary based on actual route</p>
             </div>
@@ -339,7 +339,7 @@ export default function RidesCheckout() {
                         <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                             <div className="flex items-center gap-3">
                                 <DollarSign className="w-5 h-5 text-gray-600" />
-                                <span className="text-gray-700">Amount within limit</span>
+                                <span className="text-gray-700 dark:text-slate-300">Amount within limit</span>
                             </div>
                             {estimatedFare <= CORPORATE_POLICY.maxAmount ? (
                                 <CheckCircle className="w-5 h-5 text-green-600" />
@@ -350,7 +350,7 @@ export default function RidesCheckout() {
                         <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                             <div className="flex items-center gap-3">
                                 <Tag className="w-5 h-5 text-gray-600" />
-                                <span className="text-gray-700">Tags assigned</span>
+                                <span className="text-gray-700 dark:text-slate-300">Tags assigned</span>
                             </div>
                             {selectedTags.length > 0 ? (
                                 <CheckCircle className="w-5 h-5 text-green-600" />

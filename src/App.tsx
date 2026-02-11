@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import React, { Suspense, useState, useEffect } from 'react';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 
 import { AppLayout } from './layout/AppLayout';
 import { PAGES } from './pages/registry';
@@ -15,6 +15,29 @@ const PageLoader = () => (
   </Box>
 );
 
+// Mobile Home Route - Redirects to mobile home on mobile devices
+function MobileHomeRedirect() {
+  const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) {
+      navigate('/mobile-home', { replace: true });
+    } else {
+      navigate('/home', { replace: true });
+    }
+  }, [isMobile, navigate]);
+
+  return <PageLoader />;
+}
+
 export default function App() {
   return (
     <ErrorBoundary>
@@ -22,7 +45,8 @@ export default function App() {
         <OrganizationProvider>
           <Routes>
             <Route element={<AppLayout />}>
-              <Route index element={<Navigate to="/home" replace />} />
+              <Route index element={<MobileHomeRedirect />} />
+              <Route path="/home" element={<Navigate to="/mobile-home" replace />} />
               {PAGES.map((p) => (
                 <Route
                   key={p.id}
@@ -35,7 +59,7 @@ export default function App() {
                 />
               ))}
             </Route>
-            <Route path="*" element={<Navigate to="/home" replace />} />
+            <Route path="*" element={<MobileHomeRedirect />} />
           </Routes>
         </OrganizationProvider>
       </WalletProvider>

@@ -86,13 +86,13 @@ function Pill({ label, tone = "neutral" }: { label: string; tone?: "good" | "war
     return (
         <Chip
             label={label}
-            size="small"
+            size="small" className="dark:border dark:border-slate-600"
             sx={{
                 backgroundColor: map[tone]?.light,
                 color: textMap[tone]?.light,
                 fontWeight: 600,
                 fontSize: "0.75rem",
-                "@media (prefers-color-scheme: dark)": {
+                "dark": {
                     backgroundColor: map[tone]?.dark,
                     color: textMap[tone]?.dark,
                 },
@@ -125,7 +125,7 @@ function BeneficiaryRow({
                 border: selected ? "2px solid #10b981" : "1px solid #e2e8f0",
                 mb: 1,
                 bgcolor: selected ? "#ecfdf5" : "white",
-                "@media (prefers-color-scheme: dark)": {
+                "dark": {
                     borderColor: selected ? "#059669" : "#334155",
                     bgcolor: selected ? "#064e3b" : "#1e293b",
                 },
