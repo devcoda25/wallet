@@ -18,6 +18,9 @@ import {
     Building2,
     Zap,
     Truck,
+    Baby,
+    GraduationCap,
+    BookOpen,
 } from "lucide-react";
 import { NavSection } from "@/types/types";
 
@@ -35,6 +38,16 @@ export const NAV_SECTIONS: NavSection[] = [
             { label: "Add Money", path: "/wallet/add-money", icon: <DollarSign className="h-4 w-4" /> },
             { label: "Send Money", path: "/wallet/send", icon: <Send className="h-4 w-4" /> },
             { label: "Request Money", path: "/wallet/request", icon: <ArrowDownLeft className="h-4 w-4" /> },
+        ],
+    },
+    {
+        title: "EduWallet",
+        items: [
+            { label: "EduWallet Hub", path: "/parent/eduwallet", icon: <GraduationCap className="h-4 w-4" /> },
+            { label: "My Children", path: "/parent/eduwallet/children", icon: <Baby className="h-4 w-4" /> },
+            { label: "Household", path: "/parent/eduwallet/household", icon: <Home className="h-4 w-4" /> },
+            { label: "Reports", path: "/parent/eduwallet/reports", icon: <FileText className="h-4 w-4" /> },
+            { label: "Help & Support", path: "/parent/eduwallet/settings/help", icon: <Users className="h-4 w-4" /> },
         ],
     },
     {

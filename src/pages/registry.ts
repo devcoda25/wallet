@@ -13,7 +13,8 @@ export type PageGroup =
   | "Checkout Flows"
   | "Procurement"
   | "Settings"
-  | "Support";
+  | "Support"
+  | "EduWallet";
 
 // Page definition interface
 export interface PageDef {
@@ -92,6 +93,24 @@ const RFQStatus = lazy(() => import("./procurement/RfqStatus"));
 const QuoteComparison = lazy(() => import("./procurement/QuoteComparison"));
 const QuoteToPO = lazy(() => import("./procurement/QuoteToPo"));
 const FulfillmentTracking = lazy(() => import("./procurement/FulfillmentTracking"));
+
+// EduWallet pages
+const EduWalletLanding = lazy(() => import("./eduwallet/landing/EduWalletLanding"));
+const EduWalletSearch = lazy(() => import("./eduwallet/landing/EduWalletSearch"));
+const ChildrenDashboard = lazy(() => import("./eduwallet/children/ChildrenDashboard"));
+const EduWalletNotifications = lazy(() => import("./eduwallet/landing/EduWalletNotifications"));
+const ChildOverview = lazy(() => import("./eduwallet/profile/ChildOverview"));
+const ChildQR = lazy(() => import("./eduwallet/profile/ChildQR"));
+const ChildActivity = lazy(() => import("./eduwallet/profile/ChildActivity"));
+const ChildApprovals = lazy(() => import("./eduwallet/profile/ChildApprovals"));
+const ChildFunding = lazy(() => import("./eduwallet/profile/ChildFunding"));
+const ChildControls = lazy(() => import("./eduwallet/profile/ChildControls"));
+const HouseholdManagement = lazy(() => import("./eduwallet/household/HouseholdManagement"));
+const HouseholdFamilyDefaults = lazy(() => import("./eduwallet/household/HouseholdFamilyDefaults"));
+const FamilyReports = lazy(() => import("./eduwallet/reports/FamilyReports"));
+const HouseholdReceipts = lazy(() => import("./eduwallet/reports/HouseholdReceipts"));
+const SecurityPrivacy = lazy(() => import("./eduwallet/settings/SecurityPrivacy"));
+const HelpSupport = lazy(() => import("./eduwallet/settings/HelpSupport"));
 
 // Unified page registry
 export const PAGES: PageDef[] = [
@@ -430,7 +449,7 @@ export const PAGES: PageDef[] = [
     id: "quote-to-po",
     path: "/procurement/po",
     group: "Procurement",
-    label: "Quote → PO → Approval Plan",
+    label: "Quote \u2192 PO \u2192 Approval Plan",
     component: QuoteToPO,
     order: 53,
   },
@@ -539,6 +558,136 @@ export const PAGES: PageDef[] = [
     label: "Dispute Reporting",
     component: DisputeReporting,
     order: 60,
+  },
+
+  // ===== EDUWALLET =====
+  {
+    id: "eduwallet-landing",
+    path: "/parent/eduwallet",
+    group: "EduWallet",
+    label: "EduWallet Home",
+    component: EduWalletLanding,
+    order: 70,
+  },
+  {
+    id: "eduwallet-search",
+    path: "/parent/eduwallet/search",
+    group: "EduWallet",
+    label: "Global Search",
+    component: EduWalletSearch,
+    order: 71,
+  },
+  {
+    id: "eduwallet-children",
+    path: "/parent/eduwallet/children",
+    group: "EduWallet",
+    label: "My Children",
+    component: ChildrenDashboard,
+    order: 72,
+  },
+  {
+    id: "eduwallet-notifications",
+    path: "/parent/eduwallet/notifications",
+    group: "EduWallet",
+    label: "EduWallet Notifications",
+    component: EduWalletNotifications,
+    order: 73,
+  },
+  {
+    id: "eduwallet-child-overview",
+    path: "/parent/eduwallet/profile/:childId",
+    group: "EduWallet",
+    label: "Child Overview",
+    component: ChildOverview,
+    order: 74,
+  },
+  {
+    id: "eduwallet-child-qr",
+    path: "/parent/eduwallet/profile/:childId/qr",
+    group: "EduWallet",
+    label: "Child QR",
+    component: ChildQR,
+    order: 75,
+  },
+  {
+    id: "eduwallet-child-activity",
+    path: "/parent/eduwallet/profile/:childId/activity",
+    group: "EduWallet",
+    label: "Child Activity",
+    component: ChildActivity,
+    order: 76,
+  },
+  {
+    id: "eduwallet-child-approvals",
+    path: "/parent/eduwallet/profile/:childId/approvals",
+    group: "EduWallet",
+    label: "Child Approvals",
+    component: ChildApprovals,
+    order: 77,
+  },
+  {
+    id: "eduwallet-child-funding",
+    path: "/parent/eduwallet/profile/:childId/funding",
+    group: "EduWallet",
+    label: "Child Funding",
+    component: ChildFunding,
+    order: 78,
+  },
+  {
+    id: "eduwallet-child-controls",
+    path: "/parent/eduwallet/profile/:childId/controls",
+    group: "EduWallet",
+    label: "Child Controls",
+    component: ChildControls,
+    order: 79,
+  },
+  {
+    id: "eduwallet-household-management",
+    path: "/parent/eduwallet/household",
+    group: "EduWallet",
+    label: "Household Management",
+    component: HouseholdManagement,
+    order: 80,
+  },
+  {
+    id: "eduwallet-household-defaults",
+    path: "/parent/eduwallet/household/defaults",
+    group: "EduWallet",
+    label: "Family Defaults",
+    component: HouseholdFamilyDefaults,
+    order: 81,
+  },
+  {
+    id: "eduwallet-family-reports",
+    path: "/parent/eduwallet/reports",
+    group: "EduWallet",
+    label: "Family Reports",
+    component: FamilyReports,
+    order: 82,
+  },
+  {
+    id: "eduwallet-household-receipts",
+    path: "/parent/eduwallet/reports/receipts",
+    group: "EduWallet",
+    label: "Household Receipts",
+    component: HouseholdReceipts,
+    order: 83,
+  },
+  {
+    id: "eduwallet-security-privacy",
+    path: "/parent/eduwallet/settings/security",
+    group: "EduWallet",
+    label: "Security & Privacy",
+    component: SecurityPrivacy,
+    order: 84,
+  },
+  {
+    id: "eduwallet-help-support",
+    path: "/parent/eduwallet/settings/help",
+    group: "EduWallet",
+    label: "Help & Support",
+    component: HelpSupport,
+    order: 85,
   },
 ];
 

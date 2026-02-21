@@ -5,6 +5,7 @@ import { AppLayout } from './layout/AppLayout';
 import { PAGES } from './pages/registry';
 import { WalletProvider } from './context/WalletContext';
 import { OrganizationProvider } from './context/OrganizationContext';
+import { EduWalletProvider } from './context/EduWalletContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Box, CircularProgress } from '@mui/material';
 
@@ -43,24 +44,26 @@ export default function App() {
     <ErrorBoundary>
       <WalletProvider>
         <OrganizationProvider>
-          <Routes>
-            <Route element={<AppLayout />}>
-              <Route index element={<MobileHomeRedirect />} />
-              <Route path="/home" element={<Navigate to="/mobile-home" replace />} />
-              {PAGES.map((p) => (
-                <Route
-                  key={p.id}
-                  path={p.path}
-                  element={
-                    <Suspense fallback={<PageLoader />}>
-                      <p.component />
-                    </Suspense>
-                  }
-                />
-              ))}
-            </Route>
-            <Route path="*" element={<MobileHomeRedirect />} />
-          </Routes>
+          <EduWalletProvider>
+            <Routes>
+              <Route element={<AppLayout />}>
+                <Route index element={<MobileHomeRedirect />} />
+                <Route path="/home" element={<Navigate to="/mobile-home" replace />} />
+                {PAGES.map((p) => (
+                  <Route
+                    key={p.id}
+                    path={p.path}
+                    element={
+                      <Suspense fallback={<PageLoader />}>
+                        <p.component />
+                      </Suspense>
+                    }
+                  />
+                ))}
+              </Route>
+              <Route path="*" element={<MobileHomeRedirect />} />
+            </Routes>
+          </EduWalletProvider>
         </OrganizationProvider>
       </WalletProvider>
     </ErrorBoundary>

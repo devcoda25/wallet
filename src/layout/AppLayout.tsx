@@ -81,7 +81,7 @@ export function AppLayout() {
 
           {/* Main Content Area */}
           <main className={cn("min-w-0", isMobileView ? "pb-20" : "")}>
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
               <motion.div
                 key={location.pathname}
                 variants={pageVariants}
